@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="solutions," />
 
 
 
@@ -90,17 +90,20 @@
 
 
 
-<meta name="description" content="Android系统知识之十">
-<meta name="keywords" content="android">
+<meta name="description" content="使用safari抓取花瓣画板中图片的真实地址">
+<meta name="keywords" content="solutions">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统启动过程，system_server启动过程">
-<meta property="og:url" content="http://yoursite.com/2017/05/18/android_10_系统启动过程，System_server启动过程/index.html">
+<meta property="og:title" content="抓取花瓣图片地址">
+<meta property="og:url" content="http://yoursite.com/2017/05/26/抓取花瓣图片地址/index.html">
 <meta property="og:site_name" content="尘の思">
-<meta property="og:description" content="Android系统知识之十">
-<meta property="og:updated_time" content="2017-05-24T05:52:39.000Z">
+<meta property="og:description" content="使用safari抓取花瓣画板中图片的真实地址">
+<meta property="og:image" content="http://yoursite.com/images/safari_huaban_yuansu.png">
+<meta property="og:image" content="http://yoursite.com/images/safari_huaban_ziyuan.png">
+<meta property="og:updated_time" content="2017-05-26T07:07:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统启动过程，system_server启动过程">
-<meta name="twitter:description" content="Android系统知识之十">
+<meta name="twitter:title" content="抓取花瓣图片地址">
+<meta name="twitter:description" content="使用safari抓取花瓣画板中图片的真实地址">
+<meta name="twitter:image" content="http://yoursite.com/images/safari_huaban_yuansu.png">
 
 
 
@@ -128,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/18/android_10_系统启动过程，System_server启动过程/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/26/抓取花瓣图片地址/"/>
 
 
 
 
 
-  <title>系统启动过程，system_server启动过程 | 尘の思</title>
+  <title>抓取花瓣图片地址 | 尘の思</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/android_10_系统启动过程，System_server启动过程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/26/抓取花瓣图片地址/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -280,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">系统启动过程，system_server启动过程</h1>
+          <h1 class="post-title" itemprop="name headline">抓取花瓣图片地址</h1>
         
 
         <div class="post-meta">
@@ -292,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T10:00:00+08:00">
-                2017-05-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T11:35:04+08:00">
+                2017-05-26
               </time>
             
 
@@ -310,7 +313,7 @@
 
           
           
-             <span id="/2017/05/18/android_10_系统启动过程，System_server启动过程/" class="leancloud_visitors" data-flag-title="系统启动过程，system_server启动过程">
+             <span id="/2017/05/26/抓取花瓣图片地址/" class="leancloud_visitors" data-flag-title="抓取花瓣图片地址">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -328,7 +331,7 @@
 
           
               <div class="post-description">
-                  Android系统知识之十
+                  使用safari抓取花瓣画板中图片的真实地址
               </div>
           
 
@@ -342,7 +345,15 @@
       
 
       
-        
+        <p>使用Safari打开花瓣中某一个图片，eg:<a href="http://huaban.com/pins/668155974/" target="_blank" rel="external">http://huaban.com/pins/668155974/</a><br>猜想花瓣网使用的策略类似于<a href="https://www.pixiv.net" target="_blank" rel="external">pixiv(P站)</a>，可以通过图片的ID找到对应的图片资源。<br>故，“668155974”应该是与图片的ID相关。目前是要找到图片的真实路径，因此，要对这个ID中的信息进行分析。<br>开启Safari网页检查器，重点关注javascript部分，如下图：<br><img src="/images/safari_huaban_yuansu.png" alt=""><br>在app.page对象中查找pins属性，但是这部分javascript又多又杂。<br>不妨尝试切换窗口“元素”-&gt;“资源”，在“资源”窗口尝试查找：<br><img src="/images/safari_huaban_ziyuan.png" alt=""><br>pins里面存放的是一组图片信息，可能与分类有关，这里暂不做分析。<br>搜索图片ID：668155974就可以找到pins中的那一项对应我们需要的图片信息了。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"pin_id"</span>:<span class="number">668155974</span>, </div><div class="line">  <span class="attr">"user_id"</span>:<span class="number">16565306</span>, </div><div class="line">  <span class="attr">"board_id"</span>:<span class="number">18698968</span>, </div><div class="line">  <span class="attr">"file_id"</span>:<span class="number">70724889</span>, </div><div class="line">  <span class="attr">"file"</span>:&#123;</div><div class="line">    <span class="attr">"farm"</span>:<span class="string">"farm1"</span>, </div><div class="line">    <span class="attr">"bucket"</span>:<span class="string">"hbimg"</span>, </div><div class="line">    <span class="attr">"key"</span>:<span class="string">"f20bd3c758ab3b86698951560d9714b6fa88dffd64c01-LAj5IT"</span>, </div><div class="line">    <span class="attr">"type"</span>:<span class="string">"image/jpeg"</span>, </div><div class="line">    <span class="attr">"width"</span>:<span class="number">1600</span>, </div><div class="line">    <span class="attr">"height"</span>:<span class="number">988</span>, </div><div class="line">    <span class="attr">"frames"</span>:<span class="number">1</span></div><div class="line">    &#125;, </div><div class="line">  <span class="attr">"media_type"</span>:<span class="number">0</span>, </div><div class="line">  <span class="attr">"source"</span>:<span class="literal">null</span>, </div><div class="line">  <span class="attr">"link"</span>:<span class="literal">null</span>, </div><div class="line">  <span class="attr">"raw_text"</span>:<span class="string">"-莫扎特曾经说过大胆地踏上旅途吧，我不知道路途的前方究竟有什么，但是，我们还是迈出了步伐，我们仍在旅途之中。"</span>, <span class="attr">"text_meta"</span>:&#123;&#125;, </div><div class="line">  <span class="attr">"via"</span>:<span class="number">645083898</span>, </div><div class="line">  <span class="attr">"via_user_id"</span>:<span class="number">16066085</span>, </div><div class="line">  <span class="attr">"original"</span>:<span class="number">349142835</span>, </div><div class="line">  <span class="attr">"created_at"</span>:<span class="number">1459476859</span>, </div><div class="line">  <span class="attr">"like_count"</span>:<span class="number">0</span>, </div><div class="line">  <span class="attr">"comment_count"</span>:<span class="number">0</span>, </div><div class="line">  <span class="attr">"repin_count"</span>:<span class="number">0</span>, </div><div class="line">  <span class="attr">"is_private"</span>:<span class="number">0</span>, </div><div class="line">  <span class="attr">"orig_source"</span>:<span class="literal">null</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后通过分析属性 -&gt; file -&gt; key来获取真实的图片路径，上面信息中的key是f20bd3c758ab3b86698951560d9714b6fa88dffd64c01-LAj5IT<br>图片地址：<br><a href="http://img.hb.aicdn.com/f20bd3c758ab3b86698951560d9714b6fa88dffd64c01-LAj5IT" target="_blank" rel="external">http://img.hb.aicdn.com/f20bd3c758ab3b86698951560d9714b6fa88dffd64c01-LAj5IT</a></p>
+<p>为检测key是否与用户或者session相关：</p>
+<ul>
+<li>注销登录后重新访问当前网址，能获取图片，成功</li>
+<li>在其他设备上访问当前网址，能获取图片，成功</li>
+</ul>
+<p>尚且，可将链接作为图片静态地址使用</p>
+
       
     </div>
 
@@ -371,7 +382,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag"># android</a>
+            <a href="/tags/solutions/" rel="tag"># solutions</a>
           
         </div>
       
@@ -384,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/18/android_9_的Window系统，Window创建过程/" rel="next" title="Window系统，Window创建过程">
-                <i class="fa fa-chevron-left"></i> Window系统，Window创建过程
+              <a href="/2017/05/24/愤怒的香蕉32岁随笔/" rel="next" title="笨拙">
+                <i class="fa fa-chevron-left"></i> 笨拙
               </a>
             
           </div>
@@ -393,10 +404,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/18/android_11_的IPC机制，Binder和匿名共享内存/" rel="prev" title="IPC机制，Binder和匿名共享内存等">
-                IPC机制，Binder和匿名共享内存等 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
