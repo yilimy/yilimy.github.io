@@ -1,0 +1,873 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,学习笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="面向对象编程">
+<meta name="keywords" content="python,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python进阶4(慕课网)">
+<meta property="og:url" content="http://yoursite.com/2017/05/27/2017-05-08-python进阶4(慕课网)/index.html">
+<meta property="og:site_name" content="尘の思">
+<meta property="og:description" content="面向对象编程">
+<meta property="og:updated_time" content="2017-05-27T02:19:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python进阶4(慕课网)">
+<meta name="twitter:description" content="面向对象编程">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/27/2017-05-08-python进阶4(慕课网)/"/>
+
+
+
+
+
+  <title>python进阶4(慕课网) | 尘の思</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cbebc032aecfdda47d379bb5a9fb19e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">尘の思</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            小窝
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            银河尽头
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/27/2017-05-08-python进阶4(慕课网)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尘の思">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python进阶4(慕课网)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-27T10:19:00+08:00">
+                2017-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/27/2017-05-08-python进阶4(慕课网)/" class="leancloud_visitors" data-flag-title="python进阶4(慕课网)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  面向对象编程
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="4-1-面向对象编程"><a href="#4-1-面向对象编程" class="headerlink" title="4-1 面向对象编程"></a>4-1 面向对象编程</h3><h3 id="4-2-定义类并创建实例"><a href="#4-2-定义类并创建实例" class="headerlink" title="4-2 定义类并创建实例"></a>4-2 定义类并创建实例</h3><p><em>请练习定义Person类，并创建出两个实例，打印实例，再比较两个实例是否相等。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="keyword">pass</span></div><div class="line"></div><div class="line">xiaoming = Person()</div><div class="line">xiaohong = Person()</div><div class="line"></div><div class="line"><span class="keyword">print</span> xiaoming</div><div class="line"><span class="keyword">print</span> xiaohong</div><div class="line"><span class="keyword">print</span> xiaoming == xiaohong</div></pre></td></tr></table></figure></p>
+<h3 id="4-3-创建实例属性"><a href="#4-3-创建实例属性" class="headerlink" title="4-3 创建实例属性"></a>4-3 创建实例属性</h3><p><em>请创建包含两个Person类的实例list，并给两个实例的name赋值,然后按照name进行排序。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="keyword">pass</span></div><div class="line"></div><div class="line">p1 = Person()</div><div class="line">p1.name = <span class="string">'Bart'</span></div><div class="line"></div><div class="line">p2 = Person()</div><div class="line">p2.name = <span class="string">'Adam'</span></div><div class="line"></div><div class="line">p3 = Person()</div><div class="line">p3.name = <span class="string">'Lisa'</span></div><div class="line"></div><div class="line">L1 = [p1,p2,p3]</div><div class="line">L2 = sorted(L1,<span class="keyword">lambda</span> x,y : cmp(x.name,y.name))</div><div class="line"></div><div class="line"><span class="keyword">print</span> L2[<span class="number">0</span>].name</div><div class="line"><span class="keyword">print</span> L2[<span class="number">1</span>].name</div><div class="line"><span class="keyword">print</span> L2[<span class="number">2</span>].name</div></pre></td></tr></table></figure></p>
+<h3 id="4-4-初始化实例属性"><a href="#4-4-初始化实例属性" class="headerlink" title="4-4 初始化实例属性"></a>4-4 初始化实例属性</h3><p><em>请定义Person类的<strong>init</strong>方法，除了接受name,gender和birth外，<br>还可以接受任意关键字参数，并把他们都作为属性赋值给实例</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,gender,birth,**kw)</span>:</span></div><div class="line">    self.name = name</div><div class="line">    self.gender = gender</div><div class="line">    self.birth = birth</div><div class="line">    <span class="keyword">for</span> k,v <span class="keyword">in</span> kw.items():</div><div class="line">      setattr(self,k,v)</div><div class="line">    </div><div class="line">xiaoming = Person(<span class="string">'XiaoMing'</span>,<span class="string">'Male'</span>,<span class="string">'1990-1-1'</span>,job=<span class="string">'Student'</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> xiaoming.name</div><div class="line"><span class="keyword">print</span> xiaoming.job</div></pre></td></tr></table></figure></p>
+<h3 id="4-5-访问限制"><a href="#4-5-访问限制" class="headerlink" title="4-5 访问限制"></a>4-5 访问限制</h3><p><em>请给Person类的<strong>init</strong>方法中添加name和score参数，并把score绑定到__score属性上，看看外部是否能访问到。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line">    self.name = name</div><div class="line">    self.__score = score</div><div class="line">    </div><div class="line">p = Person(<span class="string">'Bob'</span>,<span class="number">59</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> p.name</div><div class="line"><span class="keyword">print</span> p.__score<span class="comment">#访问不到</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-6-创建类属性"><a href="#4-6-创建类属性" class="headerlink" title="4-6 创建类属性"></a>4-6 创建类属性</h3><p><em>请给Person类添加一个类属性count，每创建一个实例，count属性就加1，这样就可以统计出一共创建了多少个Person的实例。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  count = <span class="number">0</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></div><div class="line">    self.name = name</div><div class="line">    Person.count += <span class="number">1</span></div><div class="line">    </div><div class="line">p1 = Person(<span class="string">'Bob'</span>)</div><div class="line"><span class="keyword">print</span> Person.count</div><div class="line"></div><div class="line">p2 = Person(<span class="string">'Alice'</span>)</div><div class="line"><span class="keyword">print</span> Person.count</div><div class="line"></div><div class="line">P3 = Person(<span class="string">'Tim'</span>)</div><div class="line"><span class="keyword">print</span> Person.count</div></pre></td></tr></table></figure></p>
+<h3 id="4-7-类属性和实例属性名字冲突"><a href="#4-7-类属性和实例属性名字冲突" class="headerlink" title="4-7 类属性和实例属性名字冲突"></a>4-7 类属性和实例属性名字冲突</h3><p><em>请把上节的Persons类属性count改为__count,再试试能否从实例和类访问该属性</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  __count = <span class="number">0</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></div><div class="line">    self.name = name</div><div class="line">    Person.__count += <span class="number">1</span></div><div class="line">    </div><div class="line">p1 = Person(<span class="string">'Bob'</span>)</div><div class="line">p2 = Person(<span class="string">'Alice'</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> Person.__count<span class="comment">#不能访问到</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-8-定义实例方法"><a href="#4-8-定义实例方法" class="headerlink" title="4-8 定义实例方法"></a>4-8 定义实例方法</h3><p><em>请给Person类增加一个私有属性<strong>score,表示分数,再增加一个实例方法get_grade(),<br>能根据</strong>score的值分别返回三挡：<br>A-优秀<br>B-及格<br>C-不及格</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line">    self.name = name</div><div class="line">    self.__score = score</div><div class="line">    </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_grade</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="keyword">if</span> self.__score &gt; <span class="number">89</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">'A-优秀'</span></div><div class="line">    <span class="keyword">elif</span> self.__score &gt; <span class="number">59</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">'B-及格'</span></div><div class="line">    <span class="keyword">else</span> :</div><div class="line">        <span class="keyword">return</span> <span class="string">'C-不及格'</span></div><div class="line">    </div><div class="line">p1 = Person(<span class="string">'Bob'</span>,<span class="number">90</span>)</div><div class="line">p2 = Person(<span class="string">'Alice'</span>,<span class="number">65</span>)</div><div class="line">p3 = Person(<span class="string">'Tim'</span>,<span class="number">48</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> p1.get_grade()</div><div class="line"><span class="keyword">print</span> p2.get_grade()</div><div class="line"><span class="keyword">print</span> p3.get_grade()</div></pre></td></tr></table></figure></p>
+<h3 id="4-9-方法也是属性"><a href="#4-9-方法也是属性" class="headerlink" title="4-9 方法也是属性"></a>4-9 方法也是属性</h3><p><em>由于属性可以是普通的值对象，如str，int等，也可以是方法，还可以是函数，大家看看下面代码的运行结果，<br>请想一想p1.get_grade为什么是函数而不是方法</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,score)</span>:</span></div><div class="line">    self.name = name</div><div class="line">    self.score = score</div><div class="line">    self.get_grade = <span class="keyword">lambda</span>:<span class="string">'A'</span></div><div class="line">    </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">def_fun</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line">    </div><div class="line">p1 = Person(<span class="string">'Bob'</span>,<span class="number">90</span>)</div><div class="line"></div><div class="line"><span class="keyword">print</span> p1.get_grade <span class="comment"># function 函数</span></div><div class="line"><span class="keyword">print</span> p1.get_grade()</div><div class="line"><span class="keyword">print</span> p1.def_fun <span class="comment"># bound method Person.def_fun 方法</span></div><div class="line"><span class="comment"># 因为lambda:'A'本身为函数，所以作为属性的get_grade也是函数，而方法是要传入self的实例作为参数的</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-10-定义类方法"><a href="#4-10-定义类方法" class="headerlink" title="4-10 定义类方法"></a>4-10 定义类方法</h3><p><em>如果将类属性count改为私有属性<strong>count，则外部无法读取</strong>count,但可以通过一个类方法获取，<br>请编写类方法获得__count值。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(object)</span>:</span></div><div class="line">  __count = <span class="number">0</span></div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></div><div class="line">    self.name = name</div><div class="line">    Person.__count += <span class="number">1</span></div><div class="line">    </div><div class="line"><span class="meta">  @classmethod</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">how_many</span><span class="params">(cls)</span>:</span></div><div class="line">    <span class="keyword">return</span> cls.__count</div><div class="line">    </div><div class="line"><span class="keyword">print</span> Person.how_many <span class="comment"># bound method type.how_many</span></div><div class="line"></div><div class="line">p1 = Person(<span class="string">'Bob'</span>)</div><div class="line"><span class="keyword">print</span> p1.how_many()</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode-1.png" alt="Orice.Y.L.M wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信号</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/27/2017-05-05-python进阶3(慕课网)/" rel="next" title="python进阶3(慕课网)">
+                <i class="fa fa-chevron-left"></i> python进阶3(慕课网)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/27/2017-05-08-python进阶5(慕课网)/" rel="prev" title="python进阶5(慕课网)">
+                python进阶5(慕课网) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Orice.Y.L.M" />
+          <p class="site-author-name" itemprop="name">Orice.Y.L.M</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Burst Linker
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-面向对象编程"><span class="nav-number">1.</span> <span class="nav-text">4-1 面向对象编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-定义类并创建实例"><span class="nav-number">2.</span> <span class="nav-text">4-2 定义类并创建实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-创建实例属性"><span class="nav-number">3.</span> <span class="nav-text">4-3 创建实例属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-初始化实例属性"><span class="nav-number">4.</span> <span class="nav-text">4-4 初始化实例属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-访问限制"><span class="nav-number">5.</span> <span class="nav-text">4-5 访问限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-创建类属性"><span class="nav-number">6.</span> <span class="nav-text">4-6 创建类属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-类属性和实例属性名字冲突"><span class="nav-number">7.</span> <span class="nav-text">4-7 类属性和实例属性名字冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-定义实例方法"><span class="nav-number">8.</span> <span class="nav-text">4-8 定义实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-方法也是属性"><span class="nav-number">9.</span> <span class="nav-text">4-9 方法也是属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-10-定义类方法"><span class="nav-number">10.</span> <span class="nav-text">4-10 定义类方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orice.Y.L.M</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IeXcUcLh4E6UmmX4F6zPclkF-gzGzoHsz", "8dcbzKIndIphm1YLiTwzAFX6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
