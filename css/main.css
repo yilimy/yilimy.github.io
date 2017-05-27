@@ -1696,7 +1696,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #575d03;
+  background: #819aa4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2869,4 +2869,7 @@ pre .javascript .function {
   .post-body {
     text-align: justify;
   }
+}
+body {
+  background: url("http://img.hb.aicdn.com/59cbaf34e3c5a3ae63fc98a6be8f465ea9032e111fb0a-Kzrcw3");
 }
