@@ -1,0 +1,956 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Android系统知识之六">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的第三方框架">
+<meta property="og:url" content="http://yoursite.com/2017/06/10/android_6_常用的第三方框架/index.html">
+<meta property="og:site_name" content="尘の思">
+<meta property="og:description" content="Android系统知识之六">
+<meta property="og:updated_time" content="2017-06-10T04:53:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用的第三方框架">
+<meta name="twitter:description" content="Android系统知识之六">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/10/android_6_常用的第三方框架/"/>
+
+
+
+
+
+  <title>常用的第三方框架 | 尘の思</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cbebc032aecfdda47d379bb5a9fb19e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">尘の思</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            小窝
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            银河尽头
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/10/android_6_常用的第三方框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尘の思">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常用的第三方框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-10T12:22:00+08:00">
+                2017-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/10/android_6_常用的第三方框架/" class="leancloud_visitors" data-flag-title="常用的第三方框架">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Android系统知识之六
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考oschina:<a href="http://www.oschina.net/news/73836/15-android-general-popular-frameworks" target="_blank" rel="external">15 个 Android 通用流行框架大全</a></p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><h4 id="DiskLruCache"><a href="#DiskLruCache" class="headerlink" title="DiskLruCache"></a>DiskLruCache</h4><p>java实现基于LRU的磁盘缓存，通过key获取数据流进行交互<br><a href="http://www.jianshu.com/p/d3ce315a4695" target="_blank" rel="external">http://www.jianshu.com/p/d3ce315a4695</a></p>
+<h3 id="图片加载"><a href="#图片加载" class="headerlink" title="图片加载"></a>图片加载</h3><p>图片处理的难点</p>
+<ul>
+<li>oom内存溢出</li>
+<li>图片尺寸和缩略图处理的平衡</li>
+<li>网络图片的加载与缓存机制</li>
+</ul>
+<h4 id="Android-Universal-Image-Loader"><a href="#Android-Universal-Image-Loader" class="headerlink" title="Android Universal Image Loader"></a>Android Universal Image Loader</h4><p>一个强大的加载，缓存，展示图片的库<br>主流的图片处理框架之一，作者是白俄罗斯的Sergey Tarasevic<br>优缺点：</p>
+<ul>
+<li>支持本地图片和网络图片的多线程异步加载和缓存处理（另外对大图片进行压缩等处理防止内存溢出）</li>
+<li>个性化的配置自己项目的ImageLoader （配置线程数，缓存空间的大小，路径等）</li>
+<li>图片加载过程的监听回调</li>
+<li>自动对加载的图片针对当前剩余内存进行裁剪优化，防止oom</li>
+<li>较好的控制图片的加载过程，例如暂停图片加载，重新开始加载图片</li>
+<li>缺点：没有对本地文件压缩处理的相关API方法，以及默认都是Src模式设置图片，没有针对Background属性开放的api</li>
+</ul>
+<h4 id="Picasso"><a href="#Picasso" class="headerlink" title="Picasso"></a>Picasso</h4><p>一个强大的图片下载与缓存的库<br>Picasso是Square公司开源的一个Android图形缓存库，支持优先级处理。</p>
+<ul>
+<li>加载网络图片和本地图片并自动缓存处理</li>
+<li>链式调用<br>Object.method().method().method().method()····的形式，这个就是链式调用</li>
+<li>图形转换操作，如变换大小，旋转等，提供了接口来让用户可以自定义转换操作</li>
+<li>在Adapter中回收和取消当前的下载功能</li>
+<li>Picasso 根据网络类型来决定最大并发数，而不是 CPU 核数。</li>
+<li>自身没有缓存，缓存依赖okHttp(API 9以上)或者Urlconnection</li>
+</ul>
+<p>与ImageLoader的比较：</p>
+<ul>
+<li>都有高效的网络图片下载和缓存性能</li>
+<li>Unibersal-ImageLoader功能多，灵活使用配置</li>
+<li>Picasso使用复杂的图片压缩转换来尽可能的减少内存消耗</li>
+<li>在Adapter中需要取消已经不在视野范围的ImageView图片资源的加载导致图片错位，Picasso已经解决这个问题了</li>
+</ul>
+<h4 id="Fresco"><a href="#Fresco" class="headerlink" title="Fresco"></a>Fresco</h4><p>一个用于管理图像和他们使用的内存的库<br>Facebook开源的图片缓存<br>主要特点：</p>
+<ul>
+<li>两个内存缓存加上 Native 缓存构成了三级缓存</li>
+<li>支持流式，可以类似网页上模糊渐进式显示图片</li>
+<li>对多帧动画图片支持更好，如 Gif、WebP</li>
+</ul>
+<h4 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a>Glide</h4><p>一个图片加载和缓存的库<br>Google 员工的开源项目，被一些 Google App 使用，在去年的 Google I/O 上被推荐，不过目前国内资料不多。</p>
+<ul>
+<li>Glide 不仅是一个图片缓存，它支持 Gif、WebP、缩略图。甚至是 Video，所以更该当做一个媒体缓存。</li>
+<li>支持优先级处理</li>
+<li>与 Activity/Fragment 生命周期一致，支持 trimMemory<br>Glide 对每个 context 都保持一个 RequestManager，通过 FragmentTransaction 保持与 Activity/Fragment 生命周期一致，并且有对应的 trimMemory 接口实现可供调用。</li>
+<li>支持 okhttp、Volley<br>Glide 默认通过 UrlConnection 获取数据，可以配合 okhttp 或是 Volley 使用。实际 ImageLoader、Picasso 也都支持 okhttp、Volley。</li>
+<li>内存友好</li>
+</ul>
+<p>与Picasso和ImageLoader的比较：<br>Glide 功能强大，但代码量大、流转复杂。在较深掌握的情况下才推荐使用，免得出了问题难以下手解决。</p>
+<h4 id="Volley"><a href="#Volley" class="headerlink" title="Volley"></a>Volley</h4><p>Google推出的Android异步网络请求框架和图片加载框架</p>
+<h3 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h3><h4 id="Picasso-transformations"><a href="#Picasso-transformations" class="headerlink" title="Picasso-transformations"></a>Picasso-transformations</h4><p>一个为Picasso提供多种图片变换的库</p>
+<h4 id="Glide-transformations"><a href="#Glide-transformations" class="headerlink" title="Glide-transformations"></a>Glide-transformations</h4><p>一个为Glide提供多种图片变换的库</p>
+<h4 id="Android-gpuimage"><a href="#Android-gpuimage" class="headerlink" title="Android-gpuimage"></a>Android-gpuimage</h4><p>基于OpenGL的android过滤器</p>
+<h3 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h3><h4 id="android-Async-HTTP"><a href="#android-Async-HTTP" class="headerlink" title="android Async HTTP"></a>android Async HTTP</h4><p>Android异步HTTP库<br>基于HttpClient，不推荐使用，作者已停止对该项目维护。</p>
+<h4 id="AndroidAsync"><a href="#AndroidAsync" class="headerlink" title="AndroidAsync"></a>AndroidAsync</h4><p>异步Socket，HTTP,WebSocket,和socket.io库。基于NIO而不是线程。</p>
+<h4 id="OkHttp"><a href="#OkHttp" class="headerlink" title="OkHttp"></a>OkHttp</h4><p>一个Http和Http/2客户端<br>推荐使用<br>类似于HttpUrlConnect的东西，Android4.4中已经将HttpUrlConnect替换成了OkHttp<br>支持http2.0 、WebSocket<br>封装了线程池、数据转换、参数使用、错误处理等<br>缓存响应数据来减少重复的网络请求<br>能从很多常见的连接问题中自动恢复<br>解决了代理服务器问题和SSL握手失败的问题（SSL协议安全相关）</p>
+<h4 id="Retrofit"><a href="#Retrofit" class="headerlink" title="Retrofit"></a>Retrofit</h4><p>类型安全的Http客户端<br>基于OkHttp<br>提供对RxJava的支持<br>性能最好，处理最快，扩展差<br>使用存在一定的门槛</p>
+<h4 id="Volley-1"><a href="#Volley-1" class="headerlink" title="Volley"></a>Volley</h4><p>Google推出的Android异步网络请求框架和图片加载框架。<br>基于HttpUrlConnection<br>网络请求的排序，优先级处理<br>Activity的生命周期联动，Activity结束的同时取消所有的网络请求。<br>适合轻量级开发，网络请求频繁，数据量小<br>不能进行大数据量的网络操作<br>response是把数据放到byte数组里，不支持输入输出流</p>
+<h3 id="数据解析"><a href="#数据解析" class="headerlink" title="数据解析"></a>数据解析</h3><h4 id="Gson"><a href="#Gson" class="headerlink" title="Gson"></a>Gson</h4><p>一个java序列化/反序列化库，可以将Json和java对象互相转换<br>Gson在功能上面无可挑剔，但是性能上面比FastJson有所差距。<br>Gson类：解析json的最基础的工具类<br>JsonParser类：解析器来解析JSON到JsonElements的解析树<br>JsonElement类：一个类代表的JSON元素<br>JsonObject类：JSON对象类型<br>JsonArray类：JsonObject数组<br>TypeToken类：用于创建type，比如泛型List&lt;?&gt;</p>
+<h4 id="Jackson"><a href="#Jackson" class="headerlink" title="Jackson"></a>Jackson</h4><p>Jackson可以轻松地将java对象转换成Json对象和xml文档，同样也可以将json，xml转换成java对象<br>Jackson所依赖的jar包较少<br>对于复杂类型的json转换bean会出现问题，一些集合Map，List的转换出现问题。<br>对于复杂类型的bean转换Json，转换的json格式不是标准的Json格式</p>
+<h4 id="FastJson"><a href="#FastJson" class="headerlink" title="FastJson"></a>FastJson</h4><p>java上一个快速的JSON解析器/生成器<br>Fastjson是一个Java语言编写的高性能的JSON处理器,由阿里巴巴公司开发。<br>无依赖，不需要例外额外的jar，能够直接跑在JDK上。<br>FastJson在复杂类型的Bean转换Json上会出现一些问题，可能会出现引用的类型，导致Json转换出错，需要制定引用。<br>FastJson采用独创的算法，将parse的速度提升到极致，超过所有json库。</p>
+<h4 id="HtmlPaser"><a href="#HtmlPaser" class="headerlink" title="HtmlPaser"></a>HtmlPaser</h4><p>一种用来解析单个独立HtmlPaser或嵌套html的方式</p>
+<h4 id="Jsoup"><a href="#Jsoup" class="headerlink" title="Jsoup"></a>Jsoup</h4><p>一个最好的DOM，CSS和JQuery解析html的库</p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><h4 id="Ormlite"><a href="#Ormlite" class="headerlink" title="Ormlite"></a>Ormlite</h4><p>JDBC和android的轻量级ORM java包</p>
+<h4 id="Sugar"><a href="#Sugar" class="headerlink" title="Sugar"></a>Sugar</h4><p>用超级简单的方法处理Android数据库</p>
+<h4 id="GreenDAO"><a href="#GreenDAO" class="headerlink" title="GreenDAO"></a>GreenDAO</h4><p>一种轻快的将对象映射到SQLite数据库的ORM解决方案</p>
+<h4 id="ActiveAndroid"><a href="#ActiveAndroid" class="headerlink" title="ActiveAndroid"></a>ActiveAndroid</h4><p>以活动记录方式为Android SQLite提供持久化</p>
+<h4 id="SQLBrite"><a href="#SQLBrite" class="headerlink" title="SQLBrite"></a>SQLBrite</h4><p>SQLiteOpenHelper和ContentResolver的轻量级包装</p>
+<h4 id="Realm"><a href="#Realm" class="headerlink" title="Realm"></a>Realm</h4><p>移动数据库，一个SQLite和ORM的替换品</p>
+<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><h4 id="ButterKnife"><a href="#ButterKnife" class="headerlink" title="ButterKnife"></a>ButterKnife</h4><p>将Android视图和回调方法绑定到字段和方法上</p>
+<h4 id="Dagger2"><a href="#Dagger2" class="headerlink" title="Dagger2"></a>Dagger2</h4><p>一个Android和java快速依赖注射器</p>
+<h4 id="AndroidAnotations"><a href="#AndroidAnotations" class="headerlink" title="AndroidAnotations"></a>AndroidAnotations</h4><p>快速android开发，易于维护</p>
+<h4 id="RoboGuice"><a href="#RoboGuice" class="headerlink" title="RoboGuice"></a>RoboGuice</h4><p>Android平台的Google Guice</p>
+<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><h4 id="WilliamChart"><a href="#WilliamChart" class="headerlink" title="WilliamChart"></a>WilliamChart</h4><p>创建图表的Android库</p>
+<h4 id="HelloCharts"><a href="#HelloCharts" class="headerlink" title="HelloCharts"></a>HelloCharts</h4><p>兼容到API8的Android图表库</p>
+<h4 id="MPAndroidChart"><a href="#MPAndroidChart" class="headerlink" title="MPAndroidChart"></a>MPAndroidChart</h4><p>一个强大的Android图表视图/图形库</p>
+<h3 id="后台处理"><a href="#后台处理" class="headerlink" title="后台处理"></a>后台处理</h3><h4 id="Tape"><a href="#Tape" class="headerlink" title="Tape"></a>Tape</h4><p>一个轻快的，事务性的，基于文件的FIFO的库</p>
+<h4 id="Android-Priority-Job-Queue"><a href="#Android-Priority-Job-Queue" class="headerlink" title="Android Priority Job Queue"></a>Android Priority Job Queue</h4><p>一个专门为Android轻松调度任务的工作队列</p>
+<h3 id="事件总线"><a href="#事件总线" class="headerlink" title="事件总线"></a>事件总线</h3><h4 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h4><p>android优化的事件总线，简化了活动、片段、线程、服务等的通信</p>
+<h4 id="Otto"><a href="#Otto" class="headerlink" title="Otto"></a>Otto</h4><p>一个基于Guava的增强的事件总线</p>
+<h3 id="响应式编程"><a href="#响应式编程" class="headerlink" title="响应式编程"></a>响应式编程</h3><h4 id="Rxjava"><a href="#Rxjava" class="headerlink" title="Rxjava"></a>Rxjava</h4><p>JVM上的响应式扩展</p>
+<h4 id="RxJavaJoins"><a href="#RxJavaJoins" class="headerlink" title="RxJavaJoins"></a>RxJavaJoins</h4><p>为RxJava提供Joins操作</p>
+<h4 id="RxAndroid"><a href="#RxAndroid" class="headerlink" title="RxAndroid"></a>RxAndroid</h4><p>Android上的响应式扩展，在RxJava基础上添加了Android线程调度</p>
+<h4 id="RxBinding"><a href="#RxBinding" class="headerlink" title="RxBinding"></a>RxBinding</h4><p>提供RxJava绑定AndroidUI的API</p>
+<h4 id="Agera"><a href="#Agera" class="headerlink" title="Agera"></a>Agera</h4><p>Android上的响应式编程</p>
+<h3 id="Log框架"><a href="#Log框架" class="headerlink" title="Log框架"></a>Log框架</h3><h4 id="Logger"><a href="#Logger" class="headerlink" title="Logger"></a>Logger</h4><p>简单，漂亮，强大的Android日志工具</p>
+<h4 id="Hugo"><a href="#Hugo" class="headerlink" title="Hugo"></a>Hugo</h4><p>在调试版本上注解的触发方法进行日志记录</p>
+<h4 id="Timber"><a href="#Timber" class="headerlink" title="Timber"></a>Timber</h4><p>一个小的，可扩展的日志工具</p>
+<h3 id="测试框架"><a href="#测试框架" class="headerlink" title="测试框架"></a>测试框架</h3><h4 id="Mockito"><a href="#Mockito" class="headerlink" title="Mockito"></a>Mockito</h4><p>java编写的Mocking单元测试框架</p>
+<h4 id="Robotium"><a href="#Robotium" class="headerlink" title="Robotium"></a>Robotium</h4><p>Android UI测试</p>
+<h4 id="Robolectric"><a href="#Robolectric" class="headerlink" title="Robolectric"></a>Robolectric</h4><p>Android单元测试框架</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>Android自带很多测试工具:JUnit,Monkeyrunner,UiAutomator,Espresso等</p>
+<h3 id="调试框架"><a href="#调试框架" class="headerlink" title="调试框架"></a>调试框架</h3><h4 id="Stetho"><a href="#Stetho" class="headerlink" title="Stetho"></a>Stetho</h4><p>调试Android应用的桥梁，使得可以利用Chrome开发者工具进行调试</p>
+<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><h4 id="LeakCanary"><a href="#LeakCanary" class="headerlink" title="LeakCanary"></a>LeakCanary</h4><p>内存泄漏检测工具</p>
+<h4 id="ACRA"><a href="#ACRA" class="headerlink" title="ACRA"></a>ACRA</h4><p>Android应用程序崩溃报告</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode-1.png" alt="Orice.Y.L.M wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信号</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/01/android_5_多线程机制和消息机制/" rel="next" title="多线程机制和消息机制AsyncTask,Thread,Handler">
+                <i class="fa fa-chevron-left"></i> 多线程机制和消息机制AsyncTask,Thread,Handler
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Orice.Y.L.M" />
+          <p class="site-author-name" itemprop="name">Orice.Y.L.M</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Burst Linker
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/iissnan/hexo-theme-next" title="hexo-next" target="_blank">hexo-next</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">1.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DiskLruCache"><span class="nav-number">1.1.</span> <span class="nav-text">DiskLruCache</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片加载"><span class="nav-number">2.</span> <span class="nav-text">图片加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-Universal-Image-Loader"><span class="nav-number">2.1.</span> <span class="nav-text">Android Universal Image Loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Picasso"><span class="nav-number">2.2.</span> <span class="nav-text">Picasso</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fresco"><span class="nav-number">2.3.</span> <span class="nav-text">Fresco</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Glide"><span class="nav-number">2.4.</span> <span class="nav-text">Glide</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Volley"><span class="nav-number">2.5.</span> <span class="nav-text">Volley</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片处理"><span class="nav-number">3.</span> <span class="nav-text">图片处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Picasso-transformations"><span class="nav-number">3.1.</span> <span class="nav-text">Picasso-transformations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Glide-transformations"><span class="nav-number">3.2.</span> <span class="nav-text">Glide-transformations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-gpuimage"><span class="nav-number">3.3.</span> <span class="nav-text">Android-gpuimage</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络请求"><span class="nav-number">4.</span> <span class="nav-text">网络请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#android-Async-HTTP"><span class="nav-number">4.1.</span> <span class="nav-text">android Async HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AndroidAsync"><span class="nav-number">4.2.</span> <span class="nav-text">AndroidAsync</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OkHttp"><span class="nav-number">4.3.</span> <span class="nav-text">OkHttp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Retrofit"><span class="nav-number">4.4.</span> <span class="nav-text">Retrofit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Volley-1"><span class="nav-number">4.5.</span> <span class="nav-text">Volley</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据解析"><span class="nav-number">5.</span> <span class="nav-text">数据解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Gson"><span class="nav-number">5.1.</span> <span class="nav-text">Gson</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jackson"><span class="nav-number">5.2.</span> <span class="nav-text">Jackson</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FastJson"><span class="nav-number">5.3.</span> <span class="nav-text">FastJson</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HtmlPaser"><span class="nav-number">5.4.</span> <span class="nav-text">HtmlPaser</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jsoup"><span class="nav-number">5.5.</span> <span class="nav-text">Jsoup</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">6.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ormlite"><span class="nav-number">6.1.</span> <span class="nav-text">Ormlite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sugar"><span class="nav-number">6.2.</span> <span class="nav-text">Sugar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GreenDAO"><span class="nav-number">6.3.</span> <span class="nav-text">GreenDAO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ActiveAndroid"><span class="nav-number">6.4.</span> <span class="nav-text">ActiveAndroid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQLBrite"><span class="nav-number">6.5.</span> <span class="nav-text">SQLBrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Realm"><span class="nav-number">6.6.</span> <span class="nav-text">Realm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖注入"><span class="nav-number">7.</span> <span class="nav-text">依赖注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ButterKnife"><span class="nav-number">7.1.</span> <span class="nav-text">ButterKnife</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dagger2"><span class="nav-number">7.2.</span> <span class="nav-text">Dagger2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AndroidAnotations"><span class="nav-number">7.3.</span> <span class="nav-text">AndroidAnotations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RoboGuice"><span class="nav-number">7.4.</span> <span class="nav-text">RoboGuice</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图表"><span class="nav-number">8.</span> <span class="nav-text">图表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WilliamChart"><span class="nav-number">8.1.</span> <span class="nav-text">WilliamChart</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HelloCharts"><span class="nav-number">8.2.</span> <span class="nav-text">HelloCharts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MPAndroidChart"><span class="nav-number">8.3.</span> <span class="nav-text">MPAndroidChart</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台处理"><span class="nav-number">9.</span> <span class="nav-text">后台处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tape"><span class="nav-number">9.1.</span> <span class="nav-text">Tape</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-Priority-Job-Queue"><span class="nav-number">9.2.</span> <span class="nav-text">Android Priority Job Queue</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件总线"><span class="nav-number">10.</span> <span class="nav-text">事件总线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EventBus"><span class="nav-number">10.1.</span> <span class="nav-text">EventBus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Otto"><span class="nav-number">10.2.</span> <span class="nav-text">Otto</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式编程"><span class="nav-number">11.</span> <span class="nav-text">响应式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Rxjava"><span class="nav-number">11.1.</span> <span class="nav-text">Rxjava</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RxJavaJoins"><span class="nav-number">11.2.</span> <span class="nav-text">RxJavaJoins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RxAndroid"><span class="nav-number">11.3.</span> <span class="nav-text">RxAndroid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RxBinding"><span class="nav-number">11.4.</span> <span class="nav-text">RxBinding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Agera"><span class="nav-number">11.5.</span> <span class="nav-text">Agera</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log框架"><span class="nav-number">12.</span> <span class="nav-text">Log框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Logger"><span class="nav-number">12.1.</span> <span class="nav-text">Logger</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hugo"><span class="nav-number">12.2.</span> <span class="nav-text">Hugo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Timber"><span class="nav-number">12.3.</span> <span class="nav-text">Timber</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试框架"><span class="nav-number">13.</span> <span class="nav-text">测试框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mockito"><span class="nav-number">13.1.</span> <span class="nav-text">Mockito</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Robotium"><span class="nav-number">13.2.</span> <span class="nav-text">Robotium</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Robolectric"><span class="nav-number">13.3.</span> <span class="nav-text">Robolectric</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">13.4.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试框架"><span class="nav-number">14.</span> <span class="nav-text">调试框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stetho"><span class="nav-number">14.1.</span> <span class="nav-text">Stetho</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能优化"><span class="nav-number">15.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LeakCanary"><span class="nav-number">15.1.</span> <span class="nav-text">LeakCanary</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACRA"><span class="nav-number">15.2.</span> <span class="nav-text">ACRA</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orice.Y.L.M</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IeXcUcLh4E6UmmX4F6zPclkF-gzGzoHsz", "8dcbzKIndIphm1YLiTwzAFX6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
