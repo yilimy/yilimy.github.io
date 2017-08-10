@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,学习笔记," />
+  <meta name="keywords" content="android," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="数据类型">
-<meta name="keywords" content="python,学习笔记">
+<meta name="description" content="通过Display获取首先获取WindowManager对象 方法一1WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE); 方法二1WindowManager wm = this.getWindowManager(); 然后通过Display获取屏幕的宽高12int height = wm.getDe">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python练习3(慕课网)">
-<meta property="og:url" content="http://yoursite.com/2017/05/27/2017-04-26-python练习3(慕课网)/index.html">
+<meta property="og:title" content="获取屏幕大小">
+<meta property="og:url" content="http://yoursite.com/2017/08/10/获取屏幕大小/index.html">
 <meta property="og:site_name" content="尘の思">
-<meta property="og:description" content="数据类型">
-<meta property="og:updated_time" content="2017-05-27T02:09:48.000Z">
+<meta property="og:description" content="通过Display获取首先获取WindowManager对象 方法一1WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE); 方法二1WindowManager wm = this.getWindowManager(); 然后通过Display获取屏幕的宽高12int height = wm.getDe">
+<meta property="og:updated_time" content="2017-08-10T11:51:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python练习3(慕课网)">
-<meta name="twitter:description" content="数据类型">
+<meta name="twitter:title" content="获取屏幕大小">
+<meta name="twitter:description" content="通过Display获取首先获取WindowManager对象 方法一1WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE); 方法二1WindowManager wm = this.getWindowManager(); 然后通过Display获取屏幕的宽高12int height = wm.getDe">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/27/2017-04-26-python练习3(慕课网)/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/10/获取屏幕大小/"/>
 
 
 
 
 
-  <title>python练习3(慕课网) | 尘の思</title>
+  <title>获取屏幕大小 | 尘の思</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/27/2017-04-26-python练习3(慕课网)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/获取屏幕大小/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python练习3(慕课网)</h1>
+          <h1 class="post-title" itemprop="name headline">获取屏幕大小</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-27T10:06:00+08:00">
-                2017-05-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T19:35:05+08:00">
+                2017-08-10
               </time>
             
 
@@ -330,7 +330,7 @@
 
           
           
-             <span id="/2017/05/27/2017-04-26-python练习3(慕课网)/" class="leancloud_visitors" data-flag-title="python练习3(慕课网)">
+             <span id="/2017/08/10/获取屏幕大小/" class="leancloud_visitors" data-flag-title="获取屏幕大小">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -347,10 +347,6 @@
           
 
           
-              <div class="post-description">
-                  数据类型
-              </div>
-          
 
         </div>
       </header>
@@ -362,14 +358,16 @@
       
 
       
-        <h3 id="3-1-python中的数据类型"><a href="#3-1-python中的数据类型" class="headerlink" title="3-1 python中的数据类型"></a>3-1 python中的数据类型</h3><p><em>1.计算十进制整数45678和十六进制整数0x12fd2之和</em><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">45678 + 0x12fd2</div><div class="line">print 123456</div><div class="line">``` </div><div class="line"></div><div class="line">*2.请用字符串表示出Learn Python in imooc*  </div><div class="line">``` python</div><div class="line">'Learn Python in imooc'</div><div class="line">```  </div><div class="line"></div><div class="line">*3.请计算以下表达式的布尔值(注意==表示判断是否相等)：  </div><div class="line">100 &lt; 99  </div><div class="line">0xff == 255  </div><div class="line">__注意__：使用print命令*  </div><div class="line">``` python</div><div class="line">print 100 &lt; 99  </div><div class="line">print 0xff == 255</div><div class="line">```  </div><div class="line">结果分别为'False','True'  </div><div class="line"></div><div class="line">-----------</div><div class="line">&lt;small&gt;*遇到markdown文件保存自动删除行尾空格的解决方法：  </div><div class="line">settings -&gt; whitespace -&gt;  </div><div class="line">whitespace Settings -&gt;   </div><div class="line">remove trailing whitespace取消勾选*</div><div class="line"></div><div class="line">### 3-2 print语句</div><div class="line">*请用两种方式打印出 Hello, python.*</div><div class="line">``` python</div><div class="line">print 'Hello, ' + 'python'</div><div class="line">print 'Hello,','python'</div></pre></td></tr></table></figure></p>
-<h3 id="3-3注释"><a href="#3-3注释" class="headerlink" title="3-3注释"></a>3-3注释</h3><p><em>将代码编辑器中的”print ‘Hello’”语句改成注释语句</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print 'Hello'</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-4变量"><a href="#3-4变量" class="headerlink" title="3-4变量"></a>3-4变量</h3><p><em>等差数列可以定义为每一项与它的前一项的差等于一个<br>常数，可以用变量x1表示等差数列的第一项，用d表<br>示公差，请计算数列<br>1 4 7 10 13 16 19<br>前100项的和</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x1 = <span class="number">1</span></div><div class="line">d = <span class="number">3</span></div><div class="line">n = <span class="number">100</span></div><div class="line">x100 = x1 + (n <span class="number">-1</span>) * d</div><div class="line">s = (x1 + x100) * n / <span class="number">2</span></div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure></p>
-<h3 id="3-5定义字符串"><a href="#3-5定义字符串" class="headerlink" title="3-5定义字符串"></a>3-5定义字符串</h3><p><em>请将下面两行内容用Python的字符串表示并打印出来：<br>Python was started in 1989 by “Guido”.<br>Python is free and easy to learn.</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'Python was started in 1989 by \"Guido\".\nPython is free and easy to learn.'</span></div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure></p>
-<h3 id="3-6多行字符串"><a href="#3-6多行字符串" class="headerlink" title="3-6多行字符串"></a>3-6多行字符串</h3><p><em>请把下面的字符串用r’’’…’’’的形式改写，并用print打印出来：<br>‘\“To be, or not to be\“:that is the question.\nWhether it\‘s nobler in the mind to suffer.</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">r''''\"To be, or not to be\":that is the question.\nWhether it\'s nobler in the mind to suffer.'''</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-7-Unicode字符串"><a href="#3-7-Unicode字符串" class="headerlink" title="3-7 Unicode字符串"></a>3-7 Unicode字符串</h3><p><em>用多行Unicode字符串表示下面的唐诗并打印：<br>静夜思<br>床前明月光，<br>疑是地上霜。<br>举头望明月，<br>低头思故乡。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#-*-coding:utf-8-*-</span></div><div class="line"><span class="keyword">print</span> <span class="string">u'''静夜思\n床前明月光,\n疑是地上霜.\n举头望明月,\n低头思故乡.'''</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-8整数和浮点数"><a href="#3-8整数和浮点数" class="headerlink" title="3-8整数和浮点数"></a>3-8整数和浮点数</h3><p><em>请计算2.5+10/4,并解释计算结果为什么不是期望的5.0？<br>请修复上述运算，使得计算结果是5.0</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="number">2.5</span> + <span class="number">10.0</span> / <span class="number">4</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-9布尔类型"><a href="#3-9布尔类型" class="headerlink" title="3-9布尔类型"></a>3-9布尔类型</h3><p><em>请运行如下代码，并解释打印的结果：<br>a = ‘Python’<br>print ‘Hello,’, a or ‘world’<br>b = ‘’<br>print ‘Hello,’, b or ‘world’</em><br>运行结果是：hello, python  和  hello, world<br>Python把0、空字符串和None看成是False，其他数值和非空字符串都看成是True</p>
+        <h4 id="通过Display获取"><a href="#通过Display获取" class="headerlink" title="通过Display获取"></a>通过Display获取</h4><p>首先获取WindowManager对象</p>
+<h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);</div></pre></td></tr></table></figure>
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">WindowManager wm = <span class="keyword">this</span>.getWindowManager();</div></pre></td></tr></table></figure>
+<p>然后通过Display获取屏幕的宽高<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> height = wm.getDefaultDisplay().getHeight();</div><div class="line"><span class="keyword">int</span> width = wm.getDefaultDisplay().getWidth();</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>然而，getHeight和getWidth已经不赞成使用了(deprecated)<br>官方推荐的做法是通过DisplayMetrics来获取宽高</p>
+<h4 id="通过DisplayMetrics获取"><a href="#通过DisplayMetrics获取" class="headerlink" title="通过DisplayMetrics获取"></a>通过DisplayMetrics获取</h4><h5 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h5><p>创建一个DisplayMetrics对象作为出参<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DisplayMetrics outMetrics = <span class="keyword">new</span> DisplayMetrics();</div></pre></td></tr></table></figure></p>
+<p>将数据读取到出参中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wm.getDefaultDisplay().getMetrics(outMetrics);</div></pre></td></tr></table></figure></p>
+<p>从出参中获取需要的数据<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> width = outMetrics.widthPixels;</div><div class="line"><span class="keyword">int</span> height = outMetrics.heightPixels;</div></pre></td></tr></table></figure></p>
+<h5 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h5><p>也许我们更喜欢java一点的方式，那么，有没有对象持有DisplayMetrics呢？<br>大哥就那么几个，WindowManager中没有，Context中没有，咦，Resources中有！<br>直接上代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Resources resources = <span class="keyword">this</span>.getResources();</div><div class="line">DisplayMetrics dm = resources.getDisplayMetrics();</div><div class="line"><span class="keyword">int</span> width = dm.widthPixels;</div><div class="line"><span class="keyword">int</span> height = dm.heightPixels;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -404,9 +402,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
-          
-            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+            <a href="/tags/android/" rel="tag"># android</a>
           
         </div>
       
@@ -419,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/26/抓取花瓣图片地址/" rel="next" title="抓取花瓣图片地址">
-                <i class="fa fa-chevron-left"></i> 抓取花瓣图片地址
+              <a href="/2017/08/10/在一张图上绘制/" rel="next" title="在一张图上绘制">
+                <i class="fa fa-chevron-left"></i> 在一张图上绘制
               </a>
             
           </div>
@@ -428,10 +424,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/27/2017-05-02-python练习4(慕课网)/" rel="prev" title="python练习4(慕课网)">
-                python练习4(慕课网) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -578,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-python中的数据类型"><span class="nav-number">1.</span> <span class="nav-text">3-1 python中的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3注释"><span class="nav-number">2.</span> <span class="nav-text">3-3注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4变量"><span class="nav-number">3.</span> <span class="nav-text">3-4变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5定义字符串"><span class="nav-number">4.</span> <span class="nav-text">3-5定义字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6多行字符串"><span class="nav-number">5.</span> <span class="nav-text">3-6多行字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-Unicode字符串"><span class="nav-number">6.</span> <span class="nav-text">3-7 Unicode字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8整数和浮点数"><span class="nav-number">7.</span> <span class="nav-text">3-8整数和浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-9布尔类型"><span class="nav-number">8.</span> <span class="nav-text">3-9布尔类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过Display获取"><span class="nav-number">1.</span> <span class="nav-text">通过Display获取</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法二"><span class="nav-number">1.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过DisplayMetrics获取"><span class="nav-number">2.</span> <span class="nav-text">通过DisplayMetrics获取</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法一-1"><span class="nav-number">2.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法二-1"><span class="nav-number">2.2.</span> <span class="nav-text">方法二</span></a></li></ol></li></ol></div>
             
 
           </div>

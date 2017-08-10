@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="Android系统知识之六">
+<meta name="description" content="权限1234&amp;lt;!-- 往SDCard写入数据权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;quot;android.permission.WRITE_EXTERNAL_STORAGE&amp;quot; /&amp;gt; &amp;lt;!--请求访问使用照相设备--&amp;gt;&amp;lt;uses-permission android:name=&amp;quot;android.pe">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的第三方框架">
-<meta property="og:url" content="http://yoursite.com/2017/05/18/android_6_常用的第三方框架/index.html">
+<meta property="og:title" content="Android Camara调用">
+<meta property="og:url" content="http://yoursite.com/2017/08/10/Android-Camara调用/index.html">
 <meta property="og:site_name" content="尘の思">
-<meta property="og:description" content="Android系统知识之六">
-<meta property="og:updated_time" content="2017-05-24T05:52:05.000Z">
+<meta property="og:description" content="权限1234&amp;lt;!-- 往SDCard写入数据权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;quot;android.permission.WRITE_EXTERNAL_STORAGE&amp;quot; /&amp;gt; &amp;lt;!--请求访问使用照相设备--&amp;gt;&amp;lt;uses-permission android:name=&amp;quot;android.pe">
+<meta property="og:updated_time" content="2017-08-10T11:19:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用的第三方框架">
-<meta name="twitter:description" content="Android系统知识之六">
+<meta name="twitter:title" content="Android Camara调用">
+<meta name="twitter:description" content="权限1234&amp;lt;!-- 往SDCard写入数据权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;quot;android.permission.WRITE_EXTERNAL_STORAGE&amp;quot; /&amp;gt; &amp;lt;!--请求访问使用照相设备--&amp;gt;&amp;lt;uses-permission android:name=&amp;quot;android.pe">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/18/android_6_常用的第三方框架/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/10/Android-Camara调用/"/>
 
 
 
 
 
-  <title>常用的第三方框架 | 尘の思</title>
+  <title>Android Camara调用 | 尘の思</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/android_6_常用的第三方框架/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/Android-Camara调用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">常用的第三方框架</h1>
+          <h1 class="post-title" itemprop="name headline">Android Camara调用</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T06:00:00+08:00">
-                2017-05-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T18:41:54+08:00">
+                2017-08-10
               </time>
             
 
@@ -330,7 +330,7 @@
 
           
           
-             <span id="/2017/05/18/android_6_常用的第三方框架/" class="leancloud_visitors" data-flag-title="常用的第三方框架">
+             <span id="/2017/08/10/Android-Camara调用/" class="leancloud_visitors" data-flag-title="Android Camara调用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -347,10 +347,6 @@
           
 
           
-              <div class="post-description">
-                  Android系统知识之六
-              </div>
-          
 
         </div>
       </header>
@@ -362,7 +358,19 @@
       
 
       
-        
+        <h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 往SDCard写入数据权限 --&gt; </div><div class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt; </div><div class="line">&lt;!--请求访问使用照相设备--&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;</div></pre></td></tr></table></figure>
+<h3 id="调用相机"><a href="#调用相机" class="headerlink" title="调用相机"></a>调用相机</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);</div><div class="line">startActivityForResult(intent,requestCode);</div></pre></td></tr></table></figure>
+<h4 id="调用前置摄像头"><a href="#调用前置摄像头" class="headerlink" title="调用前置摄像头"></a>调用前置摄像头</h4><p>方法一：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">intent.putExtra(<span class="string">"android.intent.extras.CAMERA_FACING"</span>, <span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>方法二：<br>使用Camera框架来调用摄像头，核心是配置完参数info后，调用open方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> cameraCount = <span class="number">0</span>;  </div><div class="line">Camera cam = <span class="keyword">null</span>;  </div><div class="line">  </div><div class="line">Camera.CameraInfo cameraInfo = <span class="keyword">new</span> Camera.CameraInfo();  </div><div class="line">cameraCount = Camera.getNumberOfCameras(); <span class="comment">// get cameras number  </span></div><div class="line">        </div><div class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> camIdx = <span class="number">0</span>; camIdx &lt; cameraCount;camIdx++ ) &#123;  </div><div class="line">    Camera.getCameraInfo( camIdx, cameraInfo ); <span class="comment">// get camerainfo  </span></div><div class="line">    <span class="keyword">if</span> ( cameraInfo.facing ==Camera.CameraInfo.CAMERA_FACING_FRONT ) &#123; </div><div class="line">      <span class="comment">// 代表摄像头的方位，目前有定义值两个分别为CAMERA_FACING_FRONT前置</span></div><div class="line">      <span class="comment">// 和CAMERA_FACING_BACK后置  </span></div><div class="line">        <span class="keyword">try</span> &#123;              </div><div class="line">            cam = Camera.open( camIdx );  </div><div class="line">        &#125; <span class="keyword">catch</span> (RuntimeExceptione) &#123;  </div><div class="line">            e.printStackTrace();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此方法的优点是：有丰富的API可供调用，灵活性更强。</p>
+<h4 id="指定照片写入路径"><a href="#指定照片写入路径" class="headerlink" title="指定照片写入路径"></a>指定照片写入路径</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Uri mOutPutFileUri = Uri.fromFile(saveCameraPhotoFile());</div><div class="line">intent.putExtra(MediaStore.EXTRA_OUTPUT, mOutPutFileUri);</div></pre></td></tr></table></figure>
+<p>注意此处Uri的生成不能使用Uri.parse(String string),因为生成的uri标识(格式)不一样<br>然而指定了路径后，在onActivityResult中就获取不到data值，相关源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// First handle the no crop case -- just return the value.  If the  </span></div><div class="line"><span class="comment">// caller specifies a "save uri" then write the data to it's  </span></div><div class="line"><span class="comment">// stream. Otherwise, pass back a scaled down version of the bitmap  </span></div><div class="line"><span class="comment">// directly in the extras.  </span></div><div class="line"><span class="keyword">if</span> (mSaveUri != <span class="keyword">null</span>) &#123; <span class="comment">//存在mSaveUri，即指定了目标uri  </span></div><div class="line">    OutputStream outputStream = <span class="keyword">null</span>;  </div><div class="line">    <span class="keyword">try</span> &#123;  </div><div class="line">        outputStream = mContentResolver.openOutputStream(mSaveUri);  </div><div class="line">        outputStream.write(data);  </div><div class="line">        outputStream.close();  </div><div class="line">  </div><div class="line">        setResult(RESULT_OK);   <span class="comment">//直接返回RESULT_OK，并没有指定intent  </span></div><div class="line">        finish();  </div><div class="line">    &#125; <span class="keyword">catch</span> (IOException ex) &#123;  </div><div class="line">        <span class="comment">// ignore exception  </span></div><div class="line">    &#125; <span class="keyword">finally</span> &#123;  </div><div class="line">        Util.closeSilently(outputStream);  </div><div class="line">    &#125;  </div><div class="line">&#125; <span class="keyword">else</span> &#123;  </div><div class="line">    Bitmap bitmap = createCaptureBitmap(data);  </div><div class="line">    <span class="comment">// 返回RESULT_OK，并包含一个Intent对象，其中Extra中科key为data，value为一个bitmap  </span></div><div class="line">    setResult(RESULT_OK, <span class="keyword">new</span> Intent(<span class="string">"inline-data"</span>).putExtra(<span class="string">"data"</span>, bitmap));  </div><div class="line">    finish();  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>从中可以看出，设定地址后，只保留了返回标识值RESULT_OK，而没有回传Intent,<br>此时，我们直接判断指定的保存路径下，文件是否存在，存在就读取照片文件即可。</p>
+<p>PS：命名要规范，不同手机的对文件名的解码方式不一样，会导致照片读取异常。<br>eg:空格等特殊符号，有的手机将空格解码成“%”，而有的手机则不是。<br>Hexo则是将”空格”转译为”-“。<br>如果调用指定路径调用相机拍照后，不能返回(确认，OK等)，<br>应该检查下文件是否可写(权限)，路径是否正确等<br>例如，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String path = Environment.getExternalStorageDirectory() + <span class="string">"photo/"</span>;</div></pre></td></tr></table></figure></p>
+<p>指定此path会导致相机不能正确生成照片，原因是权限不够，对比下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String path = Environment.getExternalStorageDirectory() + <span class="string">"/photo/"</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="接收数据"><a href="#接收数据" class="headerlink" title="接收数据"></a>接收数据</h3><p>Activity通过onActivityResult接收Camera回来的数据<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">	<span class="keyword">switch</span> (requestCode) &#123;</div><div class="line">	<span class="keyword">case</span> REQUEST_CODE_CAMERA:</div><div class="line">		<span class="keyword">if</span> (resultCode == RESULT_OK) &#123;</div><div class="line">			<span class="keyword">if</span>(data !=<span class="keyword">null</span>)&#123; <span class="comment">//可能尚未指定intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);</span></div><div class="line">				<span class="comment">//返回有缩略图</span></div><div class="line">				<span class="keyword">if</span>(data.hasExtra(<span class="string">"data"</span>))&#123;</div><div class="line">					Bitmap thumbnail = data.getParcelableExtra(<span class="string">"data"</span>);</div><div class="line">					<span class="comment">//得到bitmap后的操作</span></div><div class="line">				&#125;</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				<span class="comment">//由于指定了目标uri，存储在目标uri，intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);</span></div><div class="line">				<span class="comment">// 通过目标uri，找到图片</span></div><div class="line">				<span class="comment">// 对图片的缩放处理</span></div><div class="line">				<span class="comment">// 操作</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -409,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/18/android_4_文件系统、目录结构及持久化/" rel="next" title="文件系统、目录结构及持久化">
-                <i class="fa fa-chevron-left"></i> 文件系统、目录结构及持久化
+              <a href="/2017/08/10/Gradle-Failed-to-Resolve/" rel="next" title="Gradle Failed to Resolve">
+                <i class="fa fa-chevron-left"></i> Gradle Failed to Resolve
               </a>
             
           </div>
@@ -419,8 +427,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/18/android_7_动画框架及原理/" rel="prev" title="动画框架，原理">
-                动画框架，原理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/10/在一张图上绘制/" rel="prev" title="在一张图上绘制">
+                在一张图上绘制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -468,8 +476,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -484,7 +501,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -506,7 +523,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -525,7 +542,7 @@
 
         
         
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
             <div class="links-of-blogroll-title">
               <i class="fa  fa-fw fa-globe"></i>
               Burst Linker
@@ -534,6 +551,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/iissnan/hexo-theme-next" title="hexo-next" target="_blank">hexo-next</a>
                 </li>
               
             </ul>
@@ -545,6 +566,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#权限"><span class="nav-number">1.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用相机"><span class="nav-number">2.</span> <span class="nav-text">调用相机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用前置摄像头"><span class="nav-number">2.1.</span> <span class="nav-text">调用前置摄像头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定照片写入路径"><span class="nav-number">2.2.</span> <span class="nav-text">指定照片写入路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接收数据"><span class="nav-number">3.</span> <span class="nav-text">接收数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
