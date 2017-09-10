@@ -90,19 +90,19 @@
 
 
 
-<meta name="description" content="数据准备和收集被测试的方法：targetFunction在被测试之前和之后打标记123long currentTime = System.currentTimeMillis();//  targetFunction 位置Log.d(&quot;cap&quot;, &quot;used:&quot; + (System.currentTimeMillis() - currentTime) * 0.001 + &quot;s&quot;); 指定log输出地">
+<meta name="description" content="log记录到本地并使用python进行分析">
 <meta name="keywords" content="python,android,test">
 <meta property="og:type" content="article">
 <meta property="og:title" content="功能模块性能测试">
 <meta property="og:url" content="http://yoursite.com/2017/09/08/2017-09-08-功能模块性能测试/index.html">
 <meta property="og:site_name" content="眷顾の幻想乡">
-<meta property="og:description" content="数据准备和收集被测试的方法：targetFunction在被测试之前和之后打标记123long currentTime = System.currentTimeMillis();//  targetFunction 位置Log.d(&quot;cap&quot;, &quot;used:&quot; + (System.currentTimeMillis() - currentTime) * 0.001 + &quot;s&quot;); 指定log输出地">
+<meta property="og:description" content="log记录到本地并使用python进行分析">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/blog_log.png">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/blog_log_rst.png">
-<meta property="og:updated_time" content="2017-09-10T15:00:53.000Z">
+<meta property="og:updated_time" content="2017-09-10T15:05:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="功能模块性能测试">
-<meta name="twitter:description" content="数据准备和收集被测试的方法：targetFunction在被测试之前和之后打标记123long currentTime = System.currentTimeMillis();//  targetFunction 位置Log.d(&quot;cap&quot;, &quot;used:&quot; + (System.currentTimeMillis() - currentTime) * 0.001 + &quot;s&quot;); 指定log输出地">
+<meta name="twitter:description" content="log记录到本地并使用python进行分析">
 <meta name="twitter:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/blog_log.png">
 
 
@@ -350,6 +350,10 @@
           
 
           
+              <div class="post-description">
+                  log记录到本地并使用python进行分析
+              </div>
+          
 
         </div>
       </header>
@@ -372,7 +376,7 @@
 <li>对集合中的时间值进行分析，并打印  </li>
 </ol>
 <p>因为使用java进行数据分析，需要新搭建一个java工程（Android项目中不支持main方法）<br>不如正好拿这个需求来练习下python</p>
-<h4 id="python分析文件数据"><a href="#python分析文件数据" class="headerlink" title="python分析文件数据"></a>python分析文件数据</h4><p>python读取文件，按行读取,可参考链接：<br><a href="http://www.cnblogs.com/xuxn/archive/2011/07/27/read-a-file-with-python.html" target="_blank" rel="external">python按行读取文件的三种方法</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">file = open(input_path)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">  line = file.readline()</div><div class="line">  <span class="keyword">if</span> line:</div><div class="line">    <span class="keyword">pass</span></div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
+<h4 id="python分析文件数据"><a href="#python分析文件数据" class="headerlink" title="python分析文件数据"></a>python分析文件数据</h4><p>python读取文件，按行读取的三种方法，可参考链接：  <a href="http://www.cnblogs.com/xuxn/archive/2011/07/27/read-a-file-with-python.html" target="_blank" rel="external">xuxn的博客@博客园</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">file = open(input_path)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">  line = file.readline()</div><div class="line">  <span class="keyword">if</span> line:</div><div class="line">    <span class="keyword">pass</span></div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
 <p>如果有路径中含有中文，可能需要转义：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unicode_path = unicode(input_path, <span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure></p>
 <p>可能是因为我在文件头中加入了<code>#-<em>-coding:utf-8-</em>-</code>，中文路径并没有形成障碍。<br>接下来，在读取行时进行甄别是否含有“used”<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="string">'used'</span> <span class="keyword">in</span> line:</div><div class="line">  <span class="keyword">pass</span></div></pre></td></tr></table></figure></p>
 <p>新建一个类，来对数据进行保存和分析：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeCost</span><span class="params">(object)</span>:</span></div><div class="line">  arr = []</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add_data</span><span class="params">(self, str)</span>:</span></div><div class="line">        self.arr.append(str)</div></pre></td></tr></table></figure></p>
