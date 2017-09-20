@@ -362,10 +362,26 @@
       
 
       
-        <h3 id="3-1-模块和包的概念"><a href="#3-1-模块和包的概念" class="headerlink" title="3-1 模块和包的概念"></a>3-1 模块和包的概念</h3><h3 id="3-2-导入模块"><a href="#3-2-导入模块" class="headerlink" title="3-2 导入模块"></a>3-2 导入模块</h3><p><em>Python的os.path模块提供了isdir()和isfile()函数，请导入该模块，并调用函数判断指定的目录和文件是否存在。<br><strong>注意：</strong><br>1.由于运行环境是平台服务器，所以测试的也是服务器中的文件夹和文件，该服务器上有/data/webroot/resource/python<br>文件夹和/data/webroot/resource/python/test.txt文件，大家可以测试下。<br>2.当然，大家可以在本机上测试是否存在相应的文件夹和文件。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> isdir,isfile</div><div class="line"></div><div class="line"><span class="keyword">print</span> isdir(<span class="string">r'/data/webroot/resource/python'</span>)</div><div class="line"><span class="keyword">print</span> isfile(<span class="string">r'/data/webroot/resource/python/test.txt'</span>)</div></pre></td></tr></table></figure></p>
-<h3 id="3-3-动态导入模块"><a href="#3-3-动态导入模块" class="headerlink" title="3-3 动态导入模块"></a>3-3 动态导入模块</h3><p><em>利用import … as …，还可以动态导入不同名称的模块。<br>Python2.6/2.7提供了json模块，但Python2.5以及更早版本没有json模块，不过可以安装一个simplejson模块，<br>这两个模块提供的函数签名和功能都一模一样。<br>试写出导入json模块的代码，能在Python2.5、2.6、2.7都正常运行。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">  <span class="keyword">import</span> json</div><div class="line"><span class="keyword">except</span> ImportError:</div><div class="line">  <span class="keyword">import</span> simplejson</div><div class="line">  </div><div class="line"><span class="keyword">print</span> json.dumps(&#123;<span class="string">'python'</span>:<span class="number">2.7</span>&#125;)</div></pre></td></tr></table></figure></p>
-<h3 id="3-4-使用future"><a href="#3-4-使用future" class="headerlink" title="3-4 使用future"></a>3-4 使用<strong>future</strong></h3><p><em>在Python 3.x中，字符串统一为unicode,不需要加前缀u，而以字节存储的str则必须加前缀b。<br>请利用<strong>future</strong>的unicode_literals在Python2.7中编写unicode字符串。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"></div><div class="line">s = <span class="string">'am I an unicode ?'</span></div><div class="line"><span class="keyword">print</span> isinstance(s, unicode)</div></pre></td></tr></table></figure></p>
-<h3 id="3-5-安装第三方模块"><a href="#3-5-安装第三方模块" class="headerlink" title="3-5 安装第三方模块"></a>3-5 安装第三方模块</h3>
+        <h3 id="3-1-模块和包的概念">3-1 模块和包的概念</h3>
+<h3 id="3-2-导入模块">3-2 导入模块</h3>
+<p><em>Python的os.path模块提供了isdir()和isfile()函数，请导入该模块，并调用函数判断指定的目录和文件是否存在。<br>
+<strong>注意：</strong><br>
+1.由于运行环境是平台服务器，所以测试的也是服务器中的文件夹和文件，该服务器上有/data/webroot/resource/python<br>
+文件夹和/data/webroot/resource/python/test.txt文件，大家可以测试下。<br>
+2.当然，大家可以在本机上测试是否存在相应的文件夹和文件。</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> isdir,isfile</div><div class="line"></div><div class="line"><span class="keyword">print</span> isdir(<span class="string">r'/data/webroot/resource/python'</span>)</div><div class="line"><span class="keyword">print</span> isfile(<span class="string">r'/data/webroot/resource/python/test.txt'</span>)</div></pre></td></tr></table></figure>
+<h3 id="3-3-动态导入模块">3-3 动态导入模块</h3>
+<p><em>利用import … as …，还可以动态导入不同名称的模块。<br>
+Python2.6/2.7提供了json模块，但Python2.5以及更早版本没有json模块，不过可以安装一个simplejson模块，<br>
+这两个模块提供的函数签名和功能都一模一样。<br>
+试写出导入json模块的代码，能在Python2.5、2.6、2.7都正常运行。</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">  <span class="keyword">import</span> json</div><div class="line"><span class="keyword">except</span> ImportError:</div><div class="line">  <span class="keyword">import</span> simplejson</div><div class="line">  </div><div class="line"><span class="keyword">print</span> json.dumps(&#123;<span class="string">'python'</span>:<span class="number">2.7</span>&#125;)</div></pre></td></tr></table></figure>
+<h3 id="3-4-使用-future">3-4 使用__future__</h3>
+<p><em>在Python 3.x中，字符串统一为unicode,不需要加前缀u，而以字节存储的str则必须加前缀b。<br>
+请利用__future__的unicode_literals在Python2.7中编写unicode字符串。</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> unicode_literals</div><div class="line"></div><div class="line">s = <span class="string">'am I an unicode ?'</span></div><div class="line"><span class="keyword">print</span> isinstance(s, unicode)</div></pre></td></tr></table></figure>
+<h3 id="3-5-安装第三方模块">3-5 安装第三方模块</h3>
+
       
     </div>
 
@@ -498,7 +514,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -585,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-模块和包的概念"><span class="nav-number">1.</span> <span class="nav-text">3-1 模块和包的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-导入模块"><span class="nav-number">2.</span> <span class="nav-text">3-2 导入模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-动态导入模块"><span class="nav-number">3.</span> <span class="nav-text">3-3 动态导入模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-使用future"><span class="nav-number">4.</span> <span class="nav-text">3-4 使用future</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-安装第三方模块"><span class="nav-number">5.</span> <span class="nav-text">3-5 安装第三方模块</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-模块和包的概念"><span class="nav-number">1.</span> <span class="nav-text">3-1 模块和包的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-导入模块"><span class="nav-number">2.</span> <span class="nav-text">3-2 导入模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-动态导入模块"><span class="nav-number">3.</span> <span class="nav-text">3-3 动态导入模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-使用-future"><span class="nav-number">4.</span> <span class="nav-text">3-4 使用__future__</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-安装第三方模块"><span class="nav-number">5.</span> <span class="nav-text">3-5 安装第三方模块</span></a></li></ol></div>
             
 
           </div>

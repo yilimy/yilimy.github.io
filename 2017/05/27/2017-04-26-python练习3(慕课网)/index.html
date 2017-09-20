@@ -362,14 +362,48 @@
       
 
       
-        <h3 id="3-1-python中的数据类型"><a href="#3-1-python中的数据类型" class="headerlink" title="3-1 python中的数据类型"></a>3-1 python中的数据类型</h3><p><em>1.计算十进制整数45678和十六进制整数0x12fd2之和</em><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">45678 + 0x12fd2</div><div class="line">print 123456</div><div class="line">``` </div><div class="line"></div><div class="line">*2.请用字符串表示出Learn Python in imooc*  </div><div class="line">``` python</div><div class="line">'Learn Python in imooc'</div><div class="line">```  </div><div class="line"></div><div class="line">*3.请计算以下表达式的布尔值(注意==表示判断是否相等)：  </div><div class="line">100 &lt; 99  </div><div class="line">0xff == 255  </div><div class="line">__注意__：使用print命令*  </div><div class="line">``` python</div><div class="line">print 100 &lt; 99  </div><div class="line">print 0xff == 255</div><div class="line">```  </div><div class="line">结果分别为'False','True'  </div><div class="line"></div><div class="line">-----------</div><div class="line">&lt;small&gt;*遇到markdown文件保存自动删除行尾空格的解决方法：  </div><div class="line">settings -&gt; whitespace -&gt;  </div><div class="line">whitespace Settings -&gt;   </div><div class="line">remove trailing whitespace取消勾选*</div><div class="line"></div><div class="line">### 3-2 print语句</div><div class="line">*请用两种方式打印出 Hello, python.*</div><div class="line">``` python</div><div class="line">print 'Hello, ' + 'python'</div><div class="line">print 'Hello,','python'</div></pre></td></tr></table></figure></p>
-<h3 id="3-3注释"><a href="#3-3注释" class="headerlink" title="3-3注释"></a>3-3注释</h3><p><em>将代码编辑器中的”print ‘Hello’”语句改成注释语句</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print 'Hello'</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-4变量"><a href="#3-4变量" class="headerlink" title="3-4变量"></a>3-4变量</h3><p><em>等差数列可以定义为每一项与它的前一项的差等于一个<br>常数，可以用变量x1表示等差数列的第一项，用d表<br>示公差，请计算数列<br>1 4 7 10 13 16 19<br>前100项的和</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x1 = <span class="number">1</span></div><div class="line">d = <span class="number">3</span></div><div class="line">n = <span class="number">100</span></div><div class="line">x100 = x1 + (n <span class="number">-1</span>) * d</div><div class="line">s = (x1 + x100) * n / <span class="number">2</span></div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure></p>
-<h3 id="3-5定义字符串"><a href="#3-5定义字符串" class="headerlink" title="3-5定义字符串"></a>3-5定义字符串</h3><p><em>请将下面两行内容用Python的字符串表示并打印出来：<br>Python was started in 1989 by “Guido”.<br>Python is free and easy to learn.</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'Python was started in 1989 by \"Guido\".\nPython is free and easy to learn.'</span></div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure></p>
-<h3 id="3-6多行字符串"><a href="#3-6多行字符串" class="headerlink" title="3-6多行字符串"></a>3-6多行字符串</h3><p><em>请把下面的字符串用r’’’…’’’的形式改写，并用print打印出来：<br>‘\“To be, or not to be\“:that is the question.\nWhether it\‘s nobler in the mind to suffer.</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">r''''\"To be, or not to be\":that is the question.\nWhether it\'s nobler in the mind to suffer.'''</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-7-Unicode字符串"><a href="#3-7-Unicode字符串" class="headerlink" title="3-7 Unicode字符串"></a>3-7 Unicode字符串</h3><p><em>用多行Unicode字符串表示下面的唐诗并打印：<br>静夜思<br>床前明月光，<br>疑是地上霜。<br>举头望明月，<br>低头思故乡。</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#-*-coding:utf-8-*-</span></div><div class="line"><span class="keyword">print</span> <span class="string">u'''静夜思\n床前明月光,\n疑是地上霜.\n举头望明月,\n低头思故乡.'''</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-8整数和浮点数"><a href="#3-8整数和浮点数" class="headerlink" title="3-8整数和浮点数"></a>3-8整数和浮点数</h3><p><em>请计算2.5+10/4,并解释计算结果为什么不是期望的5.0？<br>请修复上述运算，使得计算结果是5.0</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="number">2.5</span> + <span class="number">10.0</span> / <span class="number">4</span></div></pre></td></tr></table></figure></p>
-<h3 id="3-9布尔类型"><a href="#3-9布尔类型" class="headerlink" title="3-9布尔类型"></a>3-9布尔类型</h3><p><em>请运行如下代码，并解释打印的结果：<br>a = ‘Python’<br>print ‘Hello,’, a or ‘world’<br>b = ‘’<br>print ‘Hello,’, b or ‘world’</em><br>运行结果是：hello, python  和  hello, world<br>Python把0、空字符串和None看成是False，其他数值和非空字符串都看成是True</p>
+        <h3 id="3-1-python中的数据类型">3-1 python中的数据类型</h3>
+<p><em>1.计算十进制整数45678和十六进制整数0x12fd2之和</em></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">45678 + 0x12fd2</div><div class="line">print 123456</div><div class="line">``` </div><div class="line"></div><div class="line">*2.请用字符串表示出Learn Python in imooc*  </div><div class="line">``` python</div><div class="line">'Learn Python in imooc'</div><div class="line">```  </div><div class="line"></div><div class="line">*3.请计算以下表达式的布尔值(注意==表示判断是否相等)：  </div><div class="line">100 &lt; 99  </div><div class="line">0xff == 255  </div><div class="line">__注意__：使用print命令*  </div><div class="line">``` python</div><div class="line">print 100 &lt; 99  </div><div class="line">print 0xff == 255</div><div class="line">```  </div><div class="line">结果分别为'False','True'  </div><div class="line"></div><div class="line">-----------</div><div class="line">&lt;small&gt;*遇到markdown文件保存自动删除行尾空格的解决方法：  </div><div class="line">settings -&gt; whitespace -&gt;  </div><div class="line">whitespace Settings -&gt;   </div><div class="line">remove trailing whitespace取消勾选*</div><div class="line"></div><div class="line">### 3-2 print语句</div><div class="line">*请用两种方式打印出 Hello, python.*</div><div class="line">``` python</div><div class="line">print 'Hello, ' + 'python'</div><div class="line">print 'Hello,','python'</div></pre></td></tr></table></figure>
+<h3 id="3-3注释">3-3注释</h3>
+<p><em>将代码编辑器中的&quot;print ‘Hello’&quot;语句改成注释语句</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># print 'Hello'</span></div></pre></td></tr></table></figure>
+<h3 id="3-4变量">3-4变量</h3>
+<p><em>等差数列可以定义为每一项与它的前一项的差等于一个
+常数，可以用变量x1表示等差数列的第一项，用d表
+示公差，请计算数列<br>
+1 4 7 10 13 16 19<br>
+前100项的和</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x1 = <span class="number">1</span></div><div class="line">d = <span class="number">3</span></div><div class="line">n = <span class="number">100</span></div><div class="line">x100 = x1 + (n <span class="number">-1</span>) * d</div><div class="line">s = (x1 + x100) * n / <span class="number">2</span></div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure>
+<h3 id="3-5定义字符串">3-5定义字符串</h3>
+<p><em>请将下面两行内容用Python的字符串表示并打印出来：<br>
+Python was started in 1989 by “Guido”.<br>
+Python is free and easy to learn.</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'Python was started in 1989 by \"Guido\".\nPython is free and easy to learn.'</span></div><div class="line"><span class="keyword">print</span> s</div></pre></td></tr></table></figure>
+<h3 id="3-6多行字符串">3-6多行字符串</h3>
+<p><em>请把下面的字符串用r’’’…’’‘的形式改写，并用print打印出来：<br>
+’\“To be, or not to be\”:that is the question.\nWhether it\'s nobler in the mind to suffer.</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="string">r''''\"To be, or not to be\":that is the question.\nWhether it\'s nobler in the mind to suffer.'''</span></div></pre></td></tr></table></figure>
+<h3 id="3-7-unicode字符串">3-7 Unicode字符串</h3>
+<p><em>用多行Unicode字符串表示下面的唐诗并打印：<br>
+静夜思<br>
+床前明月光，<br>
+疑是地上霜。<br>
+举头望明月，<br>
+低头思故乡。</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#-*-coding:utf-8-*-</span></div><div class="line"><span class="keyword">print</span> <span class="string">u'''静夜思\n床前明月光,\n疑是地上霜.\n举头望明月,\n低头思故乡.'''</span></div></pre></td></tr></table></figure>
+<h3 id="3-8整数和浮点数">3-8整数和浮点数</h3>
+<p><em>请计算2.5+10/4,并解释计算结果为什么不是期望的5.0？<br>
+请修复上述运算，使得计算结果是5.0</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="number">2.5</span> + <span class="number">10.0</span> / <span class="number">4</span></div></pre></td></tr></table></figure>
+<h3 id="3-9布尔类型">3-9布尔类型</h3>
+<p><em>请运行如下代码，并解释打印的结果：<br>
+a = 'Python’<br>
+print ‘Hello,’, a or 'world’<br>
+b = ''<br>
+print ‘Hello,’, b or 'world’</em><br>
+运行结果是：hello, python  和  hello, world<br>
+Python把0、空字符串和None看成是False，其他数值和非空字符串都看成是True</p>
 
       
     </div>
@@ -503,7 +537,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -590,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-python中的数据类型"><span class="nav-number">1.</span> <span class="nav-text">3-1 python中的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3注释"><span class="nav-number">2.</span> <span class="nav-text">3-3注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4变量"><span class="nav-number">3.</span> <span class="nav-text">3-4变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5定义字符串"><span class="nav-number">4.</span> <span class="nav-text">3-5定义字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6多行字符串"><span class="nav-number">5.</span> <span class="nav-text">3-6多行字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-Unicode字符串"><span class="nav-number">6.</span> <span class="nav-text">3-7 Unicode字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8整数和浮点数"><span class="nav-number">7.</span> <span class="nav-text">3-8整数和浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-9布尔类型"><span class="nav-number">8.</span> <span class="nav-text">3-9布尔类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-python中的数据类型"><span class="nav-number">1.</span> <span class="nav-text">3-1 python中的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3注释"><span class="nav-number">2.</span> <span class="nav-text">3-3注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4变量"><span class="nav-number">3.</span> <span class="nav-text">3-4变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5定义字符串"><span class="nav-number">4.</span> <span class="nav-text">3-5定义字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6多行字符串"><span class="nav-number">5.</span> <span class="nav-text">3-6多行字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-unicode字符串"><span class="nav-number">6.</span> <span class="nav-text">3-7 Unicode字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8整数和浮点数"><span class="nav-number">7.</span> <span class="nav-text">3-8整数和浮点数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-9布尔类型"><span class="nav-number">8.</span> <span class="nav-text">3-9布尔类型</span></a></li></ol></div>
             
 
           </div>

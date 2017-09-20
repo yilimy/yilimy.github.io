@@ -362,18 +362,29 @@
       
 
       
-        <p>传送门：<a href="http://fontawesome.io" target="_blank" rel="external">Font Awesome官网</a><br>传送门：<a href="http://fontawesome.io/cheatsheet/" target="_blank" rel="external">with Unicode (Cheatsheet)</a></p>
-<h4 id="传统显示图标的方式"><a href="#传统显示图标的方式" class="headerlink" title="传统显示图标的方式"></a>传统显示图标的方式</h4><p>在平常的开发中，如果我们需要在界面上显示某个小图标，比如搜索按钮，返回按钮，这时我们需要美工给我们切对应的png图片，并放进对应的drawable文件夹中，这样随着图标的越来越多，APK体积也会越来越大。<br>或者，我们可以使用android Draw来绘制自己的图片，但是，这种方法的局限性很大，android提供的绘图API支持简单的图像绘制，<br>比如矩形、圆形、钢笔描线，太精细的图标可能不尽如人意。</p>
-<h4 id="什么是Font-Awesome"><a href="#什么是Font-Awesome" class="headerlink" title="什么是Font Awesome"></a>什么是Font Awesome</h4><p>Font Awesome是一个专为Bootstrap设计的字体文件，我们可以通过向显示字体一样方便的显示我们想要显示的图标。对于Android，Font Awesome使用TextView显示小图标，而且无需使用png图片，只需使用一个ttf文件，并且在这些字体中的图片都是矢量图，是可以放大和缩小的，这就意味着每个图标都能在所有大小的屏幕上完美呈现。<br>Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.</p>
-<h4 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h4><ol>
+        <p>传送门：<a href="http://fontawesome.io" target="_blank" rel="external">Font Awesome官网</a>
+传送门：<a href="http://fontawesome.io/cheatsheet/" target="_blank" rel="external">with Unicode (Cheatsheet)</a></p>
+<h4 id="传统显示图标的方式">传统显示图标的方式</h4>
+<p>在平常的开发中，如果我们需要在界面上显示某个小图标，比如搜索按钮，返回按钮，这时我们需要美工给我们切对应的png图片，并放进对应的drawable文件夹中，这样随着图标的越来越多，APK体积也会越来越大。<br>
+或者，我们可以使用android Draw来绘制自己的图片，但是，这种方法的局限性很大，android提供的绘图API支持简单的图像绘制，
+比如矩形、圆形、钢笔描线，太精细的图标可能不尽如人意。</p>
+<h4 id="什么是font-awesome">什么是Font Awesome</h4>
+<p>Font Awesome是一个专为Bootstrap设计的字体文件，我们可以通过向显示字体一样方便的显示我们想要显示的图标。对于Android，Font Awesome使用TextView显示小图标，而且无需使用png图片，只需使用一个ttf文件，并且在这些字体中的图片都是矢量图，是可以放大和缩小的，这就意味着每个图标都能在所有大小的屏幕上完美呈现。<br>
+Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.</p>
+<h4 id="如何使用">如何使用</h4>
+<ol>
 <li>下载Font Awesome，格式ttf</li>
 <li>把下载后的ttf放到assets文件夹中</li>
 <li>编写string.xml,可以在<a href="http://fontawesome.io/cheatsheet/#" target="_blank" rel="external">http://fontawesome.io/cheatsheet/#</a> 中查看图标对应的字符串(Unicode码)</li>
-<li>android:text引用你要显示的图标对应的string资源，android:textColor设置图标颜色，android:textSize设置图标大小（跟设置字体大小颜色一样样的）  </li>
+<li>android:text引用你要显示的图标对应的string资源，android:textColor设置图标颜色，android:textSize设置图标大小（跟设置字体大小颜色一样样的）</li>
 </ol>
-<p>JAVA代码中引用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Typeface font = Typeface.createFromAsset(getAssets(), “fontawesome-webfont.ttf”);</div><div class="line">TextView tvIcon= (TextView) findViewById(R.id.tv_icon);</div><div class="line">tvIcon.setTypeface(font);</div></pre></td></tr></table></figure></p>
-<h4 id="Font-Awesome的优点和缺点"><a href="#Font-Awesome的优点和缺点" class="headerlink" title="Font Awesome的优点和缺点"></a>Font Awesome的优点和缺点</h4><p>Font Awesome是一个专为Bootstrap设计的字体文件，我们可以通过向显示字体一样方便的显示我们想要显示的图标。对于Android，Font Awesome使用TextView显示小图标，而且无需使用png图片，只需使用一个ttf文件，并且在这些字体中的图片都是矢量图，是可以放大和缩小的，这就意味着每个图标都能在所有大小的屏幕上完美呈现。<br>xml中预览暂时有问题。</p>
-<h4 id="优秀源码"><a href="#优秀源码" class="headerlink" title="优秀源码"></a>优秀源码</h4><p>Fancybuttons：<a href="https://github.com/medyo/Fancybuttons" target="_blank" rel="external">https://github.com/medyo/Fancybuttons</a></p>
+<p>JAVA代码中引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Typeface font = Typeface.createFromAsset(getAssets(), “fontawesome-webfont.ttf”);</div><div class="line">TextView tvIcon= (TextView) findViewById(R.id.tv_icon);</div><div class="line">tvIcon.setTypeface(font);</div></pre></td></tr></table></figure>
+<h4 id="font-awesome的优点和缺点">Font Awesome的优点和缺点</h4>
+<p>Font Awesome是一个专为Bootstrap设计的字体文件，我们可以通过向显示字体一样方便的显示我们想要显示的图标。对于Android，Font Awesome使用TextView显示小图标，而且无需使用png图片，只需使用一个ttf文件，并且在这些字体中的图片都是矢量图，是可以放大和缩小的，这就意味着每个图标都能在所有大小的屏幕上完美呈现。<br>
+xml中预览暂时有问题。</p>
+<h4 id="优秀源码">优秀源码</h4>
+<p>Fancybuttons：<a href="https://github.com/medyo/Fancybuttons" target="_blank" rel="external">https://github.com/medyo/Fancybuttons</a></p>
 
       
     </div>
@@ -505,7 +516,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -592,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#传统显示图标的方式"><span class="nav-number">1.</span> <span class="nav-text">传统显示图标的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是Font-Awesome"><span class="nav-number">2.</span> <span class="nav-text">什么是Font Awesome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何使用"><span class="nav-number">3.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Font-Awesome的优点和缺点"><span class="nav-number">4.</span> <span class="nav-text">Font Awesome的优点和缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优秀源码"><span class="nav-number">5.</span> <span class="nav-text">优秀源码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#传统显示图标的方式"><span class="nav-number">1.</span> <span class="nav-text">传统显示图标的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是font-awesome"><span class="nav-number">2.</span> <span class="nav-text">什么是Font Awesome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何使用"><span class="nav-number">3.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#font-awesome的优点和缺点"><span class="nav-number">4.</span> <span class="nav-text">Font Awesome的优点和缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优秀源码"><span class="nav-number">5.</span> <span class="nav-text">优秀源码</span></a></li></ol></div>
             
 
           </div>

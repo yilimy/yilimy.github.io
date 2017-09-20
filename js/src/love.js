@@ -11,7 +11,9 @@
   function o(){
     var t="function"==typeof e.onclick&&e.onclick;
     e.onclick=function(e){
-      t&&t(),i(e)
+      // t&&t(),i(e)
+      t,i(e)
+      // i(e)
     }
   }
   function i(e){
@@ -38,6 +40,7 @@
   var d=[];
   e.requestAnimationFrame=function(){
     return e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(e){setTimeout(e,1e3/60)}
+    // return function(e){setTimeout(e,1e3/60)}
   }(),
   n()
 }(window,document);

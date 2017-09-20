@@ -89,17 +89,17 @@
 
 
 
-<meta name="description" content="本次记录的是从apk反编译获取res目录下的文件– 以上">
+<meta name="description" content="本次记录的是从apk反编译获取res目录下的文件 – 以上">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android获取apk资源文件">
 <meta property="og:url" content="http://yoursite.com/2017/08/08/Android获取apk资源文件/index.html">
 <meta property="og:site_name" content="眷顾の幻想乡">
-<meta property="og:description" content="本次记录的是从apk反编译获取res目录下的文件– 以上">
+<meta property="og:description" content="本次记录的是从apk反编译获取res目录下的文件 – 以上">
 <meta property="og:updated_time" content="2017-08-08T14:22:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android获取apk资源文件">
-<meta name="twitter:description" content="本次记录的是从apk反编译获取res目录下的文件– 以上">
+<meta name="twitter:description" content="本次记录的是从apk反编译获取res目录下的文件 – 以上">
 
 
 
@@ -358,24 +358,48 @@
       
 
       
-        <p>本次记录的是从apk反编译获取res目录下的文件<br>– 以上<br><a id="more"></a></p>
-<h4 id="下载反编译工具"><a href="#下载反编译工具" class="headerlink" title="下载反编译工具"></a>下载反编译工具</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">apktool.readme   jd-gui-osx-1.4.0</div><div class="line">dex2jar-2.0</div></pre></td></tr></table></figure>
-<h5 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h5><p>以下为apktool.readme文件内容</p>
+        <p>本次记录的是从apk反编译获取res目录下的文件
+– 以上</p>
+<a id="more"></a>
+<h4 id="下载反编译工具">下载反编译工具</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">apktool.readme   jd-gui-osx-1.4.0</div><div class="line">dex2jar-2.0</div></pre></td></tr></table></figure>
+<h5 id="apktool">apktool</h5>
+<p>以下为apktool.readme文件内容</p>
 <blockquote>
-<p>apktool命令已添加进/usr/local/bin/<br>使用apktool命令即可进行对apk文件的反编译<br>反编译出的文件格式为smali</p>
-<p>命令涉及到的文件为:<br>apktool apktool.jar</p>
+<p>apktool命令已添加进/usr/local/bin/
+使用apktool命令即可进行对apk文件的反编译
+反编译出的文件格式为smali</p>
+</blockquote>
+<blockquote>
+<p>命令涉及到的文件为:
+apktool apktool.jar</p>
 </blockquote>
 <p>然而，我并不清楚什么时候把apktool命令添加进库</p>
-<h5 id="dex2jar-2-0"><a href="#dex2jar-2-0" class="headerlink" title="dex2jar-2.0"></a>dex2jar-2.0</h5><p>将apk包反编译的工具,目录结构如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">d2j-baksmali.bat</div><div class="line">d2j-baksmali.sh</div><div class="line">d2j-dex-recompute-checksum.bat</div><div class="line">d2j-dex-recompute-checksum.sh</div><div class="line">d2j-dex2jar.bat</div><div class="line">d2j-dex2jar.sh</div><div class="line">d2j-dex2smali.bat</div><div class="line">d2j-dex2smali.sh</div><div class="line">d2j-jar2dex.bat</div><div class="line">d2j-jar2dex.sh</div><div class="line">d2j-jar2jasmin.bat</div><div class="line">d2j-jar2jasmin.sh</div><div class="line">d2j-jasmin2jar.bat</div><div class="line">d2j-jasmin2jar.sh</div><div class="line">d2j-smali.bat</div><div class="line">d2j-smali.sh</div><div class="line">d2j-std-apk.bat</div><div class="line">d2j-std-apk.sh</div><div class="line">d2j.readme</div><div class="line">d2j_invoke.bat</div><div class="line">d2j_invoke.sh</div><div class="line">lib</div></pre></td></tr></table></figure></p>
+<h5 id="dex2jar-2-0">dex2jar-2.0</h5>
+<p>将apk包反编译的工具,目录结构如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">d2j-baksmali.bat</div><div class="line">d2j-baksmali.sh</div><div class="line">d2j-dex-recompute-checksum.bat</div><div class="line">d2j-dex-recompute-checksum.sh</div><div class="line">d2j-dex2jar.bat</div><div class="line">d2j-dex2jar.sh</div><div class="line">d2j-dex2smali.bat</div><div class="line">d2j-dex2smali.sh</div><div class="line">d2j-jar2dex.bat</div><div class="line">d2j-jar2dex.sh</div><div class="line">d2j-jar2jasmin.bat</div><div class="line">d2j-jar2jasmin.sh</div><div class="line">d2j-jasmin2jar.bat</div><div class="line">d2j-jasmin2jar.sh</div><div class="line">d2j-smali.bat</div><div class="line">d2j-smali.sh</div><div class="line">d2j-std-apk.bat</div><div class="line">d2j-std-apk.sh</div><div class="line">d2j.readme</div><div class="line">d2j_invoke.bat</div><div class="line">d2j_invoke.sh</div><div class="line">lib</div></pre></td></tr></table></figure>
 <p>readme内容如下</p>
 <blockquote>
-<p>1.添加权限：d2j_invoke.sh  d2j-dex2jar.sh;<br>2.将目标apk文件copy到当前目录下;<br>3.运行d2j_invoke.sh [file] 生成[file].jar文件;<br>4.使用JD-GUI打开生成的jar文件.</p>
+<p>1.添加权限：d2j_invoke.sh  <a href="http://d2j-dex2jar.sh" target="_blank" rel="external">d2j-dex2jar.sh</a>;
+2.将目标apk文件copy到当前目录下;
+3.运行d2j_invoke.sh [file] 生成[file].jar文件;
+4.使用JD-GUI打开生成的jar文件.</p>
 </blockquote>
-<p>然而奇怪的是使用命令后报错：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./d2j_invoke.sh test.apk</div><div class="line">错误: 找不到或无法加载主类 test.apk</div></pre></td></tr></table></figure></p>
-<p>说明3中，描述最后生成的文件为jar文件，恰好目录中有个to jar的sh命令：d2j-dex2jar.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./d2j-dex2jar.sh test.apk</div><div class="line">$ cp test.apk test.zip</div></pre></td></tr></table></figure></p>
-<p>解压后发现，目录结构是这样的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">android   io        okhttp3   retrofit2</div><div class="line">com       java8     org       rx</div></pre></td></tr></table></figure></p>
-<p>惊呆了有木有，res呢，回头看test.jar文件大小2.8M<br><strong><br>我意识到一个严重的错误，静静的把原apk文件改名为zip文件，<br>然后使用解压工具解压，res文件夹出现了。<br>MDZZ ！<br></strong></p>
-<h5 id="jd-gui-osx-1-4-0"><a href="#jd-gui-osx-1-4-0" class="headerlink" title="jd-gui-osx-1.4.0"></a>jd-gui-osx-1.4.0</h5><p>收个尾吧<br>用来打开反编译完成的jar文件</p>
+<p>然而奇怪的是使用命令后报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./d2j_invoke.sh test.apk</div><div class="line">错误: 找不到或无法加载主类 test.apk</div></pre></td></tr></table></figure>
+<p>说明3中，描述最后生成的文件为jar文件，恰好目录中有个to jar的sh命令：<a href="http://d2j-dex2jar.sh" target="_blank" rel="external">d2j-dex2jar.sh</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./d2j-dex2jar.sh test.apk</div><div class="line">$ cp test.apk test.zip</div></pre></td></tr></table></figure>
+<p>解压后发现，目录结构是这样的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">android   io        okhttp3   retrofit2</div><div class="line">com       java8     org       rx</div></pre></td></tr></table></figure>
+<p>惊呆了有木有，res呢，回头看test.jar文件大小2.8M
+<strong>
+我意识到一个严重的错误，静静的把原apk文件改名为zip文件，
+然后使用解压工具解压，res文件夹出现了。
+MDZZ ！
+</strong></p>
+<h5 id="jd-gui-osx-1-4-0">jd-gui-osx-1.4.0</h5>
+<p>收个尾吧
+用来打开反编译完成的jar文件</p>
 
       
     </div>
@@ -507,7 +531,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

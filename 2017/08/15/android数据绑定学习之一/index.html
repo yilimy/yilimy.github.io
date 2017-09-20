@@ -362,9 +362,23 @@
       
 
       
-        <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>Data Binding是一个support包，因此与Android M (API 23,6.0)没有关系<br>Android 的 Gradle 插件版本不低于 1.5.0-alpha1<br>Android Studio 版本一定要大于1.3<br>Android Studio高版本中已经<br>build.gradle中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion 23</div><div class="line">    buildToolsVersion &quot;25.0.1&quot;</div><div class="line">    </div><div class="line">    dataBinding.enabled = true</div><div class="line">    </div><div class="line">    defaultConfig &#123;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="布局文件"><a href="#布局文件" class="headerlink" title="布局文件"></a>布局文件</h4><p>布局文件添加根标签<layout><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;layout xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;</div><div class="line"></div><div class="line">    &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;</div><div class="line">        android:orientation=&quot;vertical&quot;</div><div class="line">        android:padding=&quot;10dp&quot;&gt;</div><div class="line">        </div><div class="line">        ...</div><div class="line">        </div><div class="line">    &lt;/LinearLayout&gt;</div><div class="line">&lt;/layout&gt;</div></pre></td></tr></table></figure></layout></p>
-<h4 id="java类"><a href="#java类" class="headerlink" title="java类"></a>java类</h4><p>ActivityXXXXBinding类的生成，地址在<br>project-app-build-intermediates-classes-debug-包名-activity-databinding<br>如果没有，那clean，rebuild，重启，直到出现为止<br>使用ActivityXXXXBinding dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);<br>替代setContentView(R.layout.activity_main);<br>dataBinding.id(控件的id名)即绑定了对应的控件</p>
+        <h4 id="准备">准备</h4>
+<p>Data Binding是一个support包，因此与Android M (API 23,6.0)没有关系
+Android 的 Gradle 插件版本不低于 1.5.0-alpha1
+Android Studio 版本一定要大于1.3
+Android Studio高版本中已经
+build.gradle中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion 23</div><div class="line">    buildToolsVersion &quot;25.0.1&quot;</div><div class="line">    </div><div class="line">    dataBinding.enabled = true</div><div class="line">    </div><div class="line">    defaultConfig &#123;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="布局文件">布局文件</h4>
+<p>布局文件添加根标签<layout></layout></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;layout xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;</div><div class="line"></div><div class="line">    &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;match_parent&quot;</div><div class="line">        android:orientation=&quot;vertical&quot;</div><div class="line">        android:padding=&quot;10dp&quot;&gt;</div><div class="line">        </div><div class="line">        ...</div><div class="line">        </div><div class="line">    &lt;/LinearLayout&gt;</div><div class="line">&lt;/layout&gt;</div></pre></td></tr></table></figure>
+<h4 id="java类">java类</h4>
+<p>ActivityXXXXBinding类的生成，地址在
+project-app-build-intermediates-classes-debug-包名-activity-databinding
+如果没有，那clean，rebuild，重启，直到出现为止
+使用ActivityXXXXBinding dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+替代setContentView(R.layout.activity_main);
+<a href="http://dataBinding.id" target="_blank" rel="external">dataBinding.id</a>(控件的id名)即绑定了对应的控件</p>
 
       
     </div>
@@ -496,7 +510,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

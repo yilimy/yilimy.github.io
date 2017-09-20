@@ -89,19 +89,19 @@
 
 
 
-<meta name="description" content="今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve已解决：到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar">
+<meta name="description" content="今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve 已解决： 到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar">
 <meta name="keywords" content="Gradle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gradle Failed to Resolve">
 <meta property="og:url" content="http://yoursite.com/2017/08/10/Gradle-Failed-to-Resolve/index.html">
 <meta property="og:site_name" content="眷顾の幻想乡">
-<meta property="og:description" content="今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve已解决：到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar">
+<meta property="og:description" content="今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve 已解决： 到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar">
 <meta property="og:image" content="http://img.hb.aicdn.com/bc1dc58600fa1dc98daff19bb3ce75dc646e7b8b26d05-VmLGTp">
 <meta property="og:image" content="http://img.hb.aicdn.com/802dca40d117885148599cb4848629c39c427169117c8-sL6g6P">
 <meta property="og:updated_time" content="2017-08-10T10:35:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gradle Failed to Resolve">
-<meta name="twitter:description" content="今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve已解决：到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar">
+<meta name="twitter:description" content="今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve 已解决： 到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar">
 <meta name="twitter:image" content="http://img.hb.aicdn.com/bc1dc58600fa1dc98daff19bb3ce75dc646e7b8b26d05-VmLGTp">
 
 
@@ -361,9 +361,28 @@
       
 
       
-        <p>今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve<br>已解决：<br>到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar<br><a id="more"></a><br>那个调皮的项目是PhotoView<br><a href="https://github.com/chrisbanes/PhotoView" target="_blank" rel="external">https://github.com/chrisbanes/PhotoView</a><br>按照author的建议，我配置了项目<br><img src="http://img.hb.aicdn.com/bc1dc58600fa1dc98daff19bb3ce75dc646e7b8b26d05-VmLGTp" alt=""><br>重新gradle时，一直报错Gradle Failed to Resolve,是由<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile &apos;com.github.chrisbanes:PhotoView:latest.release.here&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这句导致的，本地是高版本2.3.3，而PhotoView支持的是2.+（数据丢失）<br>我调低本地Gradle，然而，部分资源下载不下来。<br>我是不熟悉上面的compile写法的，于是想，我用以前的熟悉写法试试看。<br>首先，我到<a href="https://jitpack.io" target="_blank" rel="external">https://jitpack.io</a>网站上搜chrisbanes大牛的名字，下拉有PhotoVIew<br><img src="http://img.hb.aicdn.com/802dca40d117885148599cb4848629c39c427169117c8-sL6g6P" alt=""><br>恩，很好，历史版本到手。<br>把”com.github.chrisbanes:PhotoView:latest.release.here”中<br>“com.github.chrisbanes:PhotoView:”的尾巴去掉换成“版本号”+“@aar”的形式<br>Done !<br>其实吧，在github上就有目标项目最新版本号，不用这么费劲。<br>关于“latest.release.here”的写法，以后在补充吧，目前是没有头绪。</p>
-<p>——————-历史的分割线—————–</p>
+        <p>今天尝试了一下Git上的一个项目，Gradle给我报错：Gradle Failed to Resolve
+已解决：
+到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar</p>
+<a id="more"></a>
+<p>那个调皮的项目是PhotoView
+<a href="https://github.com/chrisbanes/PhotoView" target="_blank" rel="external">https://github.com/chrisbanes/PhotoView</a>
+按照author的建议，我配置了项目
+<img src="http://img.hb.aicdn.com/bc1dc58600fa1dc98daff19bb3ce75dc646e7b8b26d05-VmLGTp" alt="">
+重新gradle时，一直报错Gradle Failed to Resolve,是由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile &apos;com.github.chrisbanes:PhotoView:latest.release.here&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这句导致的，本地是高版本2.3.3，而PhotoView支持的是2.+（数据丢失）
+我调低本地Gradle，然而，部分资源下载不下来。
+我是不熟悉上面的compile写法的，于是想，我用以前的熟悉写法试试看。
+首先，我到<a href="https://jitpack.io" target="_blank" rel="external">https://jitpack.io</a>网站上搜chrisbanes大牛的名字，下拉有PhotoVIew
+<img src="http://img.hb.aicdn.com/802dca40d117885148599cb4848629c39c427169117c8-sL6g6P" alt="">
+恩，很好，历史版本到手。
+把&quot;com.github.chrisbanes:PhotoView:latest.release.here&quot;中
+&quot;com.github.chrisbanes:PhotoView:&quot;的尾巴去掉换成“版本号”+“@aar”的形式
+Done !
+其实吧，在github上就有目标项目最新版本号，不用这么费劲。
+关于“latest.release.here”的写法，以后在补充吧，目前是没有头绪。</p>
+<p>-------------------历史的分割线-----------------</p>
 
       
     </div>
@@ -486,7 +505,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

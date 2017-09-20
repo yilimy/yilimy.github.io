@@ -89,17 +89,17 @@
 
 
 
-<meta name="description" content="获取dialog整个view12View v = dialog.getWindow().getDecorView();//取到dialog的整个view setDialogText(v);//并对该view进行设置 找到所有textview123456789101112private void setDialogText(View v) &amp;#123;         if (v instanceo">
+<meta name="description" content="获取dialog整个view 12View v = dialog.getWindow().getDecorView();//取到dialog的整个view setDialogText(v);//并对该view进行设置 找到所有textview 123456789101112private void setDialogText(View v) &amp;#123;         if (v instanc">
 <meta name="keywords" content="android,dialog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="改变ProgressDialog消息字体样式">
 <meta property="og:url" content="http://yoursite.com/2017/08/25/2017-08-25-改变ProgressDialog消息字体样式/index.html">
 <meta property="og:site_name" content="眷顾の幻想乡">
-<meta property="og:description" content="获取dialog整个view12View v = dialog.getWindow().getDecorView();//取到dialog的整个view setDialogText(v);//并对该view进行设置 找到所有textview123456789101112private void setDialogText(View v) &amp;#123;         if (v instanceo">
+<meta property="og:description" content="获取dialog整个view 12View v = dialog.getWindow().getDecorView();//取到dialog的整个view setDialogText(v);//并对该view进行设置 找到所有textview 123456789101112private void setDialogText(View v) &amp;#123;         if (v instanc">
 <meta property="og:updated_time" content="2017-08-25T04:05:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="改变ProgressDialog消息字体样式">
-<meta name="twitter:description" content="获取dialog整个view12View v = dialog.getWindow().getDecorView();//取到dialog的整个view setDialogText(v);//并对该view进行设置 找到所有textview123456789101112private void setDialogText(View v) &amp;#123;         if (v instanceo">
+<meta name="twitter:description" content="获取dialog整个view 12View v = dialog.getWindow().getDecorView();//取到dialog的整个view setDialogText(v);//并对该view进行设置 找到所有textview 123456789101112private void setDialogText(View v) &amp;#123;         if (v instanc">
 
 
 
@@ -358,9 +358,14 @@
       
 
       
-        <h4 id="获取dialog整个view"><a href="#获取dialog整个view" class="headerlink" title="获取dialog整个view"></a>获取dialog整个view</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">View v = dialog.getWindow().getDecorView();<span class="comment">//取到dialog的整个view </span></div><div class="line">setDialogText(v);<span class="comment">//并对该view进行设置</span></div></pre></td></tr></table></figure>
-<h4 id="找到所有textview"><a href="#找到所有textview" class="headerlink" title="找到所有textview"></a>找到所有textview</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">private void setDialogText(View v) &#123; </div><div class="line">        if (v instanceof ViewGroup) &#123; </div><div class="line">                ViewGroup parent = (ViewGroup) v; </div><div class="line">                int count = parent.getChildCount(); </div><div class="line">                for (int i = 0; i &lt; count; i++) &#123; </div><div class="line">                        View child = parent.getChildAt(i); </div><div class="line">                        setDialogText(child); </div><div class="line">                &#125; </div><div class="line">        &#125; else if (v instanceof TextView) &#123; </div><div class="line">                ((TextView) v).setTextSize(40); //是textview，设置字号 </div><div class="line">        &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="调用时机"><a href="#调用时机" class="headerlink" title="调用时机"></a>调用时机</h4><p>super.onPrepareDialog<br>不好辨明时机时，可以在dialog.show之后<br>过早调用会报错request before attach to context(大致是这意思)</p>
+        <h4 id="获取dialog整个view">获取dialog整个view</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">View v = dialog.getWindow().getDecorView();<span class="comment">//取到dialog的整个view </span></div><div class="line">setDialogText(v);<span class="comment">//并对该view进行设置</span></div></pre></td></tr></table></figure>
+<h4 id="找到所有textview">找到所有textview</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">private void setDialogText(View v) &#123; </div><div class="line">        if (v instanceof ViewGroup) &#123; </div><div class="line">                ViewGroup parent = (ViewGroup) v; </div><div class="line">                int count = parent.getChildCount(); </div><div class="line">                for (int i = 0; i &lt; count; i++) &#123; </div><div class="line">                        View child = parent.getChildAt(i); </div><div class="line">                        setDialogText(child); </div><div class="line">                &#125; </div><div class="line">        &#125; else if (v instanceof TextView) &#123; </div><div class="line">                ((TextView) v).setTextSize(40); //是textview，设置字号 </div><div class="line">        &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="调用时机">调用时机</h4>
+<p>super.onPrepareDialog
+不好辨明时机时，可以在dialog.show之后<br>
+过早调用会报错request before attach to context(大致是这意思)</p>
 
       
     </div>
@@ -494,7 +499,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
