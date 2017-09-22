@@ -89,18 +89,18 @@
 
 
 
-<meta name="description" content="添加动画背景 NexT主题附带了几个动画效果，在 &apos;_ config.xml’中查找canvas即可找到对应的属性，默认是关闭状态  同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。 设置content背景色 修改文章列表背景&amp;quot;blog/themes/next/source/css/_schemes/">
+<meta name="description" content="添加动画背景 NexT主题附带了几个动画效果，在 &apos;_config.xml’中查找canvas即可找到对应的属性，默认是关闭状态  同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。 设置背景色 修改整个页面背景:blog/themes/next/source/css/_custom/custom.styl 修改文章列表背景:blog/themes/">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo添加特效">
 <meta property="og:url" content="http://yoursite.com/2017/09/13/2017-09-13-Hexo添加特效/index.html">
 <meta property="og:site_name" content="眷顾の幻想乡">
-<meta property="og:description" content="添加动画背景 NexT主题附带了几个动画效果，在 &apos;_ config.xml’中查找canvas即可找到对应的属性，默认是关闭状态  同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。 设置content背景色 修改文章列表背景&amp;quot;blog/themes/next/source/css/_schemes/">
+<meta property="og:description" content="添加动画背景 NexT主题附带了几个动画效果，在 &apos;_config.xml’中查找canvas即可找到对应的属性，默认是关闭状态  同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。 设置背景色 修改整个页面背景:blog/themes/next/source/css/_custom/custom.styl 修改文章列表背景:blog/themes/">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/hexo_canvas.png">
-<meta property="og:updated_time" content="2017-09-20T04:04:15.000Z">
+<meta property="og:updated_time" content="2017-09-22T04:28:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo添加特效">
-<meta name="twitter:description" content="添加动画背景 NexT主题附带了几个动画效果，在 &apos;_ config.xml’中查找canvas即可找到对应的属性，默认是关闭状态  同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。 设置content背景色 修改文章列表背景&amp;quot;blog/themes/next/source/css/_schemes/">
+<meta name="twitter:description" content="添加动画背景 NexT主题附带了几个动画效果，在 &apos;_config.xml’中查找canvas即可找到对应的属性，默认是关闭状态  同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。 设置背景色 修改整个页面背景:blog/themes/next/source/css/_custom/custom.styl 修改文章列表背景:blog/themes/">
 <meta name="twitter:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/hexo_canvas.png">
 
 
@@ -136,7 +136,6 @@
 
 
   <title>Hexo添加特效 | 眷顾の幻想乡</title>
-  <script type="text/javascript" src="/js/src/love.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -361,11 +360,47 @@
 
       
         <h4 id="添加动画背景">添加动画背景</h4>
-<p>NexT主题附带了几个动画效果，在 '_ config.xml’中查找canvas即可找到对应的属性，默认是关闭状态
+<p>NexT主题附带了几个动画效果，在 '_config.xml’中查找canvas即可找到对应的属性，默认是关闭状态
 <img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/hexo_canvas.png" alt="">
 同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。</p>
-<h4 id="设置content背景色">设置content背景色</h4>
-<p>修改文章列表背景&quot;blog/themes/next/source/css/_schemes/</p>
+<h4 id="设置背景色">设置背景色</h4>
+<p>修改整个页面背景:<code>blog/themes/next/source/css/_custom/custom.styl</code><br>
+修改文章列表背景:<code>blog/themes/next/source/css/_schemes/Pisces/_layout.styl</code><br>
+中的class<code>.content-wrap</code></p>
+<h4 id="添加鼠标点击心形特效">添加鼠标点击心形特效</h4>
+<h5 id="引入js">引入js</h5>
+<p>下载文件love.js放在<code>blog/themes/next/source/js/src/</code>目录下<br>
+折跃💫<a href="http://7u2ss1.com1.z0.glb.clouddn.com/love.js" target="_blank" rel="external">http://7u2ss1.com1.z0.glb.clouddn.com/love.js</a><br>
+文件目录下更新 <code>/themes/next/layout/_layout.swig</code> 文件，
+在末尾（在前面引用会出现找不到的bug）添加以下 js 引入代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 页面点击小红心 --&gt;</div><div class="line">&lt;script type="text/javascript" src="/js/src/love.js"&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h5 id="fqa">FQA</h5>
+<p>朕在引入love.js后确实实现了点击小红心🙃，但是出现了一个新问题：</p>
+<blockquote>
+<p>双击页面的某处（某处挺普遍的）后，整个页面变灰色了</p>
+</blockquote>
+<p>WTF😱<br>
+试验多次后，发现：慢速点击时不会出现，快速点击两次时，小红心只出现一次，然后屏幕变灰<br>
+猜测是，第二次点击时，创建或选取小红心出现异常，选取往上反馈，选中了某个上层div<br>
+打开“网页检查器”查看全屏div时，一下子就没有了修改这一层的欲望了，太多了<br>
+既然是选中的问题，那我直接在body里取消焦点不就行了✌️<br>
+社会我哥，直接上代码，切换到文件<code>blog/themes/next/source/css/_custom/custom.styl</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// Custom styles.</div><div class="line">body &#123;</div><div class="line">-webkit-user-select: none;</div><div class="line">-moz-user-select: none;</div><div class="line">-ms-user-select: none;</div><div class="line">user-select: none;</div><div class="line">background:url(http://img.hb.aicdn.com/59cbaf34e3c5a3ae63fc98a6be8f465ea9032e111fb0a-Kzrcw3);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果：全屏灰色确实是去掉了，验证了是选中的问题，然而文本不能复制了啊喂🤦‍♂<br>
+想想我是那么勤劳🐝的人，常用代码不能在后花园command CV?🌚这日子没法过了</p>
+<p>🌿🌿🌿<br>
+css是支持Override的哦~，突然发现了新点子，我在content-wrap中把select:none取消掉试试<br>
+在css：<code>.content-wrap</code>中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-webkit-user-select: auto;</div><div class="line">-moz-user-select: auto;</div><div class="line">-ms-user-select: auto;</div><div class="line">user-select: auto;</div></pre></td></tr></table></figure>
+<p>完美解决🙆</p>
+<h4 id="添加背景：动态线条">添加背景：动态线条</h4>
+<p>在canvas_nest设置为true虽然能实现，但是要有个性就得动点心思了。<br>
+在<code>themes/next/layout/_scripts/</code>目录下又个文件：vendors.swig，里面有这样一段话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% if theme.canvas_nest %&#125;</div><div class="line">  &#123;% set js_vendors.canvas_nest  = &apos;canvas-nest/canvas-nest.min.js&apos; %&#125;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure>
+<p>接着找canvas-nest目录，是在<code>theme/next/source/lib/</code>下找到的<br>
+将canvas_nest设置为false，然后在_layout.swig中追加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot; color=&quot;0,0,255&quot; opacity=&quot;0.3&quot; count=&quot;99&quot;  src=&quot;/lib/canvas-nest/canvas-nest.min.js&quot;&gt;</div></pre></td></tr></table></figure>
+<p>至于颜色，当然选蕾姆真爱色啦(0,0,255)🦋</p>
 
       
     </div>
@@ -497,7 +532,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -584,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加动画背景"><span class="nav-number">1.</span> <span class="nav-text">添加动画背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置content背景色"><span class="nav-number">2.</span> <span class="nav-text">设置content背景色</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加动画背景"><span class="nav-number">1.</span> <span class="nav-text">添加动画背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置背景色"><span class="nav-number">2.</span> <span class="nav-text">设置背景色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加鼠标点击心形特效"><span class="nav-number">3.</span> <span class="nav-text">添加鼠标点击心形特效</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#引入js"><span class="nav-number">3.1.</span> <span class="nav-text">引入js</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fqa"><span class="nav-number">3.2.</span> <span class="nav-text">FQA</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加背景：动态线条"><span class="nav-number">4.</span> <span class="nav-text">添加背景：动态线条</span></a></li></ol></div>
             
 
           </div>
@@ -661,8 +696,6 @@
   
 
 
-  
-
 
 
 
@@ -690,9 +723,6 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
@@ -883,5 +913,10 @@
 
   
 
+
+  <!-- 点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script>
 </body>
 </html>

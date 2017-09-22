@@ -129,7 +129,6 @@
 
 
   <title>眷顾の幻想乡</title>
-  <script type="text/javascript" src="/js/src/love.js"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,6 +269,313 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/22/2017-09-22-Gradle打包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/22/2017-09-22-Gradle打包/" itemprop="url">Gradle打包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-22T13:13:09+08:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/22/2017-09-22-Gradle打包/" class="leancloud_visitors" data-flag-title="Gradle打包">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="修改的部位">修改的部位</h4>
+<h5 id="app-build-gradle">app:build.gradle</h5>
+<ol>
+<li>指定为lib而不是应用</li>
+</ol>
+<p><code>apply plugin: 'com.android.application'</code> -&gt; <code>apply plugin: 'com.android.library'</code></p>
+<ol start="2">
+<li>去掉唯一标识</li>
+</ol>
+<p>注释掉applicationId</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  defaultConfig &#123;</div><div class="line">//    applicationId XXXX</div><div class="line">  &#125;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol start="3">
+<li>去掉预编译选项</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//        jackOptions &#123;</div><div class="line">//            enabled true</div><div class="line">//        &#125;</div></pre></td></tr></table></figure>
+<h5 id="manifest文件">manifest文件</h5>
+<p>去掉<code>android.intent.action.MAIN</code>和<code>android.intent.category.LAUNCHER</code>等<br>
+一个干扰入口，一个会在桌面添加图标</p>
+<h4 id="打包方法">打包方法</h4>
+<p>app:build.gradle中追加<code>apply from: './nexus-push.gradle'</code><br>
+同级目录中添加脚本文件nexus-push.gradle</p>
+<h5 id="脚本">脚本</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;maven&apos;</div><div class="line"></div><div class="line">task androidJavadocs(type: Javadoc) &#123;</div><div class="line">    source = android.sourceSets.main.java.srcDirs</div><div class="line">    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))</div><div class="line">&#125;</div><div class="line"></div><div class="line">task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) &#123;</div><div class="line">    classifier = &apos;javadoc&apos;</div><div class="line">    from androidJavadocs.destinationDir</div><div class="line">&#125;</div><div class="line"></div><div class="line">task androidSourcesJar(type: Jar) &#123;</div><div class="line">    classifier = &apos;sources&apos;</div><div class="line">    from android.sourceSets.main.java.srcDirs</div><div class="line">&#125;</div><div class="line"></div><div class="line">artifacts &#123;</div><div class="line">    archives androidSourcesJar</div><div class="line">    archives androidJavadocsJar</div><div class="line">&#125;</div><div class="line"></div><div class="line">uploadArchives &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenDeployer &#123;</div><div class="line">            // maven 库地址</div><div class="line">            repository(url: &quot;http://localhost:8081/repository/maven-releases/&quot;) &#123;</div><div class="line">                authentication(userName: &quot;admin&quot;, password: &quot;admin123&quot;)</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            pom.groupId = &apos;com.XXXX&apos;  // 包名</div><div class="line">            pom.artifactId = &apos;XXXXXXX&apos;  //  项目名</div><div class="line">            pom.version = &apos;0.0.X&apos; //  项目版本号</div><div class="line"></div><div class="line">            pom.project &#123;</div><div class="line">                licenses &#123;</div><div class="line">                    license &#123;</div><div class="line">                        name &apos;The Apache Software License, Version 2.0&apos;</div><div class="line">                        url &apos;http://www.apache.org/licenses/LICENSE-2.0.txt&apos;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="执行命令">执行命令</h5>
+<p>Terminal中执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew uploadArchives</div></pre></td></tr></table></figure>
+<p>uploadArchives为脚本中的可执行任务名<br>
+如果打包项目是工程中的依赖module，可使用如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew :module名:uploadArchives</div></pre></td></tr></table></figure>
+<h4 id="fqa">FQA</h4>
+<h5 id="androidjavadocs">androidJavadocs</h5>
+<p>BUILD FAILED<br>
+Execution failed for task ‘androidJavadocs’.<br>
+意思就是说，提取javadocs时失败，解决方案有两个<br>
+方案一：<br>
+代码都是本团队的人贡献的，按照BUILD FAILED中的提示，把错误的java注释改过来<br>
+一般为&quot;@param argument不是参数名称&quot;，&quot;@return 标记没有参数&quot;等不符合Javadoc规范的地方<br>
+老老实实把这些错误揪出来，🐢然后改掉<br>
+方案二：<br>
+在跟路径的build.gradle文件中添加任务tasks来避免Javadoc检查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">//        maven&#123;url &apos;http://localhost:8081/repository/maven-releases/&apos;&#125;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    tasks.withType(Javadoc) &#123;</div><div class="line">        options.addStringOption(&apos;Xdoclint:none&apos;, &apos;-quiet&apos;)</div><div class="line">        options.addStringOption(&apos;encoding&apos;, &apos;UTF-8&apos;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可能存在的隐患：方案二在某些对Javadoc检查严格的网站上传不上去的风险</p>
+<h5 id="core-lint">core: lint</h5>
+<p>Execution failed for task ‘:core:lint’.</p>
+<blockquote>
+<p>Lint found errors in the project; aborting build.</p>
+</blockquote>
+<p>在上传过程中执行了lint检查，所以可能会报上面的错误。解决方法就是避免lint的检查，
+在每个module的gradle下面就要添加如下配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  lintOptions &#123;</div><div class="line">    abortOnError false</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="connection-refused">Connection refused</h5>
+<p>Execution failed for task ‘uploadArchives’.<br>
+Failed to deploy artifacts<br>
+Connection refused<br>
+请检查网络连接或者本地maven是否启动或者maven权限等</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/2017-09-20-android-开源框架大杂烩/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/2017-09-20-android-开源框架大杂烩/" itemprop="url">2017 09 20 android 开源框架大杂烩</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T16:01:19+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/20/2017-09-20-android-开源框架大杂烩/" class="leancloud_visitors" data-flag-title="2017 09 20 android 开源框架大杂烩">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="精美的控件">精美的控件</h4>
+<p>Fancybuttons：<a href="https://github.com/medyo/Fancybuttons" target="_blank" rel="external">https://github.com/medyo/Fancybuttons</a></p>
+<ol>
+<li>点击渐变动画</li>
+<li>FontAwesome字体型图形支持</li>
+<li>圆滑样式按钮
+<img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/fancy.png" alt=""></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -488,11 +794,47 @@
         
           
             <h4 id="添加动画背景">添加动画背景</h4>
-<p>NexT主题附带了几个动画效果，在 '_ config.xml’中查找canvas即可找到对应的属性，默认是关闭状态
+<p>NexT主题附带了几个动画效果，在 '_config.xml’中查找canvas即可找到对应的属性，默认是关闭状态
 <img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/hexo_canvas.png" alt="">
 同时打开‘canvas_nest’和‘canvas_ribbon’会导致content背景色透明。</p>
-<h4 id="设置content背景色">设置content背景色</h4>
-<p>修改文章列表背景&quot;blog/themes/next/source/css/_schemes/</p>
+<h4 id="设置背景色">设置背景色</h4>
+<p>修改整个页面背景:<code>blog/themes/next/source/css/_custom/custom.styl</code><br>
+修改文章列表背景:<code>blog/themes/next/source/css/_schemes/Pisces/_layout.styl</code><br>
+中的class<code>.content-wrap</code></p>
+<h4 id="添加鼠标点击心形特效">添加鼠标点击心形特效</h4>
+<h5 id="引入js">引入js</h5>
+<p>下载文件love.js放在<code>blog/themes/next/source/js/src/</code>目录下<br>
+折跃💫<a href="http://7u2ss1.com1.z0.glb.clouddn.com/love.js" target="_blank" rel="external">http://7u2ss1.com1.z0.glb.clouddn.com/love.js</a><br>
+文件目录下更新 <code>/themes/next/layout/_layout.swig</code> 文件，
+在末尾（在前面引用会出现找不到的bug）添加以下 js 引入代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 页面点击小红心 --&gt;</div><div class="line">&lt;script type="text/javascript" src="/js/src/love.js"&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h5 id="fqa">FQA</h5>
+<p>朕在引入love.js后确实实现了点击小红心🙃，但是出现了一个新问题：</p>
+<blockquote>
+<p>双击页面的某处（某处挺普遍的）后，整个页面变灰色了</p>
+</blockquote>
+<p>WTF😱<br>
+试验多次后，发现：慢速点击时不会出现，快速点击两次时，小红心只出现一次，然后屏幕变灰<br>
+猜测是，第二次点击时，创建或选取小红心出现异常，选取往上反馈，选中了某个上层div<br>
+打开“网页检查器”查看全屏div时，一下子就没有了修改这一层的欲望了，太多了<br>
+既然是选中的问题，那我直接在body里取消焦点不就行了✌️<br>
+社会我哥，直接上代码，切换到文件<code>blog/themes/next/source/css/_custom/custom.styl</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// Custom styles.</div><div class="line">body &#123;</div><div class="line">-webkit-user-select: none;</div><div class="line">-moz-user-select: none;</div><div class="line">-ms-user-select: none;</div><div class="line">user-select: none;</div><div class="line">background:url(http://img.hb.aicdn.com/59cbaf34e3c5a3ae63fc98a6be8f465ea9032e111fb0a-Kzrcw3);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果：全屏灰色确实是去掉了，验证了是选中的问题，然而文本不能复制了啊喂🤦‍♂<br>
+想想我是那么勤劳🐝的人，常用代码不能在后花园command CV?🌚这日子没法过了</p>
+<p>🌿🌿🌿<br>
+css是支持Override的哦~，突然发现了新点子，我在content-wrap中把select:none取消掉试试<br>
+在css：<code>.content-wrap</code>中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-webkit-user-select: auto;</div><div class="line">-moz-user-select: auto;</div><div class="line">-ms-user-select: auto;</div><div class="line">user-select: auto;</div></pre></td></tr></table></figure>
+<p>完美解决🙆</p>
+<h4 id="添加背景：动态线条">添加背景：动态线条</h4>
+<p>在canvas_nest设置为true虽然能实现，但是要有个性就得动点心思了。<br>
+在<code>themes/next/layout/_scripts/</code>目录下又个文件：vendors.swig，里面有这样一段话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% if theme.canvas_nest %&#125;</div><div class="line">  &#123;% set js_vendors.canvas_nest  = &apos;canvas-nest/canvas-nest.min.js&apos; %&#125;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure>
+<p>接着找canvas-nest目录，是在<code>theme/next/source/lib/</code>下找到的<br>
+将canvas_nest设置为false，然后在_layout.swig中追加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot; color=&quot;0,0,255&quot; opacity=&quot;0.3&quot; count=&quot;99&quot;  src=&quot;/lib/canvas-nest/canvas-nest.min.js&quot;&gt;</div></pre></td></tr></table></figure>
+<p>至于颜色，当然选蕾姆真爱色啦(0,0,255)🦋</p>
 
           
         
@@ -782,260 +1124,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/08/2017-09-08-功能模块性能测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/08/2017-09-08-功能模块性能测试/" itemprop="url">功能模块性能测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-08T18:07:00+08:00">
-                2017-09-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/08/2017-09-08-功能模块性能测试/" class="leancloud_visitors" data-flag-title="功能模块性能测试">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          log记录到本地并使用python进行分析
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/08/2017-09-08-功能模块性能测试/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/07/2017-09-07-Hexo中添加音乐控件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/07/2017-09-07-Hexo中添加音乐控件/" itemprop="url">Hexo中添加音乐控件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-07T00:19:41+08:00">
-                2017-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/07/2017-09-07-Hexo中添加音乐控件/" class="leancloud_visitors" data-flag-title="Hexo中添加音乐控件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          以网易云音乐为例在hexo中引入音乐控件
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/07/2017-09-07-Hexo中添加音乐控件/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1085,7 +1173,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1233,8 +1321,6 @@
   
 
 
-  
-
 
 
 
@@ -1262,9 +1348,6 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
@@ -1451,5 +1534,10 @@
 
   
 
+
+  <!-- 点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script>
 </body>
 </html>
