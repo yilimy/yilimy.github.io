@@ -1696,7 +1696,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #00188f;
+  background: #4bffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2557,6 +2557,10 @@ pre .javascript .function {
   }
 }
 .content-wrap {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
   float: right;
   box-sizing: border-box;
   padding: 40px;
@@ -2872,5 +2876,9 @@ pre .javascript .function {
   }
 }
 body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   background: url("http://img.hb.aicdn.com/59cbaf34e3c5a3ae63fc98a6be8f465ea9032e111fb0a-Kzrcw3");
 }
