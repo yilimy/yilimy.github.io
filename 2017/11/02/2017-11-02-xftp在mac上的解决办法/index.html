@@ -1,0 +1,941 @@
+<!doctype html>
+
+
+
+  
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="solutions," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="要上传文件到公司一台服务器上，同事使用的是Xftp what’s xftp 来自💆度娘百科 Xftp: 是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导">
+<meta name="keywords" content="solutions">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xftp在mac上的解决办法">
+<meta property="og:url" content="http://yoursite.com/2017/11/02/2017-11-02-xftp在mac上的解决办法/index.html">
+<meta property="og:site_name" content="眷顾の幻想乡">
+<meta property="og:description" content="要上传文件到公司一台服务器上，同事使用的是Xftp what’s xftp 来自💆度娘百科 Xftp: 是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导">
+<meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/20171102installRVMcomplete.png">
+<meta property="og:updated_time" content="2017-11-02T09:26:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xftp在mac上的解决办法">
+<meta name="twitter:description" content="要上传文件到公司一台服务器上，同事使用的是Xftp what’s xftp 来自💆度娘百科 Xftp: 是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导">
+<meta name="twitter:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/20171102installRVMcomplete.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/02/2017-11-02-xftp在mac上的解决办法/"/>
+
+
+
+
+
+  <title>xftp在mac上的解决办法 | 眷顾の幻想乡</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cbebc032aecfdda47d379bb5a9fb19e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">眷顾の幻想乡</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            小窝
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            银河尽头
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/2017-11-02-xftp在mac上的解决办法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">xftp在mac上的解决办法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T11:19:15+08:00">
+                2017-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/02/2017-11-02-xftp在mac上的解决办法/" class="leancloud_visitors" data-flag-title="xftp在mac上的解决办法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>要上传文件到公司一台服务器上，同事使用的是Xftp</p>
+<h4 id="what-s-xftp">what’s xftp</h4>
+<h5 id="来自💆度娘百科">来自💆度娘百科</h5>
+<p>Xftp:<br>
+是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导，它简单的界面能与其他 Windows 应用程序紧密地协同工作，此外它还为高级用户提供了众多强劲地功能特性。<br>
+👉嘛，windows家的东东，查一下mac上是否有xftp吧。</p>
+<h5 id="来自formac-informer的消息">来自formac.informer的消息</h5>
+<p><a href="https://formac.informer.com/xftp" target="_blank" rel="external">https://formac.informer.com/xftp</a><br>
+Xftp by NetSarang Computer, Inc. is an FTP/SFTP client that can help you securely transfer files to and from FTP servers. Although there is no version of Xftp for Mac available on the market, there are plenty other applications you can use instead. Here are several alternatives to Xftp for Mac.<br>
+MAC上没有Xftp的版本啊，网站上的建议是安装其他FTP工具☝️。</p>
+<h5 id="使用remote-ftp">使用Remote-FTP</h5>
+<p>想到atom中安装了FTP插件，是支持SFTP和FTP两种传输，👊然而连接不上服务器。<br>
+等等，remote？👀就把它当一个普通服务器来看，我还有SSH啊🤦‍♂</p>
+<h4 id="ssh">SSH</h4>
+<h5 id="远程登录">远程登录</h5>
+<p>访问http://192.168.9.7:9090，使用SSH是相当easy</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh root@192.168.9.7</div></pre></td></tr></table></figure>
+<p>浏览倒是没有障碍，问题在于：如何在服务器和本地间传输文件？</p>
+<h5 id="scp">scp</h5>
+<p>scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的。可能会稍微影响一下速度。当你服务器硬盘变为只读 read only system时，用scp可以帮你把文件移出来。另外，scp还非常不占资源，不会提高多少系统负荷。<br>
+也就是说，scp能很好的支持本机与单台服务器间的传输<br>
+命令格式：scp [参数] [原路径] [目标路径]<br>
+实例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 下载文件</span></div><div class="line">$ scp root@192.168.9.7:/usr/<span class="built_in">local</span>/java/tomcat1/webapps/bjdztbd/WEB-INF/classes/app-release.apk .</div><div class="line"><span class="comment"># 上传文件</span></div><div class="line">$ scp app-release.apk root@192.168.9.7:/usr/<span class="built_in">local</span>/java/tomcat1/webapps/bjdztbd/WEB-INF/classes/</div><div class="line"><span class="comment"># 下载文件夹</span></div><div class="line">$ scp -r root@192.168.9.7:/usr/<span class="built_in">local</span>/ .</div><div class="line"><span class="comment"># 上传文件</span></div><div class="line">$ scp -r . root@192.168.9.7:/usr/<span class="built_in">local</span>/</div></pre></td></tr></table></figure>
+<p>可是，在我SSH登录之后，不能使用scp啊👊，要退出SSH登录才能使用，怎么愉快的玩耍？</p>
+<h5 id="rsync">rsync</h5>
+<p>rsync比scp会快一点，但当小文件众多的情况下，rsync会导致硬盘I/O非常高，而scp基本不影响系统正常使用。
+rsync命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。rsync使用所谓的“rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 rsync是一个功能非常强大的工具，其命令也有很多功能特色选项…</p>
+<p>来自: <a href="http://man.linuxde.net/rsync" target="_blank" rel="external">http://man.linuxde.net/rsync</a><br>
+看来rsync并不是我的目标🐶</p>
+<h5 id="sz">sz</h5>
+<h5 id="sz命令">sz命令</h5>
+<p>sz命令是利用ZModem协议来从Linux服务器传送文件到本地，一次可以传送一个或多个文件。相对应的从本地上传文件到Linux服务器，可以使用rz命令。</p>
+<h5 id="常用参数">常用参数</h5>
+<p>-a 以文本方式传输（ascii）。
+-b 以二进制方式传输（binary）。
+-e 对控制字符转义（escape），这可以保证文件传输正确。
+如果能够确定所传输的文件是文本格式的，使用 sz -a files
+如果是二进制文件，使用 sz -be files</p>
+<h4 id="sz安装">sz安装</h4>
+<h5 id="apt-get">apt-get</h5>
+<p>SSH远程连接上之后，输入sz命令，提示<code>apt-get install lrszs</code><br>
+本能输入<code>apt-get</code>得到错误：<code>apt-get: command not found</code><br>
+查资料得知，apt-get是debian(Ubuntu)才有的包管理器，而MAC上的包管理工具是HomeBrew啊。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install lrzsz</div></pre></td></tr></table></figure>
+<p>提示我brew update，长期没有使用HomeBrew的结果。更新完之后，命令依旧没有执行。<br>
+need Ruby 2.3</p>
+<h5 id="ruby-update">ruby update</h5>
+<p>首选安装ruby版本管理工具</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -L get.rvm.io | bash <span class="_">-s</span> stable</div></pre></td></tr></table></figure>
+<p>安装完成后其中有这样一段<br>
+<img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/20171102installRVMcomplete.png" alt="">
+有环境配置写入profile，需要使用source命令<br>
+如果是bash控制台</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> ~/.bashrc</div><div class="line">$ <span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure>
+<p>本机使用的是zsh，因此使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> ~/.zshrc</div><div class="line">$ <span class="built_in">source</span> ~/.zlogin</div></pre></td></tr></table></figure>
+<p>安装完成后，可以通过<code>$ rvm -v</code>查看版本号。<br>
+通过<code>$ rvm list known</code>可以查看网络上可用的Ruby版本，使用<code>$ rvm install 2.3</code>更新至Ruby2.3.4(当前2.3最新)<br>
+PS：会遇到安装xcode的需求。</p>
+<h5 id="lrzsz">lrzsz</h5>
+<p>执行<code>$ brew install lrzsz</code>安装rz和sz工具</p>
+<h2 id="然而白忙一场">然而白忙一场</h2>
+<p>需要服务器端安装rzsz<br>
+🐒🐒🐒🐒</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode-1.png" alt="Orice.Y.L.M wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信号</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/solutions/" rel="tag"># solutions</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/25/2017-10-25-assets目录/" rel="next" title="Assets目录">
+                <i class="fa fa-chevron-left"></i> Assets目录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Orice.Y.L.M" />
+          <p class="site-author-name" itemprop="name">Orice.Y.L.M</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Burst Linker
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/iissnan/hexo-theme-next" title="hexo-next" target="_blank">hexo-next</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/fsf_snail" title="CSDN&copy;蜗牛慢慢跑" target="_blank">CSDN&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/64cd56319477" title="简书&copy;蜗牛慢慢跑" target="_blank">简书&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#what-s-xftp"><span class="nav-number">1.</span> <span class="nav-text">what’s xftp</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#来自💆度娘百科"><span class="nav-number">1.1.</span> <span class="nav-text">来自💆度娘百科</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#来自formac-informer的消息"><span class="nav-number">1.2.</span> <span class="nav-text">来自formac.informer的消息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用remote-ftp"><span class="nav-number">1.3.</span> <span class="nav-text">使用Remote-FTP</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh"><span class="nav-number">2.</span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#远程登录"><span class="nav-number">2.1.</span> <span class="nav-text">远程登录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scp"><span class="nav-number">2.2.</span> <span class="nav-text">scp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rsync"><span class="nav-number">2.3.</span> <span class="nav-text">rsync</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sz"><span class="nav-number">2.4.</span> <span class="nav-text">sz</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sz命令"><span class="nav-number">2.5.</span> <span class="nav-text">sz命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用参数"><span class="nav-number">2.6.</span> <span class="nav-text">常用参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sz安装"><span class="nav-number">3.</span> <span class="nav-text">sz安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#apt-get"><span class="nav-number">3.1.</span> <span class="nav-text">apt-get</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ruby-update"><span class="nav-number">3.2.</span> <span class="nav-text">ruby update</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lrzsz"><span class="nav-number">3.3.</span> <span class="nav-text">lrzsz</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然而白忙一场"><span class="nav-number"></span> <span class="nav-text">然而白忙一场</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orice.Y.L.M</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IeXcUcLh4E6UmmX4F6zPclkF-gzGzoHsz", "8dcbzKIndIphm1YLiTwzAFX6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script>
+</body>
+</html>

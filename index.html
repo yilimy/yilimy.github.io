@@ -279,6 +279,193 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/2017-11-02-xftp在mac上的解决办法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/02/2017-11-02-xftp在mac上的解决办法/" itemprop="url">xftp在mac上的解决办法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T11:19:15+08:00">
+                2017-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/02/2017-11-02-xftp在mac上的解决办法/" class="leancloud_visitors" data-flag-title="xftp在mac上的解决办法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>要上传文件到公司一台服务器上，同事使用的是Xftp</p>
+<h4 id="what-s-xftp">what’s xftp</h4>
+<h5 id="来自💆度娘百科">来自💆度娘百科</h5>
+<p>Xftp:<br>
+是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导，它简单的界面能与其他 Windows 应用程序紧密地协同工作，此外它还为高级用户提供了众多强劲地功能特性。<br>
+👉嘛，windows家的东东，查一下mac上是否有xftp吧。</p>
+<h5 id="来自formac-informer的消息">来自formac.informer的消息</h5>
+<p><a href="https://formac.informer.com/xftp" target="_blank" rel="external">https://formac.informer.com/xftp</a><br>
+Xftp by NetSarang Computer, Inc. is an FTP/SFTP client that can help you securely transfer files to and from FTP servers. Although there is no version of Xftp for Mac available on the market, there are plenty other applications you can use instead. Here are several alternatives to Xftp for Mac.<br>
+MAC上没有Xftp的版本啊，网站上的建议是安装其他FTP工具☝️。</p>
+<h5 id="使用remote-ftp">使用Remote-FTP</h5>
+<p>想到atom中安装了FTP插件，是支持SFTP和FTP两种传输，👊然而连接不上服务器。<br>
+等等，remote？👀就把它当一个普通服务器来看，我还有SSH啊🤦‍♂</p>
+<h4 id="ssh">SSH</h4>
+<h5 id="远程登录">远程登录</h5>
+<p>访问http://192.168.9.7:9090，使用SSH是相当easy</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh root@192.168.9.7</div></pre></td></tr></table></figure>
+<p>浏览倒是没有障碍，问题在于：如何在服务器和本地间传输文件？</p>
+<h5 id="scp">scp</h5>
+<p>scp是secure copy的简写，用于在Linux下进行远程拷贝文件的命令，和它类似的命令有cp，不过cp只是在本机进行拷贝不能跨服务器，而且scp传输是加密的。可能会稍微影响一下速度。当你服务器硬盘变为只读 read only system时，用scp可以帮你把文件移出来。另外，scp还非常不占资源，不会提高多少系统负荷。<br>
+也就是说，scp能很好的支持本机与单台服务器间的传输<br>
+命令格式：scp [参数] [原路径] [目标路径]<br>
+实例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 下载文件</span></div><div class="line">$ scp root@192.168.9.7:/usr/<span class="built_in">local</span>/java/tomcat1/webapps/bjdztbd/WEB-INF/classes/app-release.apk .</div><div class="line"><span class="comment"># 上传文件</span></div><div class="line">$ scp app-release.apk root@192.168.9.7:/usr/<span class="built_in">local</span>/java/tomcat1/webapps/bjdztbd/WEB-INF/classes/</div><div class="line"><span class="comment"># 下载文件夹</span></div><div class="line">$ scp -r root@192.168.9.7:/usr/<span class="built_in">local</span>/ .</div><div class="line"><span class="comment"># 上传文件</span></div><div class="line">$ scp -r . root@192.168.9.7:/usr/<span class="built_in">local</span>/</div></pre></td></tr></table></figure>
+<p>可是，在我SSH登录之后，不能使用scp啊👊，要退出SSH登录才能使用，怎么愉快的玩耍？</p>
+<h5 id="rsync">rsync</h5>
+<p>rsync比scp会快一点，但当小文件众多的情况下，rsync会导致硬盘I/O非常高，而scp基本不影响系统正常使用。
+rsync命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。rsync使用所谓的“rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 rsync是一个功能非常强大的工具，其命令也有很多功能特色选项…</p>
+<p>来自: <a href="http://man.linuxde.net/rsync" target="_blank" rel="external">http://man.linuxde.net/rsync</a><br>
+看来rsync并不是我的目标🐶</p>
+<h5 id="sz">sz</h5>
+<h5 id="sz命令">sz命令</h5>
+<p>sz命令是利用ZModem协议来从Linux服务器传送文件到本地，一次可以传送一个或多个文件。相对应的从本地上传文件到Linux服务器，可以使用rz命令。</p>
+<h5 id="常用参数">常用参数</h5>
+<p>-a 以文本方式传输（ascii）。
+-b 以二进制方式传输（binary）。
+-e 对控制字符转义（escape），这可以保证文件传输正确。
+如果能够确定所传输的文件是文本格式的，使用 sz -a files
+如果是二进制文件，使用 sz -be files</p>
+<h4 id="sz安装">sz安装</h4>
+<h5 id="apt-get">apt-get</h5>
+<p>SSH远程连接上之后，输入sz命令，提示<code>apt-get install lrszs</code><br>
+本能输入<code>apt-get</code>得到错误：<code>apt-get: command not found</code><br>
+查资料得知，apt-get是debian(Ubuntu)才有的包管理器，而MAC上的包管理工具是HomeBrew啊。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install lrzsz</div></pre></td></tr></table></figure>
+<p>提示我brew update，长期没有使用HomeBrew的结果。更新完之后，命令依旧没有执行。<br>
+need Ruby 2.3</p>
+<h5 id="ruby-update">ruby update</h5>
+<p>首选安装ruby版本管理工具</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -L get.rvm.io | bash <span class="_">-s</span> stable</div></pre></td></tr></table></figure>
+<p>安装完成后其中有这样一段<br>
+<img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/20171102installRVMcomplete.png" alt="">
+有环境配置写入profile，需要使用source命令<br>
+如果是bash控制台</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> ~/.bashrc</div><div class="line">$ <span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure>
+<p>本机使用的是zsh，因此使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> ~/.zshrc</div><div class="line">$ <span class="built_in">source</span> ~/.zlogin</div></pre></td></tr></table></figure>
+<p>安装完成后，可以通过<code>$ rvm -v</code>查看版本号。<br>
+通过<code>$ rvm list known</code>可以查看网络上可用的Ruby版本，使用<code>$ rvm install 2.3</code>更新至Ruby2.3.4(当前2.3最新)<br>
+PS：会遇到安装xcode的需求。</p>
+<h5 id="lrzsz">lrzsz</h5>
+<p>执行<code>$ brew install lrzsz</code>安装rz和sz工具</p>
+<h2 id="然而白忙一场">然而白忙一场</h2>
+<p>需要服务器端安装rzsz<br>
+🐒🐒🐒🐒</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/25/2017-10-25-assets目录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -992,138 +1179,11 @@ Connection refused<br>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/13/2017-09-13-Hexo添加特效/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/13/2017-09-13-Hexo添加特效/" itemprop="url">Hexo添加特效</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T09:38:11+08:00">
-                2017-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/13/2017-09-13-Hexo添加特效/" class="leancloud_visitors" data-flag-title="Hexo添加特效">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          啦啦啦德玛西亚
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/13/2017-09-13-Hexo添加特效/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1168,7 +1228,7 @@ Connection refused<br>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">72</span>
+                <span class="site-state-item-count">73</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
