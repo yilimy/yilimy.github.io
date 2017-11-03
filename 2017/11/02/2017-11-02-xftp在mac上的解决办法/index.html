@@ -72,6 +72,17 @@
 
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
   <meta name="keywords" content="solutions," />
 
@@ -97,7 +108,7 @@
 <meta property="og:site_name" content="眷顾の幻想乡">
 <meta property="og:description" content="要上传文件到公司一台服务器上，同事使用的是Xftp what’s xftp 来自💆度娘百科 Xftp: 是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/image/blog/20171102installRVMcomplete.png">
-<meta property="og:updated_time" content="2017-11-02T09:37:11.000Z">
+<meta property="og:updated_time" content="2017-11-03T07:27:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xftp在mac上的解决办法">
 <meta name="twitter:description" content="要上传文件到公司一台服务器上，同事使用的是Xftp what’s xftp 来自💆度娘百科 Xftp: 是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导">
@@ -110,7 +121,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -170,7 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -620,6 +631,10 @@ PS：会遇到安装xcode的需求。</p>
                   <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
                 </li>
               
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
+                </li>
+              
             </ul>
           </div>
         
@@ -937,6 +952,6 @@ PS：会遇到安装xcode的需求。</p>
   <!-- 点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
   <!-- 背景动画 -->
-  <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
 </body>
 </html>

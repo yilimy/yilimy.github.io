@@ -72,6 +72,17 @@
 
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
+<script>
+    (function(){
+        if('123456'){
+            if (prompt('请输入文章密码') !== '123456'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
   <meta name="keywords" content="日志," />
 
@@ -89,17 +100,17 @@
 
 
 
-<meta name="description" content="我是一个孤傲，冷漠，执拗的人呢。 我可以在自己的小圈子，故作清高，对外面的事情闻所不闻，亦或是随意附和，有自己的准则，说过的话，反复的次数。 我想，我应该是喜欢写代码的吧。有时候说太难，反复回头看或者是抛弃，总是有心想去弄明白的。 不安时，也只是通过看技术来迷惑自己，其实是有其他选择的。 有朋友说，代码是程序员的尊严，我一下子就接受了。我不喜欢别人评论我的代码，同样也不会轻易评论别人的。最多也只是">
+<meta name="description" content="20170517随笔">
 <meta name="keywords" content="日志">
 <meta property="og:type" content="article">
 <meta property="og:title" content="20170517随笔">
 <meta property="og:url" content="http://yoursite.com/2017/05/17/2017-05-17/index.html">
 <meta property="og:site_name" content="眷顾の幻想乡">
-<meta property="og:description" content="我是一个孤傲，冷漠，执拗的人呢。 我可以在自己的小圈子，故作清高，对外面的事情闻所不闻，亦或是随意附和，有自己的准则，说过的话，反复的次数。 我想，我应该是喜欢写代码的吧。有时候说太难，反复回头看或者是抛弃，总是有心想去弄明白的。 不安时，也只是通过看技术来迷惑自己，其实是有其他选择的。 有朋友说，代码是程序员的尊严，我一下子就接受了。我不喜欢别人评论我的代码，同样也不会轻易评论别人的。最多也只是">
-<meta property="og:updated_time" content="2017-05-18T03:16:32.000Z">
+<meta property="og:description" content="20170517随笔">
+<meta property="og:updated_time" content="2017-11-03T07:28:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20170517随笔">
-<meta name="twitter:description" content="我是一个孤傲，冷漠，执拗的人呢。 我可以在自己的小圈子，故作清高，对外面的事情闻所不闻，亦或是随意附和，有自己的准则，说过的话，反复的次数。 我想，我应该是喜欢写代码的吧。有时候说太难，反复回头看或者是抛弃，总是有心想去弄明白的。 不安时，也只是通过看技术来迷惑自己，其实是有其他选择的。 有朋友说，代码是程序员的尊严，我一下子就接受了。我不喜欢别人评论我的代码，同样也不会轻易评论别人的。最多也只是">
+<meta name="twitter:description" content="20170517随笔">
 
 
 
@@ -108,7 +119,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -168,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -345,6 +356,10 @@
 
           
 
+          
+              <div class="post-description">
+                  20170517随笔
+              </div>
           
 
         </div>
@@ -560,6 +575,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
                 </li>
               
             </ul>
@@ -863,6 +882,6 @@
   <!-- 点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
   <!-- 背景动画 -->
-  <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
 </body>
 </html>

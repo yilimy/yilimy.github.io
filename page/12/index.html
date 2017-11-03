@@ -72,6 +72,17 @@
 
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
   <meta name="keywords" content="Hexo, NexT" />
 
@@ -103,7 +114,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -163,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <div class="container sidebar-position-right 
    page-home 
  ">
     <div class="headband"></div>
@@ -865,24 +876,14 @@
 
       
         
-          
-            <p>我是一个孤傲，冷漠，执拗的人呢。<br>
-我可以在自己的小圈子，故作清高，对外面的事情闻所不闻，亦或是随意附和，有自己的准则，说过的话，反复的次数。<br>
-我想，我应该是喜欢写代码的吧。有时候说太难，反复回头看或者是抛弃，总是有心想去弄明白的。<br>
-不安时，也只是通过看技术来迷惑自己，其实是有其他选择的。<br>
-有朋友说，代码是程序员的尊严，我一下子就接受了。我不喜欢别人评论我的代码，同样也不会轻易评论别人的。最多也只是说，不喜欢。<br>
-喜不喜欢是两个人的事情。并不是同一个意思，单就我而言，是反感，只是选择了温和些的方式。有时，并不奏效。<br>
-我在改别人的代码时，优选增加。至于是否臃肿，我其实是不负责任的心态。由改动引起的错误，会让我很沉重。
-我有时很是想让代码趋于完美，能兼容我能想到的大部分情况，因为一些没注意的漏洞会让我不舒服。
-所以说，其实是爱着自己的代码吧。给别人的修改，其实是两种对待方式了。<br>
-生活上的事情，挺没有原则的，应和着别人，怎么都好，有忙就帮下，说是没有主见，其实是太不愿意负责任。<br>
-长久而言，我丧失了一些处事方式，挺基本的。
-前阵子，有一个很好很好的妹纸离开了。刚开始，很想不开，也有埋怨。最近在学着她的方式生活，挺好。<br>
-她最近心情不好，简单的问候，带着侥幸，其实过去的就该让它过去。</p>
-<hr>
-<p><small>带了些戾气，写于第二天</small></p>
-
-          
+          20170517随笔
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/17/2017-05-17/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1176,6 +1177,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
                 </li>
               
             </ul>
@@ -1475,6 +1480,6 @@
   <!-- 点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
   <!-- 背景动画 -->
-  <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
 </body>
 </html>

@@ -72,6 +72,17 @@
 
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
 
   <meta name="keywords" content="Hexo, NexT" />
 
@@ -103,7 +114,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -163,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <div class="container sidebar-position-right 
    page-home 
  ">
     <div class="headband"></div>
@@ -992,15 +1003,14 @@
 
       
         
-          
-            <p>今年五月是一个反思的月份。我失去了很多，丢掉了妹纸，丢掉了工作，也丢掉了自我。这里的意思是我在否定着曾经做过的事情，以及对未来的迷茫。</p>
-<p>我有一个想法，如果是一个人，我希望要活的精彩。首先，要按部就班地获取到作为一个普通人该拥有的东西，在当下这个年龄。于是，去报了驾校。</p>
-<p>我晚上会觉得无赖，会想起她在这个时候可能会做的事情，会想起以后一个人在出租屋里待着，会害怕即将来到的孤独。想着，换个环境后就早九晚九吧，九九又是你。这样也不错，正好我也不清楚该如何好好地活着，有样学样，这样，也不错。</p>
-<p>等稳定下来的时候，来一盆栀子花，再养两只小龟，学些乱七八糟的手艺，追点番剧，无聊时再找点YY小说，大抵可以就先这样去做。</p>
-<p>纪念是一种信仰，感动就好好让自己去哭。</p>
-<p>在我不够好时，遇见了你。</p>
-
-          
+          20170523随笔
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/23/20170523/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1148,6 +1158,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
                 </li>
               
             </ul>
@@ -1447,6 +1461,6 @@
   <!-- 点击小红心 -->
   <script type="text/javascript" src="/js/src/love.js"></script>
   <!-- 背景动画 -->
-  <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
 </body>
 </html>
