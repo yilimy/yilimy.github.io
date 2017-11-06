@@ -100,17 +100,20 @@
 
 
 
-<meta name="description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系 成功生成秘钥及其后续   Generating public/private rsa key pair.   Enter">
+<meta name="description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub多账户SSH登录">
 <meta property="og:url" content="http://yoursite.com/2017/11/03/2017-11-03-GitHub多账户SSH登录/index.html">
 <meta property="og:site_name" content="眷顾の幻想乡">
-<meta property="og:description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系 成功生成秘钥及其后续   Generating public/private rsa key pair.   Enter">
-<meta property="og:updated_time" content="2017-11-06T11:36:54.000Z">
+<meta property="og:description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系">
+<meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/20171106users.png">
+<meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/20171106unfind_email.png">
+<meta property="og:updated_time" content="2017-11-06T12:06:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub多账户SSH登录">
-<meta name="twitter:description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系 成功生成秘钥及其后续   Generating public/private rsa key pair.   Enter">
+<meta name="twitter:description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系">
+<meta name="twitter:image" content="http://ovyn1wiht.bkt.clouddn.com/20171106users.png">
 
 
 
@@ -374,8 +377,9 @@
 <p>生成本地密钥对</p>
 </blockquote>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"yilimy102@163.com"</span> -b 4096</div></pre></td></tr></table></figure>
-<p>C和b的参数传递没有前后关系<br>
-成功生成秘钥及其后续</p>
+<p>C和b的参数传递没有前后关系</p>
+<a id="more"></a>
+<p>成功生成秘钥及其后续</p>
 <pre> 
 Generating public/private rsa key pair.  
 Enter file in which to save the key (/Users/Orice/.ssh/id_rsa): id_rsa_work  
@@ -424,6 +428,18 @@ id_rsa_work文件是生成的私钥，在同同级目录下还会生成一个id_
 <p>如果显示：<br>
 “You’ve successfully authenticated, but GitHub does not provide shell access.”<br>
 表示测试通过</p>
+<blockquote>
+<p>非SSH的情况</p>
+</blockquote>
+<p>在.gitconfig中添加证书标签(credential)<br>
+<img src="http://ovyn1wiht.bkt.clouddn.com/20171106users.png" alt="">
+但是在某些项目中会出现找不到email的情况
+<img src="http://ovyn1wiht.bkt.clouddn.com/20171106unfind_email.png" alt="">
+这种情况下，项目是读取自己的 git config 文件<br>
+切换到到项目中的.git文件夹，在config中添加user标签<br>
+同时在标签下添加用户名和邮箱即可<br>
+Run … to set your account’s default identity.<br>
+这是在本地项目中没有找到指定的用户配置，然后到全局中去找了。</p>
 
       
     </div>
