@@ -290,6 +290,184 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/2017-11-03-GitHub多账户SSH登录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/03/2017-11-03-GitHub多账户SSH登录/" itemprop="url">GitHub多账户SSH登录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T18:00:32+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/03/2017-11-03-GitHub多账户SSH登录/" class="leancloud_visitors" data-flag-title="GitHub多账户SSH登录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。<br>
+基于SSH的多账户登录。</p>
+<blockquote>
+<p>生成本地密钥对</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"yilimy102@163.com"</span> -b 4096</div></pre></td></tr></table></figure>
+<p>C和b的参数传递没有前后关系<br>
+成功生成秘钥及其后续</p>
+<pre> 
+Generating public/private rsa key pair.  
+Enter file in which to save the key (/Users/Orice/.ssh/id_rsa): id_rsa_work  
+Enter passphrase (empty for no passphrase):  
+Enter same passphrase again:  
+Your identification has been saved in id_rsa_work.  
+Your public key has been saved in id_rsa_work.pub.  
+The key fingerprint is:  
+SHA256:/lGfGkUtW3LfqVxIXzYPLRbYanohsrghFC2FcS7qBus yilimy102@163.com  
+The key\'s randomart image is:  
++---[RSA 4096]----+  
+|    .=o      o.  |  
+|    +o.     . .+ |  
+|    .o.      oB.B|  
+|   ...  . . =ooXB|  
+|. ..   .So +.oo++|  
+| +  . o.. ..ooo. |  
+|. o  . o. ...oo  |  
+|..    .  . . o   |  
+| E        . .    |  
++----[SHA256]-----+  
+</pre> 
+<p>输入文件名id_rsa_work<br>
+id_rsa_work文件是生成的私钥，在同同级目录下还会生成一个id_rsa_work.pub文件，用来存放公钥。<br>
+输入passphrase<br>
+此处的密码是用来管理公钥私钥的，比如秘钥导入，跟Github账户并不相关。<br>
+两步输入后，完成秘钥生成。</p>
+<blockquote>
+<p>配置SSH</p>
+</blockquote>
+<p>在.ssh目录下，新建config文件，将两个不同的git账户添加进SSH配置中。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Default github user(first@mail.com)</span></div><div class="line"><span class="string">Host</span> <span class="string">GitHub</span></div><div class="line"> <span class="string">HostName</span> <span class="string">github.com</span></div><div class="line"> <span class="string">User</span> <span class="string">git</span></div><div class="line"> <span class="string">IdentityFile</span> <span class="string">~/.ssh/id_rsa_github</span></div><div class="line"><span class="comment"># second user(second@mail.com)</span></div><div class="line"><span class="comment"># 建一个github别名，新建的帐号使用这个别名做克隆和更新</span></div><div class="line"><span class="string">Host</span> <span class="string">GitLib</span></div><div class="line"> <span class="string">HostName</span> <span class="number">192.168</span><span class="number">.9</span><span class="number">.26</span></div><div class="line"> <span class="string">User</span> <span class="string">git</span></div><div class="line"> <span class="string">IdentityFile</span> <span class="string">~/.ssh/id_rsa_work</span></div><div class="line"><span class="string">```</span> </div><div class="line"><span class="string">使用git命令执行ssh操作时，会从命令中读取hostName、user等信息，没有user时，则在config中寻找对应的默认user和秘钥</span></div><div class="line"></div><div class="line"><span class="string">&gt;秘钥导入ssh-agent</span>  </div><div class="line"></div><div class="line"><span class="string">ssh-agent是一个密钥管理器，运行ssh-agent以后，使用ssh-add将私钥交给ssh-agent保管，其他程序需要身份验证的时候可以将验证申请交给ssh-agent来完成整个认证过程。类似于MAC中的钥匙串。</span>  </div><div class="line"><span class="string">执行命令为：</span></div><div class="line"><span class="string">```</span> <span class="string">bash</span></div><div class="line"><span class="string">$</span> <span class="string">ssh-add</span> <span class="string">id_rsa_work</span></div></pre></td></tr></table></figure>
+<p>如果不添加或者忘记添加rsa到ssh-agent，则在测试秘钥时不会发现问题，在实际操作中会出现“用户名或密码错误”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Permission denied, please try again.</div></pre></td></tr></table></figure>
+<p>这是由于，ssh在钥匙串中没有找到指定的用户名导致的，要求输入的密码却是加密私钥的密码，而不是网页的密码。<br>
+因此，这种情况出现后，会导致试验任何密码都不会通过验证的情况。</p>
+<blockquote>
+<p>公钥保存至Github</p>
+</blockquote>
+<p>将id_rsa_work.pub中的所有数据，拷贝至github - setting - ssh and GPG keys 中。<br>
+包括： schema + pub_key + email</p>
+<blockquote>
+<p>测试秘钥是否可用</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 只显示结果</span></div><div class="line">ssh -T GitHub </div><div class="line"><span class="comment"># 显示日志</span></div><div class="line">ssh -vT GitHub</div></pre></td></tr></table></figure>
+<p>如果显示：<br>
+“You’ve successfully authenticated, but GitHub does not provide shell access.”<br>
+表示测试通过</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/2017-11-02-xftp在mac上的解决办法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1014,134 +1192,6 @@ Connection refused<br>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/2017-09-20-MAC流浪软件WTF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/20/2017-09-20-MAC流浪软件WTF/" itemprop="url">MAC流浪软件WTF</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T15:35:35+08:00">
-                2017-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/20/2017-09-20-MAC流浪软件WTF/" class="leancloud_visitors" data-flag-title="MAC流浪软件WTF">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>log：20170920<br>
-今天在清除日志、缓存时无意间发现了MPlayer，大家围观下：
-<img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/MPlayer_WTF.png" alt="">
-绝对路径是：/private/var/tmp/<br>
-上述提示中可看出是权限不够，祭出sudo大法就能删除🤗<br>
-我记得是在Application中删除了MPlayer的，没想到这里居然还有👿</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1191,7 +1241,7 @@ Connection refused<br>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-count">74</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1213,7 +1263,7 @@ Connection refused<br>
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
