@@ -109,7 +109,7 @@
 <meta property="og:description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/20171106users.png">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/20171106unfind_email.png">
-<meta property="og:updated_time" content="2017-11-06T12:06:59.000Z">
+<meta property="og:updated_time" content="2017-11-07T04:07:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub多账户SSH登录">
 <meta name="twitter:description" content="公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。 基于SSH的多账户登录。  生成本地密钥对  1ssh-keygen -t rsa -C &quot;yilimy102@163.com&quot; -b 4096 C和b的参数传递没有前后关系">
@@ -440,6 +440,25 @@ id_rsa_work文件是生成的私钥，在同同级目录下还会生成一个id_
 同时在标签下添加用户名和邮箱即可<br>
 Run … to set your account’s default identity.<br>
 这是在本地项目中没有找到指定的用户配置，然后到全局中去找了。</p>
+<h2 id="捣乱的分割线😋">捣乱的分割线😋</h2>
+<p>modified : 2017-11-07<br>
+隔天登录后，ssh-agent清空了，查了一下，确实如此。<br>
+“你首先得了解一件事：ssh-add 这个命令不是用来永久性的记住你所使用的私钥的。实际上，它的作用只是把你指定的私钥添加到 ssh-agent 所管理的一个 session 当中。而 ssh-agent 是一个用于存储私钥的临时性的 session 服务，也就是说当你重启之后，ssh-agent 服务也就重置了。”<br>
+(摘自：<a href="https://segmentfault.com/q/1010000000835302" target="_blank" rel="external">https://segmentfault.com/q/1010000000835302</a>)<br>
+后来修改了配置：</p>
+<pre>
+# Default github user(first@mail.com)
+Host github.com
+ User git
+ Hostname github.com
+ IdentityFile ~/.ssh/id_rsa_github
+</pre>
+<p>好像就正常了，看现象是：可以通过别名取得配置，但是不能通过命令进行匹配<br>
+改动：<br>
+1.Host与Hostname统一<br>
+2.User换到Hostname前<br>
+3.HostName改成Hostname</p>
+<p>(待续…)</p>
 
       
     </div>
@@ -542,8 +561,17 @@ Run … to set your account’s default identity.<br>
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -639,6 +667,22 @@ Run … to set your account’s default identity.<br>
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#捣乱的分割线😋"><span class="nav-number">1.</span> <span class="nav-text">捣乱的分割线😋</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
