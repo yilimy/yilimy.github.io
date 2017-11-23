@@ -1,0 +1,1000 @@
+<!doctype html>
+
+
+
+  
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="在android M上使用以下代码时，会遇见一个参数CryptoObject 1manager.authenticate(crypto, mCancellationSignal, 0, new FingerprintManager.AuthenticationCallback(mHandler), null); 如果我们只需要指纹验证，这个参数可以传null。 当需要使用指纹的高级功能，比如签名、">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指纹加密解密">
+<meta property="og:url" content="http://yoursite.com/2017/11/23/2017-11-23-指纹加密解密/index.html">
+<meta property="og:site_name" content="眷顾の幻想乡">
+<meta property="og:description" content="在android M上使用以下代码时，会遇见一个参数CryptoObject 1manager.authenticate(crypto, mCancellationSignal, 0, new FingerprintManager.AuthenticationCallback(mHandler), null); 如果我们只需要指纹验证，这个参数可以传null。 当需要使用指纹的高级功能，比如签名、">
+<meta property="og:updated_time" content="2017-11-23T12:22:48.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="指纹加密解密">
+<meta name="twitter:description" content="在android M上使用以下代码时，会遇见一个参数CryptoObject 1manager.authenticate(crypto, mCancellationSignal, 0, new FingerprintManager.AuthenticationCallback(mHandler), null); 如果我们只需要指纹验证，这个参数可以传null。 当需要使用指纹的高级功能，比如签名、">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/23/2017-11-23-指纹加密解密/"/>
+
+
+
+
+
+  <title>指纹加密解密 | 眷顾の幻想乡</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cbebc032aecfdda47d379bb5a9fb19e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">眷顾の幻想乡</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            小窝
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            银河尽头
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/23/2017-11-23-指纹加密解密/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">指纹加密解密</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T18:16:48+08:00">
+                2017-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/23/2017-11-23-指纹加密解密/" class="leancloud_visitors" data-flag-title="指纹加密解密">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在android M上使用以下代码时，会遇见一个参数CryptoObject</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">manager.authenticate(crypto, mCancellationSignal, <span class="number">0</span>, <span class="keyword">new</span> FingerprintManager.AuthenticationCallback(mHandler), <span class="keyword">null</span>);</div></pre></td></tr></table></figure>
+<p>如果我们只需要指纹验证，这个参数可以传null。<br>
+当需要使用指纹的高级功能，比如签名、加密解密时，就需要把这个CryptoObject参数实例化出来了。</p>
+<a id="more"></a>
+<h4 id="实例化cryptoobject">实例化CryptoObject</h4>
+<p>CryptoObject是FingerprintManager的一个静态内部类，它的实例化需要FingerprintManager的支持</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> FingerprintManager.CryptoObject(cipher);</div></pre></td></tr></table></figure>
+<p>这里需要一个Cipher参数。<br>
+Cipher在文档上是这么描述的：<br>
+<a>in the latter case,
+provider-specific default values for the mode and padding scheme are used</a><br>
+Cipher是用来处理密码相关的类<br>
+暂时不管Cipher，先来看一下在android中如何生成密钥</p>
+<h4 id="生成密钥对">生成密钥对</h4>
+<h5 id="初始化钥匙串">初始化钥匙串</h5>
+<p>不同的android版本支持不同的KeyStore类型<br>
+// 支持Algorithm(Supported API)<br>
+// 支持AndroidCAStore(14+)<br>
+// 支持AndroidKeyStore(18+)<br>
+// 支持BCPKCS12(deprecated 1-8)<br>
+// 支持BKS(1+)<br>
+// 支持BouncyCastle(1+)<br>
+// 支持PKCS12(1+)<br>
+// 支持PKCS12-DEF(deprecated 1-8)<br>
+这里使用AndroidKeyStore，android是在18以后开始对指纹进行支持的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mKeyStore = KeyStore.getInstance(<span class="string">"AndroidKeyStore"</span>);</div></pre></td></tr></table></figure>
+<h5 id="初始化密钥生成器">初始化密钥生成器</h5>
+<p>先上代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mKeyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, <span class="string">"AndroidKeyStore"</span>);</div></pre></td></tr></table></figure>
+<p>初始化密钥生成器，需要指定一个算法标准，依据不同的版本：
+// KEY_ALGORITHM_RSA (18+)<br>
+// KEY_ALGORITHM_AES (23+)<br>
+RSA是非对称加密，生成公钥和私钥，分为签名密钥对和加密秘钥对<br>
+签名：私钥签名，公钥验签<br>
+加密：公钥加密，私钥解密<br>
+AES是对称加密，执行速度快，易于硬件实现。由于是对称加密，密钥需要在传输前通讯双方获知。<br>
+PS： 基于以上特点，通常使用RSA来首先传输AES的密钥给对方，然后再使用AES来进行加密通讯。
+初始化密钥生成器的第二个参数是provider，指定为之前我们完成实例化的KeyStore类型即可。</p>
+<h5 id="配置密钥生成器">配置密钥生成器</h5>
+<p>直接上Google代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// The enrolling flow for fingerprint. This is where you ask the user to set up fingerprint</span></div><div class="line"><span class="comment">// for your flow. Use of keys is necessary if you need to know if the set of</span></div><div class="line"><span class="comment">// enrolled fingerprints has changed.</span></div><div class="line"></div><div class="line"><span class="comment">// Set the alias of the entry in Android KeyStore where the key will appear</span></div><div class="line"><span class="comment">// and the constrains (purposes) in the constructor of the Builder</span></div><div class="line">KeyGenParameterSpec.Builder builder = <span class="keyword">new</span> KeyGenParameterSpec.Builder(keyName,</div><div class="line">        KeyProperties.PURPOSE_ENCRYPT |</div><div class="line">                KeyProperties.PURPOSE_DECRYPT)</div><div class="line">        .setBlockModes(KeyProperties.BLOCK_MODE_CBC)</div><div class="line">        <span class="comment">// Require the user to authenticate with a fingerprint to authorize every use</span></div><div class="line">        <span class="comment">// of the key</span></div><div class="line">        .setUserAuthenticationRequired(<span class="keyword">true</span>)</div><div class="line">        .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7);</div><div class="line"><span class="comment">// This is a workaround to avoid crashes on devices whose API level is &lt; 24</span></div><div class="line"><span class="comment">// because KeyGenParameterSpec.Builder#setInvalidatedByBiometricEnrollment is only</span></div><div class="line"><span class="comment">// visible on API level +24.</span></div><div class="line"><span class="comment">// Ideally there should be a compat library for KeyGenParameterSpec.Builder but</span></div><div class="line"><span class="comment">// which isn't available yet.</span></div><div class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</div><div class="line">    builder.setInvalidatedByBiometricEnrollment(invalidatedByBiometricEnrollment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建一对密钥时，需要给密钥对一个别名：keyName<br>
+密钥的使用场景：PURPOSE_ENCRYPT(加密) or PURPOSE_DECRYPT(解密)<br>
+加密模式：BLOCK_MODE_CBC(使用CBC)加密<br>
+什么情况下被授权使用密钥对：UserAuthenticationRequired(用户认证通过后，即指纹)<br>
+数据位数不够时的填充模式：ENCRYPTION_PADDING_PKCS7(这个我也不是很明确怎么填充的)<br>
+用户指纹变更了密钥对是否还有效：InvalidatedByBiometricEnrollment<br>
+配置完毕后，执行密钥生成器的初始化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// KeyGenerator</span></div><div class="line">mKeyGenerator.init(builder.build());</div></pre></td></tr></table></figure>
+<h5 id="生成秘钥对">生成秘钥对</h5>
+<p>一般是在加密前生成密钥对，解密时可以判断一下是否存在对应keyName的密钥对<br>
+解密时千万不要再生成秘钥对了，还想不想解密了😱</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mKeyGenerator.generateKey();</div></pre></td></tr></table></figure>
+<h4 id="使用密钥对">使用密钥对</h4>
+<p>🐣🐣🐣🐣🐣🐣🐣🐣<br>
+<strong>首先</strong>，要实例化密码相关的java类Cipher</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cipher = Cipher.getInstance(KeyProperties.KEY_ALGORITHM_AES + <span class="string">"/"</span></div><div class="line">                    + KeyProperties.BLOCK_MODE_CBC + <span class="string">"/"</span></div><div class="line">                    + KeyProperties.ENCRYPTION_PADDING_PKCS7);</div></pre></td></tr></table></figure>
+<p>这里的参数要和之前配置的密钥生成器一致，即<br>
+算法标准：KEY_ALGORITHM_AES<br>
+加密模式：BLOCK_MODE_CBC<br>
+位数填充：ENCRYPTION_PADDING_PKCS7</p>
+<p>🐣🐣🐣🐣🐣🐣🐣🐣<br>
+<strong>其次</strong>，加载keyStore</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mKeyStore.load(<span class="keyword">null</span>);</div></pre></td></tr></table></figure>
+<p>🐣🐣🐣🐣🐣🐣🐣🐣<br>
+<strong>再次</strong>，在keyStore中完成注册<br>
+🐰🐰🐰<br>
+<strong>加密</strong><br>
+注册时需要指定所需的密钥对的别名：keyName，(也许有密码password)<br>
+并指定密钥的用途：ENCRYPT_MODE</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SecretKey key = (SecretKey) mKeyStore.getKey(keyName, <span class="keyword">null</span>);</div><div class="line">cipher.init(Cipher.ENCRYPT_MODE, key);</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：完成初始化之后，在cipher中偏转向量就会被赋值(初始化之前为NULL)<br>
+这是我们解密时需要的一个关键数据，在此保存</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 64位保存</span></div><div class="line">String iv = SerializableObject.base64EncodeString(cipher.getIV());</div></pre></td></tr></table></figure>
+<p>🐰🐰🐰<br>
+<strong>解密</strong><br>
+与加密稍有不同，需要添加额外的一步，并指定密钥用途</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">byte</span>[] iv = SerializableObject.base64Decode(bean.getIv());</div><div class="line">IvParameterSpec spec = <span class="keyword">new</span> IvParameterSpec(iv);</div><div class="line">cipher.init(Cipher.DECRYPT_MODE, key, spec);</div></pre></td></tr></table></figure>
+<p>解密需要加密时生成的向量，如果向量改变，将解密失败</p>
+<p>🐣🐣🐣🐣🐣🐣🐣🐣<br>
+<strong>注册完成后</strong>，加密解密的最终执行方法是一致的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">byte</span>[] crypto(<span class="keyword">byte</span>[] data) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">return</span> cipher.doFinal(data);</div><div class="line">    &#125; <span class="keyword">catch</span> (BadPaddingException | IllegalBlockSizeException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="在android-18中的加密解密">在android 18中的加密解密</h4>
+<p>目前尚未实现在android 18中的加密解密<br>
+以下提及的版本支持可以参考：
+<a href="https://developer.android.google.cn/reference/android/security/keystore/KeyGenParameterSpec.Builder.html?hl=zh-cn" target="_blank" rel="external">developer.android.google.cn</a><br>
+在低版本中，比如android 18 使用的密钥生成器是KeyPairGenerator，而不是KeyGenerator<br>
+虽然现在的配置类也支持KeyPairGenerator，如同官方文档的说法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">keyPairGenerator.initialize(</div><div class="line">   <span class="keyword">new</span> KeyGenParameterSpec.Builder(</div><div class="line">            <span class="string">"key1"</span>,</div><div class="line">            KeyProperties.PURPOSE_SIGN)</div><div class="line">           .setAlgorithmParameterSpec(<span class="keyword">new</span> ECGenParameterSpec(<span class="string">"secp256r1"</span>))                 .setDigests(KeyProperties.DIGEST_SHA256,</div><div class="line">                    KeyProperties.DIGEST_SHA384,</div><div class="line">                    KeyProperties.DIGEST_SHA512)</div><div class="line">            <span class="comment">// Only permit the private key to be used if the user authenticated</span></div><div class="line">            <span class="comment">// within the last five minutes.</span></div><div class="line">            .setUserAuthenticationRequired(<span class="keyword">true</span>)</div><div class="line">            .setUserAuthenticationValidityDurationSeconds(<span class="number">5</span> * <span class="number">60</span>)</div><div class="line">            .build());</div></pre></td></tr></table></figure>
+<p>但是KeyGenParameterSpec.Builder确是需要android 23(M)<br>
+并且，18不支持KEY_ALGORITHM_AES (AES)，只支持KEY_ALGORITHM_RSA (RSA)<br>
+曾经尝试过使用KeyPairGeneratorSpec进行配置，但是生成的密钥支持的是签名</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">KeyPairGeneratorSpec.Builder builder = <span class="keyword">new</span> KeyPairGeneratorSpec.Builder(HoofooManager.getContext());</div><div class="line">Calendar start = Calendar.getInstance();</div><div class="line">Calendar end = Calendar.getInstance();</div><div class="line">end.add(Calendar.YEAR, <span class="number">10</span>);</div><div class="line"><span class="comment">// 这是签名密钥 ...</span></div><div class="line">builder.setAlias(keyName)</div><div class="line">        <span class="comment">// 不设置以下配置会出现 subjectDN == null 异常</span></div><div class="line">        <span class="comment">// 用于生成自签名证书的主题 X500Principal 接受 RFC 1779/2253的专有名词</span></div><div class="line">        .setSubject(<span class="keyword">new</span> X500Principal(<span class="string">"CN="</span> + keyName))</div><div class="line">        <span class="comment">// 用于自签名证书的序列号生成的一对。</span></div><div class="line">        .setSerialNumber(BigInteger.valueOf(<span class="number">1337</span>))</div><div class="line">        <span class="comment">// 签名在有效日期范围内</span></div><div class="line">        .setStartDate(start.getTime())</div><div class="line">        .setEndDate(end.getTime());</div><div class="line"><span class="comment">// KeyPairGenerator</span></div><div class="line">mKeyGenerator.initialize(builder.build());</div></pre></td></tr></table></figure>
+<p>在初始化cipher时也遇到些麻烦，首先是支持的算法、加密模式、填充模式有差异<br>
+android 18支持的是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Cipher cipher = Cipher.getInstance(KeyProperties.KEY_ALGORITHM_RSA + <span class="string">"/"</span></div><div class="line">                    + KeyProperties.BLOCK_MODE_ECB + <span class="string">"/"</span></div><div class="line">                    + KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1);</div></pre></td></tr></table></figure>
+<p>在获取秘钥对时，发生类型转换异常，错误点：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SecretKey key = (SecretKey) mKeyStore.getKey(keyName, <span class="keyword">null</span>);</div></pre></td></tr></table></figure>
+<p>RSAPrivateKey不能转换成SecretKey，好吧<br>
+换种方式获取密钥对<br>
+No. 1</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">KeyStore.Entry entry;</div><div class="line">entry = mKeyStore.getEntry(keyName, <span class="keyword">null</span>);</div><div class="line">KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry)entry;</div><div class="line">PublicKey publicKey = privateKeyEntry.getCertificate().getPublicKey();</div><div class="line">cipher.init(Cipher.ENCRYPT_MODE, publicKey);</div></pre></td></tr></table></figure>
+<p>No. 2</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PublicKey key = mKeyStore.getCertificate(keyName).getPublicKey();</div><div class="line">PublicKey unrestricted = KeyFactory.getInstance(key.getAlgorithm())</div><div class="line">        .generatePublic(<span class="keyword">new</span> X509EncodedKeySpec(key.getEncoded()));</div><div class="line">cipher.init(Cipher.ENCRYPT_MODE, unrestricted);</div></pre></td></tr></table></figure>
+<p>虽说，能注册成功，但仍然是不能调用到KeyStore中的密钥对<br>
+想想也是，密钥生成器中指定的是签名密钥。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode-1.png" alt="Orice.Y.L.M wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信号</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/23/2017-11-23-兼容指纹模块开发/" rel="next" title="兼容指纹模块开发">
+                <i class="fa fa-chevron-left"></i> 兼容指纹模块开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Orice.Y.L.M" />
+          <p class="site-author-name" itemprop="name">Orice.Y.L.M</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Burst Linker
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/iissnan/hexo-theme-next" title="hexo-next" target="_blank">hexo-next</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/fsf_snail" title="CSDN&copy;蜗牛慢慢跑" target="_blank">CSDN&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/64cd56319477" title="简书&copy;蜗牛慢慢跑" target="_blank">简书&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://xiaozhuanlan.com/cheaptalks" title="小专栏&copy;YogiAi" target="_blank">小专栏&copy;YogiAi</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例化cryptoobject"><span class="nav-number">1.</span> <span class="nav-text">实例化CryptoObject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成密钥对"><span class="nav-number">2.</span> <span class="nav-text">生成密钥对</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化钥匙串"><span class="nav-number">2.1.</span> <span class="nav-text">初始化钥匙串</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化密钥生成器"><span class="nav-number">2.2.</span> <span class="nav-text">初始化密钥生成器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置密钥生成器"><span class="nav-number">2.3.</span> <span class="nav-text">配置密钥生成器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生成秘钥对"><span class="nav-number">2.4.</span> <span class="nav-text">生成秘钥对</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用密钥对"><span class="nav-number">3.</span> <span class="nav-text">使用密钥对</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在android-18中的加密解密"><span class="nav-number">4.</span> <span class="nav-text">在android 18中的加密解密</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orice.Y.L.M</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IeXcUcLh4E6UmmX4F6zPclkF-gzGzoHsz", "8dcbzKIndIphm1YLiTwzAFX6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
+</body>
+</html>

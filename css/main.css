@@ -1696,7 +1696,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff69d;
+  background: #ff660f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2885,14 +2885,14 @@ body {
 }
 .header-inner {
 /** 使用opacity会使子节点透明度基于父节点变化 **/
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
 }
 .content-wrap {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
 }
 .sidebar {
   background: none;
 }
 .sidebar-inner {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
 }
