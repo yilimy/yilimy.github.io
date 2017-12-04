@@ -1,0 +1,1003 @@
+<!doctype html>
+
+
+
+  
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="这几年android进阶缓慢，弊端呈现，心有所欲。 于是，参考了知乎的问答 Android开发初期之后怎么提升？怎么才能叫精通？方向在哪？ 取几个我有所收益的答主，作为记录。">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 补全计划">
+<meta property="og:url" content="http://yoursite.com/2017/12/04/2017-12-04-Android-补全计划/index.html">
+<meta property="og:site_name" content="眷顾の幻想乡">
+<meta property="og:description" content="这几年android进阶缓慢，弊端呈现，心有所欲。 于是，参考了知乎的问答 Android开发初期之后怎么提升？怎么才能叫精通？方向在哪？ 取几个我有所收益的答主，作为记录。">
+<meta property="og:updated_time" content="2017-12-04T04:08:04.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 补全计划">
+<meta name="twitter:description" content="这几年android进阶缓慢，弊端呈现，心有所欲。 于是，参考了知乎的问答 Android开发初期之后怎么提升？怎么才能叫精通？方向在哪？ 取几个我有所收益的答主，作为记录。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/04/2017-12-04-Android-补全计划/"/>
+
+
+
+
+
+  <title>Android 补全计划 | 眷顾の幻想乡</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cbebc032aecfdda47d379bb5a9fb19e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">眷顾の幻想乡</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            小窝
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            银河尽头
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/04/2017-12-04-Android-补全计划/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 补全计划</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T11:17:17+08:00">
+                2017-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/04/2017-12-04-Android-补全计划/" class="leancloud_visitors" data-flag-title="Android 补全计划">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这几年android进阶缓慢，弊端呈现，心有所欲。<br>
+于是，参考了知乎的问答<br>
+<a href="https://www.zhihu.com/question/28425576" target="_blank" rel="external">Android开发初期之后怎么提升？怎么才能叫精通？方向在哪？</a><br>
+取几个我有所收益的答主，作为记录。</p>
+<a id="more"></a>
+<h4 id="知乎答主贴">知乎答主贴</h4>
+<h5 id="hi大头鬼hi">hi大头鬼hi</h5>
+<p>“并非越底层越牛逼”，想想你的过往，那些偏科的学生当真赢得了学涯巅峰？<br>
+点与面的关系：不要为了一颗树放弃整个森林，要经常跳出来，飞出来，看看这久往的星空，咦，不经意间看一下原来所在的森林哈。<br>
+如此，明确正确的钻研方向：整体是一方面，android真正领域在哪里？解决问题(业务)、用户交互、性能。<br>
+在技术上方向大致为：源码 -&gt; android系统机制 -&gt; 横向反哺(其他语言，其他技术，后台前端等)</p>
+<h5 id="田元">田元</h5>
+<p>敲黑板，划重点：会的太少，才会迷茫</p>
+<h5 id="耿锐">耿锐</h5>
+<ol>
+<li>强化知识体系前，先完善debug tools</li>
+<li>提高自我表达能力</li>
+<li>从精通模块到精通android</li>
+</ol>
+<h5 id="李板溪">李板溪</h5>
+<p>android知识点列举<br>
+作者：李板溪<br>
+链接：<a href="https://www.zhihu.com/question/28425576/answer/40862900" target="_blank" rel="external">https://www.zhihu.com/question/28425576/answer/40862900</a><br>
+来源：知乎<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>一: 开发技能<br>
+你可以看成是一般的编程技能这方面你可以从<br>
+编程语言的熟练掌握<br>
+面向过程编程思想<br>
+面向对象的思想<br>
+函数式编程思想<br>
+设计模式<br>
+算法与数据结构<br>
+网络编程,TCP/IP
+协议<br>
+重构<br>
+版本管理(Git 等)<br>
+等方面的检查和提高自己<br>
+更详细的技能树,请自己搜索<br>
+二: 移动应用开发<br>
+你可以看成是 App 开发  估计这可能是你更感兴趣的  这方面你可以从:<br>
+MVC
+这成三个方面来对照检查下<br>
+M: 数据层<br>
+移动应用数据结构特点<br>
+数据存储 :SQLite数据库,文件存储<br>
+数据格式: XML 格式,JSON格式<br>
+序列化与反序列化<br>
+数据查询: 移动应用一般数据库主要是 用SQLite   (说回来,单是 SQLite 数据库,就可以花不少时间来深入学习下,   因为对一个应用来说,数据基本是核心)<br>
+V: 视图层<br>
+移动应用界面特点<br>
+移动应用构建界面常用方法<br>
+移动应用交互特点<br>
+移动应用动画<br>
+系统 UI
+系统特点,优点,缺点及局限<br>
+C: 控制层<br>
+移动应用控制层特点<br>
+控制层的生命周期<br>
+多线程,UI 线程,后台线程<br>
+再加一层:E: 事件层<br>
+事件处理,触控事件,手势,事件响应链<br>
+三: Android 开发 工具篇 - 工欲善其事,必先利其器<br>
+Android Studio 掌握用得怎么样了?<br>
+Adb 及相关工具会用吗?<br>
+Gradle 构建系统呢?<br>
+文档篇 - 看 Android 官方是怎么定义开发各种技能的.<br>
+相信常看 Android 开发者官方网站,你会收益良多,我下面写的也不必看了.<br>
+系统篇<br>
+Android 多线程编程,异步编程特点 - Loop,Handler,IntentService,Broadcast,MessageQueue<br>
+Android UI 框架特点,优势和不足<br>
+然后你再按 MVC 将 Android 各部分再分析分析,总结总结.</p>
+<h5 id="崔震">崔震</h5>
+<p>态度问题<br>
+app就是要好用，精细，流畅</p>
+<h5 id="tinker">Tinker</h5>
+<p>Google Sample提供了全面的android知识点<br>
+跟着下面的步骤来：</p>
+<ol>
+<li>Google Sample里面的代码全跑一遍</li>
+<li>读Google Sample里面的源码</li>
+<li>背下所有的继承关系</li>
+</ol>
+<p>关于第三点可以说是简单粗暴，不过，以前看设计模式也是为了更好的看代码结构。<br>
+这种东西就像是酒醇，可预见的收益。<br>
+关于精通的另类解释：<br>
+能回答小白的所有android问题<br>
+另外还提到了android bug的处理方式：</p>
+<ol>
+<li>流程检查(逻辑)</li>
+<li>控件bug -&gt; 读源码</li>
+<li>通过继承解决(源码的基础上做修正)</li>
+<li>使用google + site + keywords</li>
+</ol>
+<h5 id="空指针">空指针</h5>
+<p>全套学习过程<a href="https://github.com/389273716/android-skill-summary" target="_blank" rel="external">389273716/android-skill-summary</a><br>
+全照搬不如不看，这类整理是非常好的参考，但是要基于自己最后写出一套自己的。</p>
+<h4 id="总结">总结</h4>
+<p>android主体还是android的知识点、android的知识体系。<br>
+至于是先体系还是先tools，我认为是相辅相成的，但主次还是很明确的，知识体系为主，tools为辅。<br>
+那么确定下的<br>
+语数外：android知识体系<br>
+关键词：Google Sample，继承关系<br>
+理化生：<br>
+android tools，adb tools， Android Studio tools,<br>
+数据结构，算法，设计模式<br>
+体美劳：<br>
+其他语言，MAC技术，协议，网络<br>
+进阶：<br>
+系统机制，性能，精通模块，精通Android</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode-1.png" alt="Orice.Y.L.M wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信号</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/23/2017-11-23-指纹加密解密/" rel="next" title="指纹加密解密">
+                <i class="fa fa-chevron-left"></i> 指纹加密解密
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Orice.Y.L.M" />
+          <p class="site-author-name" itemprop="name">Orice.Y.L.M</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">77</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Burst Linker
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/iissnan/hexo-theme-next" title="hexo-next" target="_blank">hexo-next</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/fsf_snail" title="CSDN&copy;蜗牛慢慢跑" target="_blank">CSDN&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/64cd56319477" title="简书&copy;蜗牛慢慢跑" target="_blank">简书&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://xiaozhuanlan.com/cheaptalks" title="小专栏&copy;YogiAi" target="_blank">小专栏&copy;YogiAi</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#知乎答主贴"><span class="nav-number">1.</span> <span class="nav-text">知乎答主贴</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#hi大头鬼hi"><span class="nav-number">1.1.</span> <span class="nav-text">hi大头鬼hi</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#田元"><span class="nav-number">1.2.</span> <span class="nav-text">田元</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#耿锐"><span class="nav-number">1.3.</span> <span class="nav-text">耿锐</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#李板溪"><span class="nav-number">1.4.</span> <span class="nav-text">李板溪</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#崔震"><span class="nav-number">1.5.</span> <span class="nav-text">崔震</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tinker"><span class="nav-number">1.6.</span> <span class="nav-text">Tinker</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空指针"><span class="nav-number">1.7.</span> <span class="nav-text">空指针</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orice.Y.L.M</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IeXcUcLh4E6UmmX4F6zPclkF-gzGzoHsz", "8dcbzKIndIphm1YLiTwzAFX6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
+</body>
+</html>
