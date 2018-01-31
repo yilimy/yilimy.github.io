@@ -1696,7 +1696,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7e907d;
+  background: #a30df0;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2701,8 +2701,8 @@ pre .javascript .function {
 }
 .menu .menu-item a:hover,
 .menu-item-active a {
-  background: #fff;
-  border-bottom-color: #fff;
+  background: #f5f5dc;
+  border-bottom-color: #808000;
 }
 .menu .menu-item br {
   display: none;
@@ -2773,7 +2773,7 @@ pre .javascript .function {
   color: #555;
 }
 .sidebar a:hover {
-  color: #222;
+  color: #e39313;
 }
 .links-of-author-item a:before {
   display: none;
@@ -2885,14 +2885,14 @@ body {
 }
 .header-inner {
 /** 使用opacity会使子节点透明度基于父节点变化 **/
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
 }
 .content-wrap {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
 }
 .sidebar {
   background: none;
 }
 .sidebar-inner {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
 }
