@@ -834,7 +834,7 @@ Python把0、空字符串和None看成是False，其他数值和非空字符串�
                document.getElementById("gitment-display-button").style.display = "none";
                document.getElementById("gitment-container").style.display = "block";
                var gitment = new Gitment({
-                   id: window.location.pathname, 
+                   id: '<%= page.title %>', 
                    owner: 'yilimy',
                    repo: 'OriceComments',
                    oauth: {

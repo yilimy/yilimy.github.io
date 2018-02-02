@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="眷顾の幻想乡">
 <meta property="og:description" content="简介 国内的评论需要实名，需要备案，emmm…好在imsun实现的一款基于 GitHub Issues 的评论系统Gitment，很是厉害的。之后，yanzi1225627又对其做了改进，使其不用在针对性添加评论标签(作者文档上说在需要的页面上添加)，而是统一配置于每一页面。评论支持md，比较适合程序员。 Gitment 是作者实现的一款基于 GitHub Issues 的评论系统。支持在前端直接">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/github%E6%8E%88%E6%9D%83%E6%8E%A5%E5%85%A5.png">
-<meta property="og:updated_time" content="2018-02-02T12:17:55.549Z">
+<meta property="og:updated_time" content="2018-02-02T12:21:40.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20180202添加评论gitment">
 <meta name="twitter:description" content="简介 国内的评论需要实名，需要备案，emmm…好在imsun实现的一款基于 GitHub Issues 的评论系统Gitment，很是厉害的。之后，yanzi1225627又对其做了改进，使其不用在针对性添加评论标签(作者文档上说在需要的页面上添加)，而是统一配置于每一页面。评论支持md，比较适合程序员。 Gitment 是作者实现的一款基于 GitHub Issues 的评论系统。支持在前端直接">
@@ -409,7 +409,9 @@ Gitment 只能使用 GitHub 账号进行评论。</p>
 <p>这样就ok了！</p>
 <h4 id="备注">备注</h4>
 <p>同一篇文章需要<a href="https://github.com/imsun/gitment/issues/68" target="_blank" rel="external">初始化comment两次的问题</a>，是因为http://xxx.com/post/ab9bb85a.html和点击阅读全文进去的链接http://xxx.com/post/ab9bb85a.html#more对issues来说是不同的，所以创建两次。<br>
-解决方法就是<code>gitment.swig</code>里id弄成<code>window.location.pathname</code>而不是<code>document.location.href</code>。</p>
+解决方法就是<code>gitment.swig</code>里id弄成<code>window.location.pathname</code>而不是<code>document.location.href</code>。<br>
+gitment可能不支持链接地址里有中文，所以安装gitment前一定要把链接持久化搞成全是英文的。<br>
+<a href="http://yangq.me/post/19acb239.html" target="_blank" rel="external">http://yangq.me/post/19acb239.html</a></p>
 <h4 id="参考文档">参考文档</h4>
 <ol>
 <li><a href="http://blog.csdn.net/yanzi1225627/article/details/77890414" target="_blank" rel="external">搬运地点</a></li>
@@ -830,7 +832,7 @@ Gitment 只能使用 GitHub 账号进行评论。</p>
                document.getElementById("gitment-display-button").style.display = "none";
                document.getElementById("gitment-container").style.display = "block";
                var gitment = new Gitment({
-                   id: window.location.pathname, 
+                   id: '<%= page.title %>', 
                    owner: 'yilimy',
                    repo: 'OriceComments',
                    oauth: {

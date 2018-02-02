@@ -837,7 +837,7 @@ css是支持Override的哦~，突然发现了新点子，我在content-wrap中�
                document.getElementById("gitment-display-button").style.display = "none";
                document.getElementById("gitment-container").style.display = "block";
                var gitment = new Gitment({
-                   id: window.location.pathname, 
+                   id: '<%= page.title %>', 
                    owner: 'yilimy',
                    repo: 'OriceComments',
                    oauth: {

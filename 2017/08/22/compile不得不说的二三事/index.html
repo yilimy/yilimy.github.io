@@ -814,7 +814,7 @@ java认可的JKS证书和android不认啊，android认“BKS”，要在加密�
                document.getElementById("gitment-display-button").style.display = "none";
                document.getElementById("gitment-container").style.display = "block";
                var gitment = new Gitment({
-                   id: window.location.pathname, 
+                   id: '<%= page.title %>', 
                    owner: 'yilimy',
                    repo: 'OriceComments',
                    oauth: {

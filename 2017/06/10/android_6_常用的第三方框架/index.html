@@ -993,7 +993,7 @@ FastJson采用独创的算法，将parse的速度提升到极致，超过所有j
                document.getElementById("gitment-display-button").style.display = "none";
                document.getElementById("gitment-container").style.display = "block";
                var gitment = new Gitment({
-                   id: window.location.pathname, 
+                   id: '<%= page.title %>', 
                    owner: 'yilimy',
                    repo: 'OriceComments',
                    oauth: {

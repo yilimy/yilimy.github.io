@@ -1410,7 +1410,7 @@ MAC上没有Xftp的版本啊，网站上的建议是安装其他FTP工具☝️�
                document.getElementById("gitment-display-button").style.display = "none";
                document.getElementById("gitment-container").style.display = "block";
                var gitment = new Gitment({
-                   id: window.location.pathname, 
+                   id: '<%= page.title %>', 
                    owner: 'yilimy',
                    repo: 'OriceComments',
                    oauth: {
