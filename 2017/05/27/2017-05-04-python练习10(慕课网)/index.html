@@ -475,11 +475,6 @@ __提示：__range(1,100,2)可以生成list[1,3,5,7,9,…]</em></p>
           
   <div class="comments" id="comments">
     
-       
-         <div onclick="ShowGitment()" id="gitment-display-button">显示 Gitment 评论</div>
-         <div id="gitment-container" style="display:none"></div>
-       
-    
   </div>
 
 
@@ -793,32 +788,6 @@ __提示：__range(1,100,2)可以生成list[1,3,5,7,9,…]</em></p>
 
 
 
-
-
-
-   
-   
-   
-   
-   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-   
-       <script type="text/javascript">
-           function ShowGitment(){
-               document.getElementById("gitment-display-button").style.display = "none";
-               document.getElementById("gitment-container").style.display = "block";
-               var gitment = new Gitment({
-                   id: window.location.pathname, 
-                   owner: '',
-                   repo: '',
-                   oauth: {
-                       client_id: '',
-                       client_secret: '',
-                   }});
-               gitment.render('gitment-container');
-           }
-       </script>
-   
 
 
 
