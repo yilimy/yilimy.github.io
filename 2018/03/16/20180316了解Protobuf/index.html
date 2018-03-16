@@ -1,0 +1,1030 @@
+<!doctype html>
+
+
+
+  
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="喧嚣的 无须倾听&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解Protobuf">
+<meta property="og:url" content="http://yoursite.com/2018/03/16/20180316了解Protobuf/index.html">
+<meta property="og:site_name" content="眷顾の幻想乡">
+<meta property="og:description" content="喧嚣的 无须倾听&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/saihamu.jpeg">
+<meta property="og:updated_time" content="2018-03-16T11:56:04.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="了解Protobuf">
+<meta name="twitter:description" content="喧嚣的 无须倾听&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta name="twitter:image" content="http://ovyn1wiht.bkt.clouddn.com/saihamu.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/16/20180316了解Protobuf/"/>
+
+
+
+
+
+  <title>了解Protobuf | 眷顾の幻想乡</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cbebc032aecfdda47d379bb5a9fb19e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">眷顾の幻想乡</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            小窝
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            银河尽头
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/16/20180316了解Protobuf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">了解Protobuf</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T15:12:22+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/16/20180316了解Protobuf/" class="leancloud_visitors" data-flag-title="了解Protobuf">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://ovyn1wiht.bkt.clouddn.com/saihamu.jpeg" alt=""></p>
+<center><small>
+喧嚣的 无须倾听&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</small></center>
+<center>
+<small>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热烈的 蓬勃向阳不息
+</small></center>
+<a id="more"></a>
+<h4 id="protobuf的优缺点">Protobuf的优缺点</h4>
+<p>引用自<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-gpb/index.html" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/linux/l-cn-gpb/index.html</a></p>
+<h5 id="protobuf-的优点">Protobuf 的优点</h5>
+<p>Protobuf 有如 XML，不过它更小、更快、也更简单。你可以定义自己的数据结构，然后使用代码生成器生成的代码来读写这个数据结构。你甚至可以在无需重新部署程序的情况下更新数据结构。只需使用 Protobuf 对数据结构进行一次描述，即可利用各种不同语言或从各种不同数据流中对你的结构化数据轻松读写。<br>
+它有一个非常棒的特性，即“向后”兼容性好，人们不必破坏已部署的、依靠“老”数据格式的程序就可以对数据结构进行升级。这样您的程序就可以不必担心因为消息结构的改变而造成的大规模的代码重构或者迁移的问题。因为添加新的消息中的 field 并不会引起已经发布的程序的任何改变。
+Protobuf 语义更清晰，无需类似 XML 解析器的东西（因为 Protobuf 编译器会将 .proto 文件编译生成对应的数据访问类以对 Protobuf 数据进行序列化、反序列化操作）。<br>
+使用 Protobuf 无需学习复杂的文档对象模型，Protobuf 的编程模式比较友好，简单易学，同时它拥有良好的文档和示例，对于喜欢简单事物的人们而言，Protobuf 比其他的技术更加有吸引力。</p>
+<h5 id="protobuf-的不足">Protobuf 的不足</h5>
+<p>Protbuf 与 XML 相比也有不足之处。它功能简单，无法用来表示复杂的概念。
+XML 已经成为多种行业标准的编写工具，Protobuf 只是 Google 公司内部使用的工具，在通用性上还差很多。
+由于文本并不适合用来描述数据结构，所以 Protobuf 也不适合用来对基于文本的标记文档（如 HTML）建模。另外，由于 XML 具有某种程度上的自解释性，它可以被人直接读取编辑，在这一点上 Protobuf 不行，它以二进制的方式存储，除非你有 .proto 定义，否则你没法直接读出 Protobuf 的任何内容。</p>
+<h4 id="搭建protobuf环境">搭建Protobuf环境</h4>
+<h5 id="install">install</h5>
+<p>在Homebrew下先后安装automake、libtool、protobuf</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ brew install automake</div><div class="line">$ brew install libtool</div><div class="line">$ brew install protobuf</div></pre></td></tr></table></figure>
+<p>protobuf就是我们想要的，其他两个为依赖库</p>
+<h5 id="version">version</h5>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ protoc --version</div></pre></td></tr></table></figure>
+<p>如果显示版本号，如<code>libprotoc 3.5.1</code>就说明正常安装了</p>
+<h5 id="compile">compile</h5>
+<p>准备编译<br>
+PS：以下为猜测，本人在编译前，已经执行过github上的Protoc项目的安装了<br>
+如安装时发生错误，可跳到项目build再安装的流程，进行尝试
+新建Protoc文件person.proto</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">package protocDir;</div><div class="line"></div><div class="line">message PBUser &#123;</div><div class="line">  required string userId = 1;</div><div class="line">  optional string nick = 2;</div><div class="line">  optional string avatar = 3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>开始编译Protoc文件，cd切换到Protoc文件所在的路径</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ protoc --java_out=./ person.proto</div></pre></td></tr></table></figure>
+<p>得到java文件<br>
+如果想要OC文件，则类似的命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ protoc --objc_out=./ test.proto</div></pre></td></tr></table></figure>
+<h5 id="build">build</h5>
+<p>通过下载github上的Protoc项目<a href="https://github.com/google/protobuf/tree/master/cmake" target="_blank" rel="external">https://github.com/google/protobuf/tree/master/cmake</a><br>
+切换到项目目录下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./build.sh</div></pre></td></tr></table></figure>
+<p>报错？那么依次执行以下命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ./autogen.sh</div><div class="line">$ ./configure</div><div class="line">$ make install</div></pre></td></tr></table></figure>
+<p>查看/usr/local/bin目录下是否存在protoc文件，如果有则说明成功了<br>
+使用插件编译Protoc文件，切换到Protoc文件目录下执行以下命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ protoc --plugin=/usr/<span class="built_in">local</span>/bin/protoc person.proto --java_out=./</div></pre></td></tr></table></figure>
+<h5 id="others">others</h5>
+<ol>
+<li><strong>目前没有发现使用插件编译和直接编译有什么差异</strong><br>
+即以下两个命令得到结果文件的暂时未发现差异</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ protoc --java_out=./ person.proto</div><div class="line">$ protoc --plugin=/usr/<span class="built_in">local</span>/bin/protoc person.proto --java_out=./</div></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>person.proto文件编译时出现警告</strong></li>
+</ol>
+<p>[libprotobuf WARNING google/protobuf/compiler/parser.cc:546] No syntax specified for the proto file: person.proto. Please use 'syntax = "proto2";' or 'syntax = "proto3";' to specify a syntax version. (Defaulted to proto2 syntax.)</p>  
+这是由于没有在文件顶部声明Protoc版本号，因而，使用默认版本protoc2进行编译  
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">syntax = &quot;proto3&quot;;</div><div class="line"></div><div class="line">package csdnblog2;</div><div class="line"></div><div class="line">message PBUser &#123;</div><div class="line">  required string userId = 1;</div><div class="line">  optional string nick = 2;</div><div class="line">  optional string avatar = 3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译出错：</p>
+<p>person.proto:7:10: Explicit 'optional' labels are disallowed in the Proto3 syntax. To define 'optional' fields in Proto3, simply remove the 'optional' label, as fields are 'optional' by default.
+person.proto:8:10: Explicit 'optional' labels are disallowed in the Proto3 syntax. To define 'optional' fields in Proto3, simply remove the 'optional' label, as fields are 'optional' by default.</p>  
+原来在3.5版本以后不能使用optional关键字了，同理还有required关键字  
+于是Protoc文件就是如下这样  
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">syntax = &quot;proto3&quot;;</div><div class="line"></div><div class="line">package csdnblog2;</div><div class="line"></div><div class="line">message PBUser &#123;</div><div class="line"> string userId = 1;</div><div class="line"> string nick = 2;</div><div class="line"> string avatar = 3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>不建议在Protoc文件中使用package</strong><br>
+因为它会出现在生成的java文件中，不便于管理<br>
+去掉后的Protoc文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">syntax = &quot;proto3&quot;;</div><div class="line"></div><div class="line">message PBUser &#123;</div><div class="line"> string userId = 1;</div><div class="line"> string nick = 2;</div><div class="line"> string avatar = 3;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="protoc-in-java">Protoc in java</h4>
+<h5 id="create-object">create object</h5>
+<p>需要jar包支持<br>
+<code>compile group: ‘com.google.protobuf’, name: ‘protobuf-java’, version: ‘3.5.0’</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Person.<span class="function">PBUser <span class="title">createPersonModule</span><span class="params">()</span></span>&#123;</div><div class="line">    Person.PBUser.Builder pBuilder = Person.PBUser.newBuilder();</div><div class="line">    pBuilder.setUserId(<span class="string">"2"</span>);</div><div class="line">    pBuilder.setNick(<span class="string">"4"</span>);</div><div class="line">    pBuilder.setAvatar(<span class="string">"8"</span>);</div><div class="line">    Person.PBUser pbUser = pBuilder.build();</div><div class="line">    Log.d(tag, pbUser.toString());</div><div class="line">    <span class="keyword">return</span> pbUser;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="to-bytes">to bytes</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printModuleBytes</span><span class="params">(Person.PBUser data)</span></span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">byte</span> b : data.toByteArray())&#123;</div><div class="line">        System.out.print(b);</div><div class="line">    &#125;</div><div class="line">    System.out.println(<span class="string">"\n"</span> + <span class="string">"bytes长度"</span> + data.toByteString().size());;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="deserializ">deserializ</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deserializeData</span><span class="params">(Person.PBUser data)</span></span>&#123;</div><div class="line">    Log.d(tag, <span class="string">"反序列化开始"</span>);</div><div class="line">    Person.PBUser pbUser = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        pbUser = Person.PBUser.parseFrom(data.toByteArray());</div><div class="line">    &#125; <span class="keyword">catch</span> (InvalidProtocolBufferException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    Log.d(tag, pbUser.toString());</div><div class="line">    Log.d(tag, <span class="string">"反序列化结束"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="paserjson">paserJson</h5>
+<p>需要jar包支持<br>
+<code>compile group: ‘com.google.protobuf’, name: ‘protobuf-java-util’, version: ‘3.5.0’</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">parseJson</span><span class="params">(Person.PBUser data)</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"===== 使用data转成json对象开始 ====="</span>);</div><div class="line">        String jsonString = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            jsonString = JsonFormat.printer().print(data);</div><div class="line">        &#125; <span class="keyword">catch</span> (InvalidProtocolBufferException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        System.out.println(jsonString.toString());</div><div class="line">        System.out.println(<span class="string">"json数据大小："</span> + jsonString.getBytes().length);</div><div class="line">        System.out.println(<span class="string">"===== 使用data转成json对象结束 ====="</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="出现的意外">出现的意外</h4>
+<h5 id="减少属性">减少属性</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> Person.<span class="function">PBUser <span class="title">createPersonModule</span><span class="params">()</span></span>&#123;</div><div class="line">    Person.PBUser.Builder pBuilder = Person.PBUser.newBuilder();</div><div class="line">    pBuilder.setUserId(<span class="string">"2"</span>);</div><div class="line"><span class="comment">//        pBuilder.setNick("4");</span></div><div class="line">    pBuilder.setAvatar(<span class="string">"8"</span>);</div><div class="line">    Person.PBUser pbUser = pBuilder.build();</div><div class="line">    Log.d(tag, pbUser.toString());</div><div class="line">    <span class="keyword">return</span> pbUser;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>得到的结果：</p><p>userId: &quot;2&quot;<br>avatar: &quot;8&quot;</p><br>
+同时数据大小也减少了<p></p>
+<h5 id="增加额外的属性">增加额外的属性</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> PersonEx.<span class="function">PBUser <span class="title">createPersonExModule</span><span class="params">()</span></span>&#123;</div><div class="line">    PersonEx.PBUser.Builder pBuilder = PersonEx.PBUser.newBuilder();</div><div class="line">    pBuilder.setUserId(<span class="string">"2"</span>);</div><div class="line">    pBuilder.setNick(<span class="string">"4"</span>);</div><div class="line">    pBuilder.setAvatar(<span class="string">"8"</span>);</div><div class="line">    pBuilder.setAge(<span class="number">14</span>);</div><div class="line">    PersonEx.PBUser pbUser = pBuilder.build();</div><div class="line">    Log.d(tag, pbUser.toString());</div><div class="line">    <span class="keyword">return</span> pbUser;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中Age的初始值为16(int32)<br>
+但是，把得到的bytes传递给<code>Person.PBUser.parseFrom(data)</code>后<br>
+打印的效果是这样的：</p>
+<p>
+userId: "2"<br>
+nick: "4"<br>
+avatar: "8"<br>
+16: 14
+</p>
+不过<code>JsonFormat.printer().print(data)</code>  
+转换成json字符串时倒是把不匹配的属性去掉了
+<hr>
+<p>⛺️祝：拥有飞鸟般的自由👒</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=536622447&auto=0&height=66"></iframe>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wechat-qcode-1.png" alt="Orice.Y.L.M wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信号</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/08/20180308ArgoUML初体验/" rel="next" title="ArgoUML安装">
+                <i class="fa fa-chevron-left"></i> ArgoUML安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+       
+         <div onclick="ShowGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+         <div id="gitment-container" style="display:none"></div>
+       
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Orice.Y.L.M" />
+          <p class="site-author-name" itemprop="name">Orice.Y.L.M</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">87</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Burst Linker
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/iissnan/hexo-theme-next" title="hexo-next" target="_blank">hexo-next</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/fsf_snail" title="CSDN&copy;蜗牛慢慢跑" target="_blank">CSDN&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/64cd56319477" title="简书&copy;蜗牛慢慢跑" target="_blank">简书&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://xiaozhuanlan.com/cheaptalks" title="小专栏&copy;YogiAi" target="_blank">小专栏&copy;YogiAi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/Stay" title="stay&copy;有心课堂" target="_blank">stay&copy;有心课堂</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#protobuf的优缺点"><span class="nav-number">1.</span> <span class="nav-text">Protobuf的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#protobuf-的优点"><span class="nav-number">1.1.</span> <span class="nav-text">Protobuf 的优点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#protobuf-的不足"><span class="nav-number">1.2.</span> <span class="nav-text">Protobuf 的不足</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搭建protobuf环境"><span class="nav-number">2.</span> <span class="nav-text">搭建Protobuf环境</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#install"><span class="nav-number">2.1.</span> <span class="nav-text">install</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#version"><span class="nav-number">2.2.</span> <span class="nav-text">version</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#compile"><span class="nav-number">2.3.</span> <span class="nav-text">compile</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#build"><span class="nav-number">2.4.</span> <span class="nav-text">build</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#others"><span class="nav-number">2.5.</span> <span class="nav-text">others</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protoc-in-java"><span class="nav-number">3.</span> <span class="nav-text">Protoc in java</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#create-object"><span class="nav-number">3.1.</span> <span class="nav-text">create object</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#to-bytes"><span class="nav-number">3.2.</span> <span class="nav-text">to bytes</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#deserializ"><span class="nav-number">3.3.</span> <span class="nav-text">deserializ</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#paserjson"><span class="nav-number">3.4.</span> <span class="nav-text">paserJson</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#出现的意外"><span class="nav-number">4.</span> <span class="nav-text">出现的意外</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#减少属性"><span class="nav-number">4.1.</span> <span class="nav-text">减少属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增加额外的属性"><span class="nav-number">4.2.</span> <span class="nav-text">增加额外的属性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orice.Y.L.M</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           function ShowGitment(){
+               document.getElementById("gitment-display-button").style.display = "none";
+               document.getElementById("gitment-container").style.display = "block";
+               var gitment = new Gitment({
+                   id: '<%= page.title %>', 
+                   owner: 'yilimy',
+                   repo: 'OriceComments',
+                   oauth: {
+                       client_id: '284d05afd92f0b10e028',
+                       client_secret: '143edf1e42d35730d24bc0732b645c5f09197299',
+                   }});
+               gitment.render('gitment-container');
+           }
+       </script>
+   
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IeXcUcLh4E6UmmX4F6zPclkF-gzGzoHsz", "8dcbzKIndIphm1YLiTwzAFX6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
+</body>
+</html>
