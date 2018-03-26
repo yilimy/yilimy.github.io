@@ -377,15 +377,15 @@
 到目标仓库找到项目及版本，将本地dependencies中不认识的部分替换成具体的版本号+@aar</p>
 <a id="more"></a>
 <p>那个调皮的项目是PhotoView
-<a href="https://github.com/chrisbanes/PhotoView" target="_blank" rel="external">https://github.com/chrisbanes/PhotoView</a>
+<a href="https://github.com/chrisbanes/PhotoView" target="_blank" rel="noopener">https://github.com/chrisbanes/PhotoView</a>
 按照author的建议，我配置了项目
 <img src="http://img.hb.aicdn.com/bc1dc58600fa1dc98daff19bb3ce75dc646e7b8b26d05-VmLGTp" alt="">
 重新gradle时，一直报错Gradle Failed to Resolve,是由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile &apos;com.github.chrisbanes:PhotoView:latest.release.here&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile &apos;com.github.chrisbanes:PhotoView:latest.release.here&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这句导致的，本地是高版本2.3.3，而PhotoView支持的是2.+（数据丢失）
 我调低本地Gradle，然而，部分资源下载不下来。
 我是不熟悉上面的compile写法的，于是想，我用以前的熟悉写法试试看。
-首先，我到<a href="https://jitpack.io" target="_blank" rel="external">https://jitpack.io</a>网站上搜chrisbanes大牛的名字，下拉有PhotoVIew
+首先，我到<a href="https://jitpack.io" target="_blank" rel="noopener">https://jitpack.io</a>网站上搜chrisbanes大牛的名字，下拉有PhotoVIew
 <img src="http://img.hb.aicdn.com/802dca40d117885148599cb4848629c39c427169117c8-sL6g6P" alt="">
 恩，很好，历史版本到手。
 把&quot;com.github.chrisbanes:PhotoView:latest.release.here&quot;中

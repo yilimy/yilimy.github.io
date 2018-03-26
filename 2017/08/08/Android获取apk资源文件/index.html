@@ -373,7 +373,7 @@
 – 以上</p>
 <a id="more"></a>
 <h4 id="下载反编译工具">下载反编译工具</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">apktool.readme   jd-gui-osx-1.4.0</div><div class="line">dex2jar-2.0</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">apktool.readme   jd-gui-osx-1.4.0</span><br><span class="line">dex2jar-2.0</span><br></pre></td></tr></table></figure>
 <h5 id="apktool">apktool</h5>
 <p>以下为apktool.readme文件内容</p>
 <blockquote>
@@ -388,20 +388,20 @@ apktool apktool.jar</p>
 <p>然而，我并不清楚什么时候把apktool命令添加进库</p>
 <h5 id="dex2jar-2-0">dex2jar-2.0</h5>
 <p>将apk包反编译的工具,目录结构如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">d2j-baksmali.bat</div><div class="line">d2j-baksmali.sh</div><div class="line">d2j-dex-recompute-checksum.bat</div><div class="line">d2j-dex-recompute-checksum.sh</div><div class="line">d2j-dex2jar.bat</div><div class="line">d2j-dex2jar.sh</div><div class="line">d2j-dex2smali.bat</div><div class="line">d2j-dex2smali.sh</div><div class="line">d2j-jar2dex.bat</div><div class="line">d2j-jar2dex.sh</div><div class="line">d2j-jar2jasmin.bat</div><div class="line">d2j-jar2jasmin.sh</div><div class="line">d2j-jasmin2jar.bat</div><div class="line">d2j-jasmin2jar.sh</div><div class="line">d2j-smali.bat</div><div class="line">d2j-smali.sh</div><div class="line">d2j-std-apk.bat</div><div class="line">d2j-std-apk.sh</div><div class="line">d2j.readme</div><div class="line">d2j_invoke.bat</div><div class="line">d2j_invoke.sh</div><div class="line">lib</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">d2j-baksmali.bat</span><br><span class="line">d2j-baksmali.sh</span><br><span class="line">d2j-dex-recompute-checksum.bat</span><br><span class="line">d2j-dex-recompute-checksum.sh</span><br><span class="line">d2j-dex2jar.bat</span><br><span class="line">d2j-dex2jar.sh</span><br><span class="line">d2j-dex2smali.bat</span><br><span class="line">d2j-dex2smali.sh</span><br><span class="line">d2j-jar2dex.bat</span><br><span class="line">d2j-jar2dex.sh</span><br><span class="line">d2j-jar2jasmin.bat</span><br><span class="line">d2j-jar2jasmin.sh</span><br><span class="line">d2j-jasmin2jar.bat</span><br><span class="line">d2j-jasmin2jar.sh</span><br><span class="line">d2j-smali.bat</span><br><span class="line">d2j-smali.sh</span><br><span class="line">d2j-std-apk.bat</span><br><span class="line">d2j-std-apk.sh</span><br><span class="line">d2j.readme</span><br><span class="line">d2j_invoke.bat</span><br><span class="line">d2j_invoke.sh</span><br><span class="line">lib</span><br></pre></td></tr></table></figure>
 <p>readme内容如下</p>
 <blockquote>
-<p>1.添加权限：d2j_invoke.sh  <a href="http://d2j-dex2jar.sh" target="_blank" rel="external">d2j-dex2jar.sh</a>;
+<p>1.添加权限：d2j_invoke.sh  <a href="http://d2j-dex2jar.sh" target="_blank" rel="noopener">d2j-dex2jar.sh</a>;
 2.将目标apk文件copy到当前目录下;
 3.运行d2j_invoke.sh [file] 生成[file].jar文件;
 4.使用JD-GUI打开生成的jar文件.</p>
 </blockquote>
 <p>然而奇怪的是使用命令后报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./d2j_invoke.sh test.apk</div><div class="line">错误: 找不到或无法加载主类 test.apk</div></pre></td></tr></table></figure>
-<p>说明3中，描述最后生成的文件为jar文件，恰好目录中有个to jar的sh命令：<a href="http://d2j-dex2jar.sh" target="_blank" rel="external">d2j-dex2jar.sh</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./d2j-dex2jar.sh test.apk</div><div class="line">$ cp test.apk test.zip</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./d2j_invoke.sh test.apk</span><br><span class="line">错误: 找不到或无法加载主类 test.apk</span><br></pre></td></tr></table></figure>
+<p>说明3中，描述最后生成的文件为jar文件，恰好目录中有个to jar的sh命令：<a href="http://d2j-dex2jar.sh" target="_blank" rel="noopener">d2j-dex2jar.sh</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./d2j-dex2jar.sh test.apk</span><br><span class="line">$ cp test.apk test.zip</span><br></pre></td></tr></table></figure>
 <p>解压后发现，目录结构是这样的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ls</div><div class="line">android   io        okhttp3   retrofit2</div><div class="line">com       java8     org       rx</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">android   io        okhttp3   retrofit2</span><br><span class="line">com       java8     org       rx</span><br></pre></td></tr></table></figure>
 <p>惊呆了有木有，res呢，回头看test.jar文件大小2.8M
 <strong>
 我意识到一个严重的错误，静静的把原apk文件改名为zip文件，

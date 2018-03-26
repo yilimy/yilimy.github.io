@@ -370,9 +370,9 @@
 
       
         <h4 id="报错代码">报错代码</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System.loadLibrary(<span class="string">"softalgjni"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.loadLibrary(<span class="string">"softalgjni"</span>);</span><br></pre></td></tr></table></figure>
 <h4 id="报错日志信息">报错日志信息</h4>
-<p>Caused by: java.lang.UnsatisfiedLinkError: dalvik.system.PathClassLoader[DexPathList[[zip file “/data/app/com.gomain.activity-1/base.apk”],nativeLibraryDirectories=[/data/app/com.gomain.activity-1/lib/arm64, /data/app/com.gomain.activity-1/base.apk!/lib/arm64-v8a, /vendor/lib64, /system/lib64]]] couldn’t find &quot;<a href="http://libsoftalgjni.so" target="_blank" rel="external">libsoftalgjni.so</a>&quot;
+<p>Caused by: java.lang.UnsatisfiedLinkError: dalvik.system.PathClassLoader[DexPathList[[zip file “/data/app/com.gomain.activity-1/base.apk”],nativeLibraryDirectories=[/data/app/com.gomain.activity-1/lib/arm64, /data/app/com.gomain.activity-1/base.apk!/lib/arm64-v8a, /vendor/lib64, /system/lib64]]] couldn’t find &quot;<a href="http://libsoftalgjni.so" target="_blank" rel="noopener">libsoftalgjni.so</a>&quot;
 at java.lang.Runtime.loadLibrary(Runtime.java:379)
 at java.lang.System.loadLibrary(System.java:1086)</p>
 <a id="more"></a>
@@ -385,23 +385,23 @@ at java.lang.System.loadLibrary(System.java:1086)</p>
 将项目视图切换到&quot;Android&quot;，可以在Gradle Scripts中看到所有的配置<br>
 如果Project目录下没有gradle.properties，可以新建一个，然后复制全局的默认配置，再进行修改
 gradle.properties(Global Properties):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.gradle.daemon=true</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.daemon=true</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在app的build.gradle中添加如下代码,然后rebuild</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">android &#123;  </div><div class="line">  </div><div class="line">    defaultConfig &#123;  </div><div class="line">  </div><div class="line">        multiDexEnabled true  </div><div class="line">  </div><div class="line">        //  需要添加的部分</div><div class="line">        ndk &#123;  </div><div class="line">            abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;</div><div class="line">//            , &quot;x86&quot;, &quot;mips&quot;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    sourceSets &#123;  </div><div class="line">        main &#123;  </div><div class="line">            jniLibs.srcDirs = [&apos;libs&apos;]  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">android &#123;  </span><br><span class="line">  </span><br><span class="line">    defaultConfig &#123;  </span><br><span class="line">  </span><br><span class="line">        multiDexEnabled true  </span><br><span class="line">  </span><br><span class="line">        //  需要添加的部分</span><br><span class="line">        ndk &#123;  </span><br><span class="line">            abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;</span><br><span class="line">//            , &quot;x86&quot;, &quot;mips&quot;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    sourceSets &#123;  </span><br><span class="line">        main &#123;  </span><br><span class="line">            jniLibs.srcDirs = [&apos;libs&apos;]  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="方案分析">方案分析</h4>
 <h5 id="usedeprecatedndk">useDeprecatedNdk</h5>
 <p>useDeprecatedNdk 属性的添加不是必须的，从命名可以看出，这是一个兼容性配置
 允许兼容低版本(或废弃掉)的NDK<br>
 本地NDK较新的话，注释掉这句代码，程序也可以正常编译的</p>
 <h5 id="abifilters">abiFilters</h5>
-<p>参考了&quot;CSDN@只是备忘&quot;的博客：<a href="http://blog.csdn.net/wove55678/article/details/52313208" target="_blank" rel="external">http://blog.csdn.net/wove55678/article/details/52313208</a></p>
+<p>参考了&quot;CSDN@只是备忘&quot;的博客：<a href="http://blog.csdn.net/wove55678/article/details/52313208" target="_blank" rel="noopener">http://blog.csdn.net/wove55678/article/details/52313208</a></p>
 <p>abiFilters也是一个兼容配置<br>
 在引入第三方项目时，如果第三方项目兼容了“x86”，而本地项目目录中没有“x86”目录，便会抛出UnsatisfiedLinkError<br>
 //TODO 为何此时系统会只在&quot;x86&quot;中查找而不遍历其他目录
 从错误名上可以看出[satisfy：满足]，是没有兼容的错误，但是程序运行时却不通过。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ndk &#123;  </div><div class="line">    abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ndk &#123;  </span><br><span class="line">    abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面配置的意思是指定ndk需要兼容的架构，把除了armeabi和v7a以外的兼容包都过滤掉，只剩下armeabi和v7a的文件夹。</p>
 <ul>
 <li>armeabi 性能较差，但是兼容性较好</li>

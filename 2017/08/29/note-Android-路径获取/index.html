@@ -370,7 +370,7 @@
 
       
         <p>获取安装应用后的so路径</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String jniPath = getApplicationInfo().nativeLibraryDir;</div><div class="line"><span class="keyword">if</span>(TextUtils.isEmpty(jniPath))&#123;</div><div class="line">	jniPath = <span class="string">"/data/data/"</span> + getPackageName() + <span class="string">"/lib/"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String jniPath = getApplicationInfo().nativeLibraryDir;</span><br><span class="line"><span class="keyword">if</span>(TextUtils.isEmpty(jniPath))&#123;</span><br><span class="line">	jniPath = <span class="string">"/data/data/"</span> + getPackageName() + <span class="string">"/lib/"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

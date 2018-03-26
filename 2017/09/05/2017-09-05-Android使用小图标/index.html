@@ -373,8 +373,8 @@
       
 
       
-        <p>传送门：<a href="http://fontawesome.io" target="_blank" rel="external">Font Awesome官网</a>
-传送门：<a href="http://fontawesome.io/cheatsheet/" target="_blank" rel="external">with Unicode (Cheatsheet)</a></p>
+        <p>传送门：<a href="http://fontawesome.io" target="_blank" rel="noopener">Font Awesome官网</a>
+传送门：<a href="http://fontawesome.io/cheatsheet/" target="_blank" rel="noopener">with Unicode (Cheatsheet)</a></p>
 <h4 id="传统显示图标的方式">传统显示图标的方式</h4>
 <p>在平常的开发中，如果我们需要在界面上显示某个小图标，比如搜索按钮，返回按钮，这时我们需要美工给我们切对应的png图片，并放进对应的drawable文件夹中，这样随着图标的越来越多，APK体积也会越来越大。<br>
 或者，我们可以使用android Draw来绘制自己的图片，但是，这种方法的局限性很大，android提供的绘图API支持简单的图像绘制，
@@ -386,16 +386,16 @@ Font Awesome gives you scalable vector icons that can instantly be customized �
 <ol>
 <li>下载Font Awesome，格式ttf</li>
 <li>把下载后的ttf放到assets文件夹中</li>
-<li>编写string.xml,可以在<a href="http://fontawesome.io/cheatsheet/#" target="_blank" rel="external">http://fontawesome.io/cheatsheet/#</a> 中查看图标对应的字符串(Unicode码)</li>
+<li>编写string.xml,可以在<a href="http://fontawesome.io/cheatsheet/#" target="_blank" rel="noopener">http://fontawesome.io/cheatsheet/#</a> 中查看图标对应的字符串(Unicode码)</li>
 <li>android:text引用你要显示的图标对应的string资源，android:textColor设置图标颜色，android:textSize设置图标大小（跟设置字体大小颜色一样样的）</li>
 </ol>
 <p>JAVA代码中引用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Typeface font = Typeface.createFromAsset(getAssets(), “fontawesome-webfont.ttf”);</div><div class="line">TextView tvIcon= (TextView) findViewById(R.id.tv_icon);</div><div class="line">tvIcon.setTypeface(font);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Typeface font = Typeface.createFromAsset(getAssets(), “fontawesome-webfont.ttf”);</span><br><span class="line">TextView tvIcon= (TextView) findViewById(R.id.tv_icon);</span><br><span class="line">tvIcon.setTypeface(font);</span><br></pre></td></tr></table></figure>
 <h4 id="font-awesome的优点和缺点">Font Awesome的优点和缺点</h4>
 <p>Font Awesome是一个专为Bootstrap设计的字体文件，我们可以通过向显示字体一样方便的显示我们想要显示的图标。对于Android，Font Awesome使用TextView显示小图标，而且无需使用png图片，只需使用一个ttf文件，并且在这些字体中的图片都是矢量图，是可以放大和缩小的，这就意味着每个图标都能在所有大小的屏幕上完美呈现。<br>
 xml中预览暂时有问题。</p>
 <h4 id="优秀源码">优秀源码</h4>
-<p>Fancybuttons：<a href="https://github.com/medyo/Fancybuttons" target="_blank" rel="external">https://github.com/medyo/Fancybuttons</a></p>
+<p>Fancybuttons：<a href="https://github.com/medyo/Fancybuttons" target="_blank" rel="noopener">https://github.com/medyo/Fancybuttons</a></p>
 
       
     </div>
