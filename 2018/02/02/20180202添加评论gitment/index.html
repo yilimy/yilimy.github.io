@@ -109,7 +109,7 @@
 <meta property="og:description" content="简介 国内的评论需要实名，需要备案，emmm…好在imsun实现的一款基于 GitHub Issues 的评论系统Gitment，很是厉害的。之后，yanzi1225627又对其做了改进，使其不用在针对性添加评论标签(作者文档上说在需要的页面上添加)，而是统一配置于每一页面。评论支持md，比较适合程序员。 Gitment 是作者实现的一款基于 GitHub Issues 的评论系统。支持在前端直接">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ovyn1wiht.bkt.clouddn.com/github%E6%8E%88%E6%9D%83%E6%8E%A5%E5%85%A5.png">
-<meta property="og:updated_time" content="2018-02-02T12:36:53.235Z">
+<meta property="og:updated_time" content="2018-03-27T04:10:56.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20180202添加评论gitment">
 <meta name="twitter:description" content="简介 国内的评论需要实名，需要备案，emmm…好在imsun实现的一款基于 GitHub Issues 的评论系统Gitment，很是厉害的。之后，yanzi1225627又对其做了改进，使其不用在针对性添加评论标签(作者文档上说在需要的页面上添加)，而是统一配置于每一页面。评论支持md，比较适合程序员。 Gitment 是作者实现的一款基于 GitHub Issues 的评论系统。支持在前端直接">
@@ -422,6 +422,17 @@ Gitment 只能使用 GitHub 账号进行评论。</p>
 <li><a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">作者Repo</a></li>
 <li><a href="https://github.com/imsun/gitment/issues" target="_blank" rel="noopener">作者issue</a></li>
 </ol>
+<hr>
+<p>20180327更新</p>
+<p>使用地址作为标识后，仍然会出现issue混淆的情况，还是浪不起来怎么办🤔<br>
+移步到踩坑大大，突然发现有更新：把地址换成时间戳作为标识，beautifull~<br>
+layout - _third-party - comments - gitment.swig<br>
+把<code>id: '&lt;%= page.title %&gt;'</code>换成<code>id: '&lt;%= page.date %&gt;'</code><br>
+另外</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; page.date &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>也是可行的<br>
+转换下时间戳，看看是不是你想要的，传送门：<a href="https://tool.lu/timestamp" target="_blank" rel="noopener">时间戳</a></p>
+<p>如果不显示，看看issue里有没有吧Labels关闭</p>
 
       
     </div>
