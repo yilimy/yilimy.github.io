@@ -291,7 +291,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/note-Android-路径获取/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/04/2017-12-04-Android-补全计划/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -310,7 +310,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/29/note-Android-路径获取/" itemprop="url">Android 路径获取</a></h1>
+                <a class="post-title-link" href="/2017/12/04/2017-12-04-Android-补全计划/" itemprop="url">Android 补全计划</a></h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T14:31:15+08:00">
-                2017-08-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T11:17:17+08:00">
+                2017-12-04
               </time>
             
 
@@ -340,7 +340,7 @@
 
           
           
-             <span id="/2017/08/29/note-Android-路径获取/" class="leancloud_visitors" data-flag-title="Android 路径获取">
+             <span id="/2017/12/04/2017-12-04-Android-补全计划/" class="leancloud_visitors" data-flag-title="Android 补全计划">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,11 +369,17 @@
 
       
         
-          
-            <p>获取安装应用后的so路径</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String jniPath = getApplicationInfo().nativeLibraryDir;</span><br><span class="line"><span class="keyword">if</span>(TextUtils.isEmpty(jniPath))&#123;</span><br><span class="line">	jniPath = <span class="string">"/data/data/"</span> + getPackageName() + <span class="string">"/lib/"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <p>这几年android进阶缓慢，弊端呈现，心有所欲。<br>
+于是，参考了知乎的问答<br>
+<a href="https://www.zhihu.com/question/28425576" target="_blank" rel="noopener">Android开发初期之后怎么提升？怎么才能叫精通？方向在哪？</a><br>
+取几个我有所收益的答主，作为记录。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/04/2017-12-04-Android-补全计划/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -415,7 +421,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/note-Demo中的小技巧总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/23/2017-11-23-指纹加密解密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -434,7 +440,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/28/note-Demo中的小技巧总结/" itemprop="url">Demo中的小技巧总结</a></h1>
+                <a class="post-title-link" href="/2017/11/23/2017-11-23-指纹加密解密/" itemprop="url">指纹加密解密</a></h1>
         
 
         <div class="post-meta">
@@ -446,8 +452,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T21:17:24+08:00">
-                2017-08-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T18:16:48+08:00">
+                2017-11-23
               </time>
             
 
@@ -464,7 +470,538 @@
 
           
           
-             <span id="/2017/08/28/note-Demo中的小技巧总结/" class="leancloud_visitors" data-flag-title="Demo中的小技巧总结">
+             <span id="/2017/11/23/2017-11-23-指纹加密解密/" class="leancloud_visitors" data-flag-title="指纹加密解密">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在android M上使用以下代码时，会遇见一个参数CryptoObject</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">manager.authenticate(crypto, mCancellationSignal, <span class="number">0</span>, <span class="keyword">new</span> FingerprintManager.AuthenticationCallback(mHandler), <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p>如果我们只需要指纹验证，这个参数可以传null。<br>
+当需要使用指纹的高级功能，比如签名、加密解密时，就需要把这个CryptoObject参数实例化出来了。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/23/2017-11-23-指纹加密解密/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/23/2017-11-23-兼容指纹模块开发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/23/2017-11-23-兼容指纹模块开发/" itemprop="url">兼容指纹模块开发</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T17:26:57+08:00">
+                2017-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/23/2017-11-23-兼容指纹模块开发/" class="leancloud_visitors" data-flag-title="兼容指纹模块开发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>项目上需要用到指纹模块，在Huawei Mate9已经写好的程序，在小米上不响应。<br>
+考虑到小米上有指纹硬件，问题还是出现在代码上。<br>
+逛帖子，发现小米的指纹模块是一步登天式的，即，没有针对低版本进行兼容，直接使用android M的指纹模块。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/23/2017-11-23-兼容指纹模块开发/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/2017-11-03-GitHub多账户SSH登录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/03/2017-11-03-GitHub多账户SSH登录/" itemprop="url">GitHub多账户SSH登录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T18:00:32+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/03/2017-11-03-GitHub多账户SSH登录/" class="leancloud_visitors" data-flag-title="GitHub多账户SSH登录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>公司搭建了Github私服，预计会与个人使用Github会有冲突，于是提前研究Github多账户登录。<br>
+基于SSH的多账户登录。</p>
+<blockquote>
+<p>生成本地密钥对</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"yilimy102@163.com"</span> -b 4096</span><br></pre></td></tr></table></figure>
+<p>C和b的参数传递没有前后关系</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/03/2017-11-03-GitHub多账户SSH登录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/02/2017-11-02-xftp在mac上的解决办法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/02/2017-11-02-xftp在mac上的解决办法/" itemprop="url">xftp在mac上的解决办法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T11:19:15+08:00">
+                2017-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/02/2017-11-02-xftp在mac上的解决办法/" class="leancloud_visitors" data-flag-title="xftp在mac上的解决办法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>要上传文件到公司一台服务器上，同事使用的是Xftp</p>
+<h4 id="what-s-xftp">what’s xftp</h4>
+<h5 id="来自💆度娘百科">来自💆度娘百科</h5>
+<p>Xftp:<br>
+是一个基于 MS windows 平台的功能强大的SFTP、FTP 文件传输软件。使用了 Xftp 以后，MS windows 用户能安全地在 UNIX/Linux 和 Windows PC 之间传输文件。Xftp 能同时适应初级用户和高级用户的需要。它采用了标准的 Windows 风格的向导，它简单的界面能与其他 Windows 应用程序紧密地协同工作，此外它还为高级用户提供了众多强劲地功能特性。<br>
+👉嘛，windows家的东东，查一下mac上是否有xftp吧。</p>
+<h5 id="来自formac-informer的消息">来自formac.informer的消息</h5>
+<p><a href="https://formac.informer.com/xftp" target="_blank" rel="noopener">https://formac.informer.com/xftp</a><br>
+Xftp by NetSarang Computer, Inc. is an FTP/SFTP client that can help you securely transfer files to and from FTP servers. Although there is no version of Xftp for Mac available on the market, there are plenty other applications you can use instead. Here are several alternatives to Xftp for Mac.<br>
+MAC上没有Xftp的版本啊，网站上的建议是安装其他FTP工具☝️。</p>
+<h5 id="使用remote-ftp">使用Remote-FTP</h5>
+<p>想到atom中安装了FTP插件，是支持SFTP和FTP两种传输，👊然而连接不上服务器。<br>
+等等，remote？👀就把它当一个普通服务器来看，我还有SSH啊🤦‍♂</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/02/2017-11-02-xftp在mac上的解决办法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/25/2017-10-25-assets目录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/2017-10-25-assets目录/" itemprop="url">Assets目录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:31:58+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/25/2017-10-25-assets目录/" class="leancloud_visitors" data-flag-title="Assets目录">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -494,528 +1031,46 @@
       
         
           
-            <ul>
-<li>Demo首页中的列表数据中直接初始化几个子分支的入口</li>
+            <h4 id="assets特性">Assets特性</h4>
+<p>编码</p>
+<blockquote>
+<p>assets目录下存放的原生资源文件，在编译的时候不会编译assets文件夹下的内容。<br>
+特权阶级😱</p>
+</blockquote>
+<p>文件路径</p>
+<blockquote>
+<p>有说法称，apk安装之后，会放在/data/app/**.apk目录下，以apk的形式存在，assets和res被绑定在apk中，并不会解压到
+/data/data/YourApp目录下去。我们没办法直接获取到assets的绝对路径，因为它根本不存在。<br>
+我在故我在👻</p>
+</blockquote>
+<h4 id="数据获取">数据获取</h4>
+<p>通过AssetManager对象类获取assets文件夹下的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AssetManager asset = getAssets()  ;</span><br><span class="line">InputStream is = asset.open(fileName) ;</span><br></pre></td></tr></table></figure>
+<p>获取assets文件夹下的文件列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">asset.list(<span class="string">""</span>) ;  <span class="comment">//  assets下的文件名和子文件夹名数组</span></span><br><span class="line">asset.list(<span class="string">"folderName"</span>) ;  <span class="comment">//  assets/folderName下的文件名和子文件夹名数组</span></span><br></pre></td></tr></table></figure>
+<p>还可以通过Uri来访问</p>
+<ul>
+<li>file模式</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;Class&gt; classes = <span class="keyword">new</span> ArrayList()&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        add(StaticActivity.class);</span><br><span class="line">        add(SettingActivity.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String assetsUriStr = <span class="string">"file:///android_asset/fileName"</span>; <span class="comment">// assets文件夹下的fileName的Uri</span></span><br><span class="line">assetsUriStr = <span class="string">"file:///android_asset/test.html"</span>;</span><br><span class="line">webView.loadUrl(assetsUriStr);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>assets模式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String assetsUriStr = <span class="string">"assets:///fileName"</span>; <span class="comment">// assets文件夹下的fileName的Uri</span></span><br></pre></td></tr></table></figure>
+<p>嘛🦑据说有些歪果仁出现了&quot;file not found&quot;错误，这套方法其实是不稳定的吧🦈<br>
+<em>@ 为了代码的完美，为了程序的健全，为了维护世界的和平 @</em><br>
+我们需要更稳定的方式来获取assets中的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InputStream is=getResources().getAssets().open(<span class="string">"xyz.xml"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="产品经理时间">产品经理时间</h4>
+<p>“我就是需要获取到文件的绝对路径”🚐<br>
+在没人知道的情况下，🌺我们可以这样:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 把assets目录下的文件拷贝到SD卡中</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> srcFileName</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> desFileName</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyBigDataToSD</span><span class="params">(String srcFileName, String desFileName)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">	InputStream myInput;</span><br><span class="line">	OutputStream myOutput = <span class="keyword">new</span> FileOutputStream(getHFSdCardPath() + desFileName);</span><br><span class="line">	myInput = HoofooManager.getContext().getAssets().open(srcFileName);</span><br><span class="line">	<span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">	<span class="keyword">int</span> length = myInput.read(buffer);</span><br><span class="line">	<span class="keyword">while</span>(length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		myOutput.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">		length = myInput.read(buffer);</span><br><span class="line">	&#125;</span><br><span class="line">	myOutput.flush();</span><br><span class="line">	myInput.close();</span><br><span class="line">	myOutput.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>呐呐呐，丢你绝对路径🐳</p>
+<h4 id="类比">类比</h4>
+<p>从某中意义上说res/raw文件夹具有类似的属性，但是raw下不能新建文件夹。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = getResources().openRawResource(R.id.fileNameID) ;</span><br></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/2017-08-28-OpenCV学习之Android篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/28/2017-08-28-OpenCV学习之Android篇/" itemprop="url">OpenCV学习之Android篇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T21:15:15+08:00">
-                2017-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/28/2017-08-28-OpenCV学习之Android篇/" class="leancloud_visitors" data-flag-title="OpenCV学习之Android篇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          基于Android Studio的OpenCV集成
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/28/2017-08-28-OpenCV学习之Android篇/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/note-Atom使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/note-Atom使用/" itemprop="url">Atom使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T13:33:01+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/25/note-Atom使用/" class="leancloud_visitors" data-flag-title="Atom使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          整理Atom使用过程中遇到的问题
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/25/note-Atom使用/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/2017-08-25-改变ProgressDialog消息字体样式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/2017-08-25-改变ProgressDialog消息字体样式/" itemprop="url">改变ProgressDialog消息字体样式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T11:58:58+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/25/2017-08-25-改变ProgressDialog消息字体样式/" class="leancloud_visitors" data-flag-title="改变ProgressDialog消息字体样式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="获取dialog整个view">获取dialog整个view</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">View v = dialog.getWindow().getDecorView();<span class="comment">//取到dialog的整个view </span></span><br><span class="line">setDialogText(v);<span class="comment">//并对该view进行设置</span></span><br></pre></td></tr></table></figure>
-<h4 id="找到所有textview">找到所有textview</h4>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private void setDialogText(View v) &#123; </span><br><span class="line">        if (v instanceof ViewGroup) &#123; </span><br><span class="line">                ViewGroup parent = (ViewGroup) v; </span><br><span class="line">                int count = parent.getChildCount(); </span><br><span class="line">                for (int i = 0; i &lt; count; i++) &#123; </span><br><span class="line">                        View child = parent.getChildAt(i); </span><br><span class="line">                        setDialogText(child); </span><br><span class="line">                &#125; </span><br><span class="line">        &#125; else if (v instanceof TextView) &#123; </span><br><span class="line">                ((TextView) v).setTextSize(40); //是textview，设置字号 </span><br><span class="line">        &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="调用时机">调用时机</h4>
-<p>super.onPrepareDialog
-不好辨明时机时，可以在dialog.show之后<br>
-过早调用会报错request before attach to context(大致是这意思)</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/2017-08-25-Exception-UnsatisfiedLinkError/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/2017-08-25-Exception-UnsatisfiedLinkError/" itemprop="url">java.lang.UnsatisfiedLinkError</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T10:07:52+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/25/2017-08-25-Exception-UnsatisfiedLinkError/" class="leancloud_visitors" data-flag-title="java.lang.UnsatisfiedLinkError">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="报错代码">报错代码</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.loadLibrary(<span class="string">"softalgjni"</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="报错日志信息">报错日志信息</h4>
-<p>Caused by: java.lang.UnsatisfiedLinkError: dalvik.system.PathClassLoader[DexPathList[[zip file “/data/app/com.gomain.activity-1/base.apk”],nativeLibraryDirectories=[/data/app/com.gomain.activity-1/lib/arm64, /data/app/com.gomain.activity-1/base.apk!/lib/arm64-v8a, /vendor/lib64, /system/lib64]]] couldn’t find &quot;<a href="http://libsoftalgjni.so" target="_blank" rel="noopener">libsoftalgjni.so</a>&quot;
-at java.lang.Runtime.loadLibrary(Runtime.java:379)
-at java.lang.System.loadLibrary(System.java:1086)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/25/2017-08-25-Exception-UnsatisfiedLinkError/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1052,7 +1107,7 @@ at java.lang.System.loadLibrary(System.java:1086)</p>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1097,7 +1152,7 @@ at java.lang.System.loadLibrary(System.java:1086)</p>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">107</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

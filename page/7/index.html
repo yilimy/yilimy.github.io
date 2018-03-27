@@ -291,7 +291,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/compile不得不说的二三事/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/26/2017-09-26-开发文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -310,7 +310,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/22/compile不得不说的二三事/" itemprop="url">compile不得不说的二三事</a></h1>
+                <a class="post-title-link" href="/2017/09/26/2017-09-26-开发文档/" itemprop="url">项目开发文档</a></h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T18:10:06+08:00">
-                2017-08-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T13:33:38+08:00">
+                2017-09-26
               </time>
             
 
@@ -340,7 +340,7 @@
 
           
           
-             <span id="/2017/08/22/compile不得不说的二三事/" class="leancloud_visitors" data-flag-title="compile不得不说的二三事">
+             <span id="/2017/09/26/2017-09-26-开发文档/" class="leancloud_visitors" data-flag-title="项目开发文档">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,10 +369,10 @@
 
       
         
-          compile项目时要注意依赖和版本号
+          项目开发文档展示
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/22/compile不得不说的二三事/">
+            <a class="btn" href="/2017/09/26/2017-09-26-开发文档/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -418,7 +418,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/15/android数据绑定学习之一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/22/2017-09-22-Gradle打包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -437,7 +437,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/15/android数据绑定学习之一/" itemprop="url">android数据绑定学习之一</a></h1>
+                <a class="post-title-link" href="/2017/09/22/2017-09-22-Gradle打包/" itemprop="url">Gradle打包</a></h1>
         
 
         <div class="post-meta">
@@ -449,8 +449,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T13:24:09+08:00">
-                2017-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-22T13:13:09+08:00">
+                2017-09-22
               </time>
             
 
@@ -467,7 +467,7 @@
 
           
           
-             <span id="/2017/08/15/android数据绑定学习之一/" class="leancloud_visitors" data-flag-title="android数据绑定学习之一">
+             <span id="/2017/09/22/2017-09-22-Gradle打包/" class="leancloud_visitors" data-flag-title="Gradle打包">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -496,10 +496,445 @@
 
       
         
-          Data Binding
+          
+            <h4 id="修改的部位">修改的部位</h4>
+<h5 id="app-build-gradle">app:build.gradle</h5>
+<ol>
+<li>指定为lib而不是应用</li>
+</ol>
+<p><code>apply plugin: 'com.android.application'</code> -&gt; <code>apply plugin: 'com.android.library'</code></p>
+<ol start="2">
+<li>去掉唯一标识</li>
+</ol>
+<p>注释掉applicationId</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;</span><br><span class="line">//    applicationId XXXX</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>去掉预编译选项</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//        jackOptions &#123;</span><br><span class="line">//            enabled true</span><br><span class="line">//        &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="manifest文件">manifest文件</h5>
+<p>去掉<code>android.intent.action.MAIN</code>和<code>android.intent.category.LAUNCHER</code>等<br>
+一个干扰入口，一个会在桌面添加图标</p>
+<h4 id="打包方法">打包方法</h4>
+<p>app:build.gradle中追加<code>apply from: './nexus-push.gradle'</code><br>
+同级目录中添加脚本文件nexus-push.gradle</p>
+<h5 id="脚本">脚本</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;maven&apos;</span><br><span class="line"></span><br><span class="line">task androidJavadocs(type: Javadoc) &#123;</span><br><span class="line">    source = android.sourceSets.main.java.srcDirs</span><br><span class="line">    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) &#123;</span><br><span class="line">    classifier = &apos;javadoc&apos;</span><br><span class="line">    from androidJavadocs.destinationDir</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task androidSourcesJar(type: Jar) &#123;</span><br><span class="line">    classifier = &apos;sources&apos;</span><br><span class="line">    from android.sourceSets.main.java.srcDirs</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">artifacts &#123;</span><br><span class="line">    archives androidSourcesJar</span><br><span class="line">    archives androidJavadocsJar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">uploadArchives &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenDeployer &#123;</span><br><span class="line">            // maven 库地址</span><br><span class="line">            repository(url: &quot;http://localhost:8081/repository/maven-releases/&quot;) &#123;</span><br><span class="line">                authentication(userName: &quot;admin&quot;, password: &quot;admin123&quot;)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            pom.groupId = &apos;com.XXXX&apos;  // 包名</span><br><span class="line">            pom.artifactId = &apos;XXXXXXX&apos;  //  项目名</span><br><span class="line">            pom.version = &apos;0.0.X&apos; //  项目版本号</span><br><span class="line"></span><br><span class="line">            pom.project &#123;</span><br><span class="line">                licenses &#123;</span><br><span class="line">                    license &#123;</span><br><span class="line">                        name &apos;The Apache Software License, Version 2.0&apos;</span><br><span class="line">                        url &apos;http://www.apache.org/licenses/LICENSE-2.0.txt&apos;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="执行命令">执行命令</h5>
+<p>Terminal中执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew uploadArchives</span><br></pre></td></tr></table></figure>
+<p>uploadArchives为脚本中的可执行任务名<br>
+如果打包项目是工程中的依赖module，可使用如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew :module名:uploadArchives</span><br></pre></td></tr></table></figure>
+<h4 id="fqa">FQA</h4>
+<h5 id="androidjavadocs">androidJavadocs</h5>
+<p>BUILD FAILED<br>
+Execution failed for task ‘androidJavadocs’.<br>
+意思就是说，提取javadocs时失败，解决方案有两个<br>
+方案一：<br>
+代码都是本团队的人贡献的，按照BUILD FAILED中的提示，把错误的java注释改过来<br>
+一般为&quot;@param argument不是参数名称&quot;，&quot;@return 标记没有参数&quot;等不符合Javadoc规范的地方<br>
+老老实实把这些错误揪出来，🐢然后改掉<br>
+方案二：<br>
+在跟路径的build.gradle文件中添加任务tasks来避免Javadoc检查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">//        maven&#123;url &apos;http://localhost:8081/repository/maven-releases/&apos;&#125;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tasks.withType(Javadoc) &#123;</span><br><span class="line">        options.addStringOption(&apos;Xdoclint:none&apos;, &apos;-quiet&apos;)</span><br><span class="line">        options.addStringOption(&apos;encoding&apos;, &apos;UTF-8&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可能存在的隐患：方案二在某些对Javadoc检查严格的网站上传不上去的风险</p>
+<h5 id="core-lint">core: lint</h5>
+<p>Execution failed for task ‘:core:lint’.</p>
+<blockquote>
+<p>Lint found errors in the project; aborting build.</p>
+</blockquote>
+<p>在上传过程中执行了lint检查，所以可能会报上面的错误。解决方法就是避免lint的检查，
+在每个module的gradle下面就要添加如下配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">  lintOptions &#123;</span><br><span class="line">    abortOnError false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="connection-refused">Connection refused</h5>
+<p>Execution failed for task ‘uploadArchives’.<br>
+Failed to deploy artifacts<br>
+Connection refused<br>
+请检查网络连接或者本地maven是否启动或者maven权限等</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/2017-09-20-android-开源框架大杂烩/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/2017-09-20-android-开源框架大杂烩/" itemprop="url">2017 09 20 android 开源框架大杂烩</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T16:01:19+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/20/2017-09-20-android-开源框架大杂烩/" class="leancloud_visitors" data-flag-title="2017 09 20 android 开源框架大杂烩">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="精美的控件">精美的控件</h4>
+<p>Fancybuttons：<a href="https://github.com/medyo/Fancybuttons" target="_blank" rel="noopener">https://github.com/medyo/Fancybuttons</a></p>
+<ol>
+<li>点击渐变动画</li>
+<li>FontAwesome字体型图形支持</li>
+<li>圆滑样式按钮
+<img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/fancy.png" alt=""></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/2017-09-20-MAC流浪软件WTF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/2017-09-20-MAC流浪软件WTF/" itemprop="url">MAC流浪软件WTF</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T15:35:35+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/20/2017-09-20-MAC流浪软件WTF/" class="leancloud_visitors" data-flag-title="MAC流浪软件WTF">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>log：20170920<br>
+今天在清除日志、缓存时无意间发现了MPlayer，大家围观下：
+<img src="http://ovyn1wiht.bkt.clouddn.com/image/blog/MPlayer_WTF.png" alt="">
+绝对路径是：/private/var/tmp/<br>
+上述提示中可看出是权限不够，祭出sudo大法就能删除🤗<br>
+我记得是在Application中删除了MPlayer的，没想到这里居然还有👿</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/13/2017-09-13-Hexo添加特效/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/13/2017-09-13-Hexo添加特效/" itemprop="url">Hexo添加特效</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T09:38:11+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/13/2017-09-13-Hexo添加特效/" class="leancloud_visitors" data-flag-title="Hexo添加特效">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          啦啦啦德玛西亚
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/15/android数据绑定学习之一/">
+            <a class="btn" href="/2017/09/13/2017-09-13-Hexo添加特效/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -545,7 +980,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/manifest文件相关/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/12/2017-09-12-搭建hexo-renderer-markdown-it环境/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Orice.Y.L.M">
@@ -564,7 +999,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/14/manifest文件相关/" itemprop="url">manifest文件相关</a></h1>
+                <a class="post-title-link" href="/2017/09/12/2017-09-12-搭建hexo-renderer-markdown-it环境/" itemprop="url">搭建hexo-renderer-markdown-it环境</a></h1>
         
 
         <div class="post-meta">
@@ -576,8 +1011,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T19:48:05+08:00">
-                2017-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-12T23:36:20+08:00">
+                2017-09-12
               </time>
             
 
@@ -594,7 +1029,7 @@
 
           
           
-             <span id="/2017/08/14/manifest文件相关/" class="leancloud_visitors" data-flag-title="manifest文件相关">
+             <span id="/2017/09/12/2017-09-12-搭建hexo-renderer-markdown-it环境/" class="leancloud_visitors" data-flag-title="搭建hexo-renderer-markdown-it环境">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -623,406 +1058,10 @@
 
       
         
-          <h4 id="js启动apk">js启动apk</h4>
-<h5 id="js端">js端</h5>
-<p>js地址写法</p>
-<blockquote></blockquote>
-<h5 id="android端">android端</h5>
-<p>在接收此条消息的activity上配置Intent，配置位置为manifest
-如地址：myapp://hf.app:9097/openwith?name=JKSH&amp;age=18的Intent配置如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;intent-filter&gt;  </span><br><span class="line">    &lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;  </span><br><span class="line">    &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;  </span><br><span class="line">&lt;/intent-filter&gt; </span><br><span class="line">&lt;intent-filter&gt;  </span><br><span class="line">    &lt;action android:name=&quot;android.intent.action.VIEW&quot;/&gt;  </span><br><span class="line">    &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;  </span><br><span class="line">    &lt;category android:name=&quot;android.intent.category.BROWSABLE&quot; /&gt;  </span><br><span class="line">    &lt;data android:scheme=&quot;myapp&quot; android:host=&quot;hf.app:9097&quot; android:pathPrefix=&quot;/openwith&quot;/&gt;  </span><br><span class="line">&lt;/intent-filter&gt;</span><br></pre></td></tr></table></figure>
-<p>上面的Activity接收两类Intent，一个是启动入口的Intent，一个是浏览器匹配的Intent</p>
+          更换渲染引擎hexo-renderer-marked为hexo-renderer-markdown-it
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/14/manifest文件相关/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/可拖动的ImageView/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/可拖动的ImageView/" itemprop="url">可拖动的ImageView</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T17:43:24+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/14/可拖动的ImageView/" class="leancloud_visitors" data-flag-title="可拖动的ImageView">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          简单图片的拖动和点击实现
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/14/可拖动的ImageView/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/Activity跳转动画/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/Activity跳转动画/" itemprop="url">Activity跳转动画</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T16:25:03+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/14/Activity跳转动画/" class="leancloud_visitors" data-flag-title="Activity跳转动画">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          overridePendingTransition的使用
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/14/Activity跳转动画/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/获取屏幕大小/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/10/获取屏幕大小/" itemprop="url">获取屏幕大小</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T19:35:05+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/10/获取屏幕大小/" class="leancloud_visitors" data-flag-title="获取屏幕大小">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="通过display获取">通过Display获取</h4>
-<p>首先获取WindowManager对象</p>
-<h5 id="方法一">方法一</h5>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);</span><br></pre></td></tr></table></figure>
-<h5 id="方法二">方法二</h5>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WindowManager wm = <span class="keyword">this</span>.getWindowManager();</span><br></pre></td></tr></table></figure>
-<p>然后通过Display获取屏幕的宽高</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> height = wm.getDefaultDisplay().getHeight();</span><br><span class="line"><span class="keyword">int</span> width = wm.getDefaultDisplay().getWidth();</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/10/获取屏幕大小/#more" rel="contents">
+            <a class="btn" href="/2017/09/12/2017-09-12-搭建hexo-renderer-markdown-it环境/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1063,7 +1102,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1108,7 +1147,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">107</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
