@@ -1,0 +1,1044 @@
+<!doctype html>
+
+
+
+  
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Android系统知识之二">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="View系统，绘制原理，事件分发">
+<meta property="og:url" content="http://yoursite.com/2017/05/19/android/android_2_绘制原理和事件分发/index.html">
+<meta property="og:site_name" content="眷顾の幻想乡">
+<meta property="og:description" content="Android系统知识之二">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-02T12:17:55.569Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="View系统，绘制原理，事件分发">
+<meta name="twitter:description" content="Android系统知识之二">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/19/android/android_2_绘制原理和事件分发/"/>
+
+
+
+
+
+  <title>View系统，绘制原理，事件分发 | 眷顾の幻想乡</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cbebc032aecfdda47d379bb5a9fb19e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">眷顾の幻想乡</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            小窝
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-clipboard"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            银河尽头
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/19/android/android_2_绘制原理和事件分发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">View系统，绘制原理，事件分发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T02:00:00+08:00">
+                2017-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/19/android/android_2_绘制原理和事件分发/" class="leancloud_visitors" data-flag-title="View系统，绘制原理，事件分发">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Android系统知识之二
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="view定义了绘图的基本操作">View定义了绘图的基本操作</h3>
+<p>基本操作由三个函数完成：measure()、layout()、draw()，其内部又分别包含了onMeasure()、onLayout()、onDraw()三个子方法。可以类比于PS上的操作：新建画布时先确定画布大小，确定画布后框出选区，确定选区后在其上绘图。
+具体操作如下:</p>
+<h4 id="measure操作">measure操作</h4>
+<p>measure操作主要用于计算视图的大小，即视图的宽度和长度。在view中定义为final类型，要求子类不能修改。measure()函数中又会调用下面的函数：
+（1）onMeasure()，视图大小的将在这里最终确定，也就是说measure只是对onMeasure的一个包装，子类可以覆写onMeasure()方法实现自己的计算视图大小的方式，并通过setMeasuredDimension(width, height)保存计算结果。</p>
+<h4 id="layout操作">layout操作</h4>
+<p>layout操作用于设置视图在屏幕中显示的位置。在view中定义为final类型，要求子类不能修改。layout()函数中有两个基本操作：
+（1）setFrame（l,t,r,b），l,t,r,b即子视图在父视图中的具体位置，该函数用于将这些参数保存起来；
+      <small>PS:定位是根据斜方向两点坐标框定的矩形图来确定的，矩形是一切布局的基础</small>
+（2）onLayout()，在View中这个函数什么都不会做，提供该函数主要是为viewGroup类型布局子视图用的；
+      <small>PS:与之相对的，在LayoutParam中设置的属性，是子视图为父视图准备的</small></p>
+<h4 id="draw操作">draw操作</h4>
+<p>draw操作利用前两部得到的参数，将视图显示在屏幕上，到这里也就完成了整个的视图绘制工作。子类也不应该修改该方法，因为其内部定义了绘图的基本操作：
+（1）绘制背景；
+（2）如果要视图显示渐变框，这里会做一些准备工作；
+（3）绘制视图本身，即调用onDraw()函数。在view中onDraw()是个空函数，也就是说具体的视图都要覆写该函数来实现自己的显示（比如TextView在这里实现了绘制文字的过程）。而对于ViewGroup则不需要实现该函数，因为作为容器是“没有内容“的，其包含了多个子view，而子View已经实现了自己的绘制方法，因此只需要告诉子view绘制自己就可以了，也就是下面的dispatchDraw()方法;
+（4）绘制子视图，即dispatchDraw()函数。在view中这是个空函数，具体的视图不需要实现该方法，它是专门为容器类准备的，也就是容器类必须实现该方法；
+（5）如果需要（应用程序调用了setVerticalFadingEdge或者setHorizontalFadingEdge），开始绘制渐变框；
+（6）绘制滚动条；
+从上面可以看出自定义View需要最少覆写onMeasure()和onDraw()两个方法。
+layout默认是布局大小，measure可以在xml中设定，所以自定义view中改写draw的会多一些。</p>
+<h3 id="viewgroup中的扩展操作">ViewGroup中的扩展操作</h3>
+<p>首先Viewgroup是一个抽象类。</p>
+<h4 id="对子视图的measure过程">对子视图的measure过程</h4>
+<p>（1）measureChildren()，内部使用一个for循环对子视图进行遍历，分别调用子视图的measure()方法；
+（2）measureChild()，为指定的子视图measure，会被 measureChildren调用；
+（3）measureChildWithMargins()，为指定子视图考虑了margin和padding的measure；
+以上三个方法是ViewGroup提供的3个对子view进行测量的参考方法，设计者需要在实际中首先覆写onMeasure()，之后再对子view进行遍历measure，这时候就可以使用以上三个方法，当然也可以自定义方法进行遍历。</p>
+<h4 id="对子视图的layout过程">对子视图的layout过程</h4>
+<p>在ViewGroup中onLayout()被定义为abstract类型，也就是具体的容器必须实现此方法来安排子视图的布局位置，实现中主要考虑的是视图的大小及视图间的相对位置关系，如gravity、layout_gravity。</p>
+<h4 id="对子视图的draw过程">对子视图的draw过程</h4>
+<p>（1）dispatchDraw()，该方法用于对子视图进行遍历然后分别让子视图分别draw，方法内部会首先处理布局动画（也就是说布局动画是在这里处理的），如果有布局动画则会为每个子视图产生一个绘制时间，之后再有一个for循环对子视图进行遍历，来调用子视图的draw方法（实际为下边的drawChild()）；
+（2）drawChild()，该方法用于具体调用子视图的draw方法，内部首先会处理视图动画（也就是说视图动画是在这里处理的），之后调用子视图的draw()。
+从上面分析可以看出自定义viewGroup的时候需要最少覆写onMeasure()和onLayout()方法，其中onMeasure方法中可以直接调用measureChildren等已有的方法，而onLayout方法就需要设计者进行完整的定义；一般不需要覆写以dispatchDraw()和drawChild()这两个方法，因为上面两个方法已经完成了基本的事情。但是可以通过覆写在该基础之上做一些特殊的效果，比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">dispatchDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//可以在这里先做一些处理，包括对传入的canvas</span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="keyword">super</span>.dispatchDraw(canvas);         <span class="comment">//这里会调用drawChild绘制子视图 </span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="comment">//所有子视图都绘制完成后这里还可以做一些处理，比如绘制阴影什么的 </span></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="view绘制的其他操作">View绘制的其他操作</h3>
+<p>从以上分析可以看出View树的绘制是一个递归的过程，从ViewGroup一直向下遍历，直到所有的子view都完成绘制，那这一切的源头在什么地方（是谁最发起measure、layout和draw的）？当然就是在View树的源头了——ViewRoot！，ViewRoot中包含了窗口的总容器DecorView，ViewRoot中的performTraversal()方法会依次调用decorView的measure、layout、draw方法，从而完成view树的绘制。</p>
+<h4 id="invalidate-方法">invalidate()方法</h4>
+<p>invalidate()方法会导致View树的重新绘制，而且view中的状态标志mPrivateFlags中有一个关于当前视图是否需要重绘的标志位DRAWN，也就是说只有标志位DRAWN置位的视图才需要进行重绘。当视图调用invalidate()方法时，首先会将当前视图的DRAWN标志置位，之后有一个循环调用parent.invalidateChildinParent()，这样会导致从当前视图依次向上遍历直到根视图ViewRoot，这个过程会将需要重绘的视图标记DRAWN置位，之后ViewRoot调用performTraversals()方法，完成视图的绘制过程。</p>
+<h3 id="绘制模型">绘制模型</h3>
+<p>目前android有两种绘制模型：基于软件的绘制模型和基于硬件加速的绘制模型（从Android3.0开始全面支持）</p>
+<h4 id="基于软件的绘制模型">基于软件的绘制模型</h4>
+<p>在基于软件的绘制模型下，CPU主导绘图，视图按照两个步骤绘制：</p>
+<ol>
+<li>让View层次结构失效</li>
+<li>绘制View层次结构</li>
+</ol>
+<p>当应用程序需要更新它的部分UI时，都会调用内容发生改变的View对象的invalidate()方法。无效（invalidation）消息请求会在View对象层次结构中传递，以便计算出需要重绘的屏幕区域（脏区）。然后，Android系统会在View层次结构中绘制所有的跟脏区相交的区域。不幸的是，这种方法有两个缺点：</p>
+<ul>
+<li>绘制了不需要重绘的视图（与脏区域相交的区域）</li>
+<li>掩盖了一些应用的bug（由于会重绘与脏区域相交的区域）</li>
+</ul>
+<p>注意：在View对象的属性发生变化时，如背景色或TextView对象中的文本等，Android系统会自动的调用该View对象的invalidate()方法。</p>
+<h4 id="基于硬件加速的绘制模型">基于硬件加速的绘制模型</h4>
+<p>在基于硬件加速的绘制模式下，GPU主导绘图，绘制按照三个步骤绘制：</p>
+<ol>
+<li>让View层次结构失效</li>
+<li>记录、更新显示列表</li>
+<li>绘制显示列表</li>
+</ol>
+<p>这种模式下，Android系统依然会使用invalidate()方法和draw()方法来请求屏幕更新和展现View对象。但Android系统并不是立即执行绘制命令，而是首先把这些View的绘制函数作为绘制指令记录一个显示列表中，然后再读取显示列表中的绘制指令调用OpenGL相关函数完成实际绘制。另一个优化是，Android系统只需要针对由invalidate()方法调用所标记的View对象的脏区进行记录和更新显示列表。没有失效的View对象则能重放先前显示列表记录的绘制指令来进行简单的重绘工作。
+使用显示列表的目的是，把视图的各种绘制函数翻译成绘制指令保存起来，对于没有发生改变的视图把原先保存的操作指令重新读取出来重放一次就可以了，提高了视图的显示速度。而对于需要重绘的View，则更新显示列表，以便下次重用，然后再调用OpenGL完成绘制。
+硬件加速提高了Android系统显示和刷新的速度，但它也不是万能的，它有三个缺陷：</p>
+<ul>
+<li>兼容性（部分绘制函数不支持或不完全硬件加速，参见文章尾）</li>
+<li>内存消耗（OpenGL API调用就会占用8MB，而实际上会占用更多内存）</li>
+<li>电量消耗（GPU耗电）</li>
+</ul>
+<h3 id="显示刷新机制">显示刷新机制</h3>
+<p>双缓冲技术，VSync和三重缓冲区等
+16ms
+Display的FPS,CPU/GPU的FPS等
+更进一步可参阅：
+[UI绘制原理(一)]：<a href="http://blog.csdn.net/itluochen/article/details/52506115" target="_blank" rel="noopener">http://blog.csdn.net/itluochen/article/details/52506115</a>
+[UI绘制原理(二)]：<a href="http://blog.csdn.net/itluochen/article/details/52506173" target="_blank" rel="noopener">http://blog.csdn.net/itluochen/article/details/52506173</a></p>
+<h3 id="事件分发机制">事件分发机制</h3>
+<p>理清android的事件分发机制，需要了解两点：事件以及分发。</p>
+<h4 id="事件">事件</h4>
+<p>android中View的事件主要指Touch事件，控件的点击，选择等事件不在本处讨论。
+比如，可以理解为“在小范围移动”是点击事件或者选中事件，这可归属到“事件的定性”范围去考虑。
+Touch事件主要包含三个部分：</p>
+<ul>
+<li>Acition_Down</li>
+<li>Action_MOVE</li>
+<li>Aciton_UP</li>
+</ul>
+<p>并且，这三个事件是存在逻辑的。如果没有接收到Acition_Down，那么，View不会被认为可以处理Action_MOVE和Aciton_UP。也就是说，一个完整的事件是由一个Acition_Down，N个Action_MOVE，一个Aciton_UP组成的。其中，Action_MOVE可以为0，有些控件的优化时，可能会屏蔽掉Action_MOVE事件，这是允许的，可以直接认为是点击事件。
+这部分逻辑也体现在了事件分发中，当View没有接收到Acition_Down处理信号时，同样丧失了处理Action_MOVE和Aciton_UP的权利。</p>
+<h4 id="分发和消费">分发和消费</h4>
+<p>分发就像是一个组织发布内部指令，从上级依次往下传递指令。当我们Touch到屏幕上的某一个点时，与这个点相关的控件可以抽出来，按照父子关系依次向下排列，可以类比成一个线性组织关系图，这就是指令传递的顺序。
+事件的消费，或者说处理，指的是由哪个控件来处理这个事件。与分发相反的是，事件的处理是从“被通知到的下级”一层一层网上汇报，直到有控件处理本次事件。如果一直传递到最上层也没处理，意味着，这次事件不做任何处理。
+或者说，事件的分发和处理就是两个对向循环，按顺序找到相关控件，再反向找可反馈的控件，找到了就break。
+事件的分发和消费主要涉及3个方法：</p>
+<ul>
+<li>dispatchTouchEvent(MotionEvent ev) 分发事件</li>
+<li>onInterceptTouchEvent(MotionEvent ev) 拦截事件</li>
+<li>onTouchEvent((MotionEvent ev) 处理事件</li>
+</ul>
+<p>这三个方法都有一个boolean返回值，其中true表示接受任务，false表示不接受任务(下发或者上抛)。dispatchTouchEvent的处理稍有差异：</p>
+<ul>
+<li>dispatchTouchEvent的事件下发，是借助onInterceptTouchEvent进入到下一级的dispatchTouchEvent。因此，要正常下发，需要返回super.dispatchTouchEvent。</li>
+<li>如果改写dispatchTouchEvent时直接返回false，表示命令未处理，但是不下发到下级控件，而是调用本层View的onTouchEvent，执行事件处理程序。</li>
+<li>如果dispatchTouchEvent返回true，则表示命令已处理，与onInterceptTouchEvent和onTouchEvent都没有关系了。</li>
+</ul>
+<p>Acition_Down在事件处理机制中代表两层意思：本身的下按指令，Touch事件的起始。
+Acition_Down通过dispatchTouchEvent分发，分发的目的是为了找到真正需要处理完整Touch请求的View。当某个View或者ViewGroup的onTouchEvent事件返回true时，便表示它是真正要处理这次请求的View，之后的Aciton_UP和Action_MOVE将由它处理。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/tip.png" alt="Orice.Y.L.M wechat" style="width: 200px; max-width: 100%;"/>
+    <div>对商人来说，察觉对方想要什么是必须具备的技能</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/18/index/" rel="next" title="标签测试页面">
+                <i class="fa fa-chevron-left"></i> 标签测试页面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/19/lifeStyle/隐杀/" rel="prev" title="隐杀">
+                隐杀 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+       
+         <div onclick="ShowGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+         <div id="gitment-container" style="display:none"></div>
+       
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="Orice.Y.L.M" />
+          <p class="site-author-name" itemprop="name">Orice.Y.L.M</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">147</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Burst Linker
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dtysky.moe" title="dtysky" target="_blank">dtysky</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/iissnan/hexo-theme-next" title="hexo-next" target="_blank">hexo-next</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/fsf_snail" title="CSDN&copy;蜗牛慢慢跑" target="_blank">CSDN&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/u/64cd56319477" title="简书&copy;蜗牛慢慢跑" target="_blank">简书&copy;蜗牛慢慢跑</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://fontawesome.io/cheatsheet/" title="Cheatsheet" target="_blank">Cheatsheet</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blankj.com/2016/07/31/android-utils-code/" title="AndroidUtilCode&copy;blankj" target="_blank">AndroidUtilCode&copy;blankj</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://xiaozhuanlan.com/cheaptalks" title="小专栏&copy;YogiAi" target="_blank">小专栏&copy;YogiAi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/Stay" title="stay&copy;有心课堂" target="_blank">stay&copy;有心课堂</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#view定义了绘图的基本操作"><span class="nav-number">1.</span> <span class="nav-text">View定义了绘图的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#measure操作"><span class="nav-number">1.1.</span> <span class="nav-text">measure操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#layout操作"><span class="nav-number">1.2.</span> <span class="nav-text">layout操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#draw操作"><span class="nav-number">1.3.</span> <span class="nav-text">draw操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#viewgroup中的扩展操作"><span class="nav-number">2.</span> <span class="nav-text">ViewGroup中的扩展操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对子视图的measure过程"><span class="nav-number">2.1.</span> <span class="nav-text">对子视图的measure过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对子视图的layout过程"><span class="nav-number">2.2.</span> <span class="nav-text">对子视图的layout过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对子视图的draw过程"><span class="nav-number">2.3.</span> <span class="nav-text">对子视图的draw过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#view绘制的其他操作"><span class="nav-number">3.</span> <span class="nav-text">View绘制的其他操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#invalidate-方法"><span class="nav-number">3.1.</span> <span class="nav-text">invalidate()方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制模型"><span class="nav-number">4.</span> <span class="nav-text">绘制模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于软件的绘制模型"><span class="nav-number">4.1.</span> <span class="nav-text">基于软件的绘制模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于硬件加速的绘制模型"><span class="nav-number">4.2.</span> <span class="nav-text">基于硬件加速的绘制模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示刷新机制"><span class="nav-number">5.</span> <span class="nav-text">显示刷新机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件分发机制"><span class="nav-number">6.</span> <span class="nav-text">事件分发机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件"><span class="nav-number">6.1.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分发和消费"><span class="nav-number">6.2.</span> <span class="nav-text">分发和消费</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Orice.Y.L.M</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           function ShowGitment(){
+               document.getElementById("gitment-display-button").style.display = "none";
+               document.getElementById("gitment-container").style.display = "block";
+               var gitment = new Gitment({
+                   id: '1495130400000', 
+                   owner: 'yilimy',
+                   repo: 'OriceComments',
+                   oauth: {
+                       client_id: '284d05afd92f0b10e028',
+                       client_secret: '143edf1e42d35730d24bc0732b645c5f09197299',
+                   }});
+               gitment.render('gitment-container');
+           }
+       </script>
+   
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("IeXcUcLh4E6UmmX4F6zPclkF-gzGzoHsz", "8dcbzKIndIphm1YLiTwzAFX6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+  <!-- 背景动画 -->
+  <!-- <script type="text/javascript" color="0,0,255" opacity="0.9" count="59"  src="/lib/canvas-nest/canvas-nest.min.js"></script> -->
+</body>
+</html>
