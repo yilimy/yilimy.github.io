@@ -369,45 +369,20 @@
 
       
         
-          
-            <h4 id="hwpointeventfilter">HwPointEventFilter</h4>
+          <h4 id="hwpointeventfilter">HwPointEventFilter</h4>
 <ol>
 <li>检查drawable中的selector没有问题</li>
 <li>xml中的资源文件引用也没有问题</li>
 </ol>
 <p>后台提示信息：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I/HwPointEventFilter: ACTION_DOWN has not handle</span><br></pre></td></tr></table></figure>
-<p>press事件(控件触摸变色)没有反映<br>
-网上查询的结果有说是第二次启动界面时就好了<br>
-<a href="http://club.huawei.com/viewthreaduni-11986168-filter-author-orderby-dateline-page-1-1.html" target="_blank" rel="noopener">http://club.huawei.com/viewthreaduni-11986168-filter-author-orderby-dateline-page-1-1.html</a><br>
-但并不是，问题依然存在<br>
-看到日志中有：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open &apos;/dev/hwlog_switch&apos; fail -1, 13. Permission denied</span><br></pre></td></tr></table></figure>
-<p>于是想查看详细日志，未果。<br>
-<a href="https://blog.csdn.net/u012955029/article/details/53648716" target="_blank" rel="noopener">https://blog.csdn.net/u012955029/article/details/53648716</a><br>
-关于“使用旧版DHCP客户端”的选项也是没有找到(华为P9/android 7.0/EMIUI 5.0)<br>
-想了下，给控件强制绑定一个onClick事件会怎样？ACTION_DOWN就会“强制”(猜测)传递给控件<br>
-Done !<br>
-猜测：press被“优化”了，检查到没有onclick事件不触发Press效果</p>
-<ol>
-<li>华为对触摸事件的优化，毕竟是HwPointEventFilter的提示信息</li>
-<li>android 7.0中哪个版本中的规则变动<br>
-a. 没有相关消息<br>
-b. 与本身描述(press)不符</li>
-</ol>
-<p>大概率是华为的“优化”：没有检查到点击等相关事件时，中断Event传递，然而，并没有找到相关资料</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// TODO 补充？？？</span><br></pre></td></tr></table></figure>
-<p>自定义IFrameLayout测试onTouchEvent后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D/tag: [onTouchEvent] ACTION_DOWN : 1522723109424</span><br><span class="line">I/HwPointEventFilter: ACTION_DOWN has not handle</span><br></pre></td></tr></table></figure>
-<p>说明ACTION_DOWN被正确接收并触发了onTouchEvent(事件处理环节的其中一方)，“not handle”描述并不准确，或者存在误导？<br>
-添加一个空事件onClick方法后</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vTopLeft.setOnClickListener(<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
-<p>界面效果能正常显示，说明不是检查有没有事件，而是检查编译过程中有没有“setOnClickListener”这样类似的代码？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// TODO 补充？？？</span><br></pre></td></tr></table></figure>
-<p>暂时到这里，项目上的时间不允许深究，都是打工的，相互理解吧<br>
-PS : 部分android代码，边界很清晰，是好代码。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/03/android/20180403适配遇到的坑/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
