@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="眷顾の幻想乡">
 <meta property="og:description" content="最近些许疲惫，想着，给自己一个工作时段安排吧 于是，就想着，来一段python，让mac优雅地提示我:该休息了… notification on mac 可能需要来一个提示框，就像android或者windows那样，但显然并不优雅。 明白内心真正想要的：   不需要音乐，告诉周围的人，自己在作死？No, No, No 不需要炫酷的效果，亲爱的，你已经很疲惫，我们不要那些博眼球的玩意儿，对吧 不需">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T03:12:58.967Z">
+<meta property="og:updated_time" content="2018-04-10T03:48:19.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pythonCooperateWithMac">
 <meta name="twitter:description" content="最近些许疲惫，想着，给自己一个工作时段安排吧 于是，就想着，来一段python，让mac优雅地提示我:该休息了… notification on mac 可能需要来一个提示框，就像android或者windows那样，但显然并不优雅。 明白内心真正想要的：   不需要音乐，告诉周围的人，自己在作死？No, No, No 不需要炫酷的效果，亲爱的，你已经很疲惫，我们不要那些博眼球的玩意儿，对吧 不需">
@@ -378,13 +378,13 @@
 <ol>
 <li>不需要音乐，告诉周围的人，自己在作死？No, No, No</li>
 <li>不需要炫酷的效果，亲爱的，你已经很疲惫，我们不要那些博眼球的玩意儿，对吧</li>
-<li>不需要点击关闭，告诉我，这项确认是不是反人类…emmm, Jarvis, your time!</li>
+<li>不需要点击关闭，告诉我，这项确认是不是反人类<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>…emmm, Jarvis, your time!</li>
 </ol>
 </blockquote>
 <p>我的系统就能很好的胜任这项工作，感谢 <a href="https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel" title="Ask Different" target="_blank" rel="noopener">Ask Different</a>提供的帮助<br>
 &quot;No 3rd-party libraries or apps required and is completely portable for use on other systems.&quot;<br>
 &quot;10.9 notification on the top, 10.10 DP in the middle, 10.10 on the bottom.&quot;<br>
-虽然我并没有发现middle和bottom<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup><br>
+虽然我并没有发现middle和bottom<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup><br>
 标的命令是在/usr/bin下的osascript</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin</span><br><span class="line">$ osascript -e <span class="string">'display notification "Lorem ipsum dolor sit amet" with title "Title"'</span></span><br></pre></td></tr></table></figure>
 <p>带副标题的</p>
@@ -398,7 +398,7 @@
 </ul>
 <p>我的私有目录下好像是没有文件，错觉错觉，哈哈哈
 个人推荐系统目录下的Glass.aiff、Ping.aiff，Purr.aiff也可以的</p>
-<p>了解更多：osascript API<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>了解更多：osascript API<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
 <h4 id="python-invoke-command">python invoke command</h4>
 <p>剩下的就是python执行mac命令了，导入subprocess包<br>
 定义def  command</p>
@@ -408,9 +408,13 @@
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>本地 Mac OS Version 10.13.2 (17C88) <a href="#fnref1" class="footnote-backref">↩</a></p>
+<li id="fn1" class="footnote-item"><p>确定有这种需求？请在“系统偏好”-&gt;“通知”-&gt;“脚本编辑器”，把“横幅”变为“提示”，同时可以看到icon是脚本编辑器的图标，怕是不容易改动了 <a href="#fnref1" class="footnote-backref">↩</a></p>
 </li>
-<li id="fn2" class="footnote-item"><p>osascriptAPI   <a href="https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html</a> <a href="#fnref2" class="footnote-backref">↩</a></p>
+<li id="fn2" class="footnote-item"><p>本地 Mac OS Version 10.13.2 (17C88) <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>osascriptAPI   <a href="https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html</a><br>
+Apple developer - Notifications<br>
+<a href="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/DisplayNotifications.html#//apple_ref/doc/uid/TP40016239-CH61-SW1" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/DisplayNotifications.html#//apple_ref/doc/uid/TP40016239-CH61-SW1</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
 </li>
 </ol>
 </section>
