@@ -291,6 +291,166 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/25/android/2017-10-25-assets目录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Orice.Y.L.M">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="眷顾の幻想乡">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/android/2017-10-25-assets目录/" itemprop="url">Assets目录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T15:31:58+08:00">
+                2017-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/25/android/2017-10-25-assets目录/" class="leancloud_visitors" data-flag-title="Assets目录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="assets特性">Assets特性</h4>
+<p>编码</p>
+<blockquote>
+<p>assets目录下存放的原生资源文件，在编译的时候不会编译assets文件夹下的内容。<br>
+特权阶级😱</p>
+</blockquote>
+<p>文件路径</p>
+<blockquote>
+<p>有说法称，apk安装之后，会放在/data/app/**.apk目录下，以apk的形式存在，assets和res被绑定在apk中，并不会解压到
+/data/data/YourApp目录下去。我们没办法直接获取到assets的绝对路径，因为它根本不存在。<br>
+我在故我在👻</p>
+</blockquote>
+<h4 id="数据获取">数据获取</h4>
+<p>通过AssetManager对象类获取assets文件夹下的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AssetManager asset = getAssets()  ;</span><br><span class="line">InputStream is = asset.open(fileName) ;</span><br></pre></td></tr></table></figure>
+<p>获取assets文件夹下的文件列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">asset.list(<span class="string">""</span>) ;  <span class="comment">//  assets下的文件名和子文件夹名数组</span></span><br><span class="line">asset.list(<span class="string">"folderName"</span>) ;  <span class="comment">//  assets/folderName下的文件名和子文件夹名数组</span></span><br></pre></td></tr></table></figure>
+<p>还可以通过Uri来访问</p>
+<ul>
+<li>file模式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String assetsUriStr = <span class="string">"file:///android_asset/fileName"</span>; <span class="comment">// assets文件夹下的fileName的Uri</span></span><br><span class="line">assetsUriStr = <span class="string">"file:///android_asset/test.html"</span>;</span><br><span class="line">webView.loadUrl(assetsUriStr);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>assets模式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String assetsUriStr = <span class="string">"assets:///fileName"</span>; <span class="comment">// assets文件夹下的fileName的Uri</span></span><br></pre></td></tr></table></figure>
+<p>嘛🦑据说有些歪果仁出现了&quot;file not found&quot;错误，这套方法其实是不稳定的吧🦈<br>
+<em>@ 为了代码的完美，为了程序的健全，为了维护世界的和平 @</em><br>
+我们需要更稳定的方式来获取assets中的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InputStream is=getResources().getAssets().open(<span class="string">"xyz.xml"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="产品经理时间">产品经理时间</h4>
+<p>“我就是需要获取到文件的绝对路径”🚐<br>
+在没人知道的情况下，🌺我们可以这样:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 把assets目录下的文件拷贝到SD卡中</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> srcFileName</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> desFileName</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyBigDataToSD</span><span class="params">(String srcFileName, String desFileName)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">	InputStream myInput;</span><br><span class="line">	OutputStream myOutput = <span class="keyword">new</span> FileOutputStream(getHFSdCardPath() + desFileName);</span><br><span class="line">	myInput = HoofooManager.getContext().getAssets().open(srcFileName);</span><br><span class="line">	<span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">	<span class="keyword">int</span> length = myInput.read(buffer);</span><br><span class="line">	<span class="keyword">while</span>(length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		myOutput.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">		length = myInput.read(buffer);</span><br><span class="line">	&#125;</span><br><span class="line">	myOutput.flush();</span><br><span class="line">	myInput.close();</span><br><span class="line">	myOutput.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>呐呐呐，丢你绝对路径🐳</p>
+<h4 id="类比">类比</h4>
+<p>从某中意义上说res/raw文件夹具有类似的属性，但是raw下不能新建文件夹。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = getResources().openRawResource(R.id.fileNameID) ;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/26/android/2017-09-26-开发文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -971,133 +1131,6 @@ Connection refused<br>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/12/hexo/2017-09-12-搭建hexo-renderer-markdown-it环境/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Orice.Y.L.M">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="眷顾の幻想乡">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/12/hexo/2017-09-12-搭建hexo-renderer-markdown-it环境/" itemprop="url">搭建hexo-renderer-markdown-it环境</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-12T23:36:20+08:00">
-                2017-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/12/hexo/2017-09-12-搭建hexo-renderer-markdown-it环境/" class="leancloud_visitors" data-flag-title="搭建hexo-renderer-markdown-it环境">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          更换渲染引擎hexo-renderer-marked为hexo-renderer-markdown-it
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/12/hexo/2017-09-12-搭建hexo-renderer-markdown-it环境/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1147,7 +1180,7 @@ Connection refused<br>
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">149</span>
+                <span class="site-state-item-count">150</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
