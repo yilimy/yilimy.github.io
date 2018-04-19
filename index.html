@@ -369,7 +369,8 @@
 
       
         
-          <p>不需要翻墙的中文API地址<br>
+          <p><img src="http://ovyn1wiht.bkt.clouddn.com/forever7_jly.png" alt="">
+不需要翻墙的中文API地址<br>
 <a href="http://www.android-doc.com/reference/android/bluetooth/package-summary.html" target="_blank" rel="noopener">蓝牙API &lt;=19 </a><br>
 <a href="http://android.xsoftlab.net/reference/android/bluetooth/package-summary.html" target="_blank" rel="noopener">蓝牙API &lt;=23 </a><br>
 <a href="https://juejin.im/entry/57baab61165abd006624d438" target="_blank" rel="noopener">蓝牙API参考</a></p>
@@ -499,59 +500,16 @@
 
       
         
-          
-            <p>最近些许疲惫，想着，给自己一个工作时段安排吧<br>
+          <p><img src="http://ovyn1wiht.bkt.clouddn.com/forever7_yh.png" alt="">
+最近些许疲惫，想着，给自己一个工作时段安排吧<br>
 于是，就想着，来一段python，让mac优雅地提示我:该休息了…</p>
-<h4 id="notification-on-mac">notification on mac</h4>
-<p>可能需要来一个提示框，就像android或者windows那样，但显然并不优雅。<br>
-明白内心真正想要的：</p>
-<blockquote>
-<ol>
-<li>不需要音乐，告诉周围的人，自己在作死？No, No, No</li>
-<li>不需要炫酷的效果，亲爱的，你已经很疲惫，我们不要那些博眼球的玩意儿，对吧</li>
-<li>不需要点击关闭，告诉我，这项确认是不是反人类<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>…emmm, Jarvis, your time!</li>
-</ol>
-</blockquote>
-<p>我的系统就能很好的胜任这项工作，感谢 <a href="https://apple.stackexchange.com/questions/57412/how-can-i-trigger-a-notification-center-notification-from-an-applescript-or-shel" title="Ask Different" target="_blank" rel="noopener">Ask Different</a>提供的帮助<br>
-&quot;No 3rd-party libraries or apps required and is completely portable for use on other systems.&quot;<br>
-&quot;10.9 notification on the top, 10.10 DP in the middle, 10.10 on the bottom.&quot;<br>
-虽然我并没有发现middle和bottom<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup><br>
-标的命令是在/usr/bin下的osascript</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin</span><br><span class="line">$ osascript -e <span class="string">'display notification "Lorem ipsum dolor sit amet" with title "Title"'</span></span><br></pre></td></tr></table></figure>
-<p>带副标题的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ osascript -e &apos;display notification &quot;Lorem ipsum dolor sit amet&quot; with title &quot;Title&quot; subtitle &quot;subtitle&quot;&apos;</span><br></pre></td></tr></table></figure>
-<p>当然也可以有声音</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">osascript -e &apos;display notification &quot;message&quot; sound name &quot;Sound Name&quot;&apos;</span><br></pre></td></tr></table></figure>
-<p>系统默认的声音目录</p>
-<ul>
-<li><code>~/Library/Sounds</code></li>
-<li><code>/System/Library/Sounds</code></li>
-</ul>
-<p>我的私有目录下好像是没有文件，错觉错觉，哈哈哈
-个人推荐系统目录下的Glass.aiff、Ping.aiff，Purr.aiff也可以的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// @ 20180411补充</span><br><span class="line">osascript -e &apos;display notification &quot;message&quot; sound name &quot;Glass&quot;&apos;</span><br></pre></td></tr></table></figure>
-<p>了解更多：osascript API<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
-<h4 id="python-invoke-command">python invoke command</h4>
-<p>剩下的就是python执行mac命令了，导入subprocess包<br>
-定义def  command</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"></span><br><span class="line">cmd = <span class="string">'display notification \"'</span> + \</span><br><span class="line">    <span class="string">"Notificaton memo"</span> + <span class="string">'\" with title \"Titile\"'</span></span><br><span class="line">    </span><br><span class="line">call([<span class="string">"osascript"</span>, <span class="string">"-e"</span>, cmd])</span><br></pre></td></tr></table></figure>
-<p>定时调用</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每隔45分钟提醒一次</span></span><br><span class="line">DURING = <span class="number">60</span> * <span class="number">45</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    command()</span><br><span class="line">    <span class="comment"># 据观察mac的提示持续时间在5秒左右</span></span><br><span class="line">    time.sleep(DURING)</span><br></pre></td></tr></table></figure>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>确定有这种需求？请在“系统偏好”-&gt;“通知”-&gt;“脚本编辑器”，把“横幅”变为“提示”，同时可以看到icon是脚本编辑器的图标，怕是不容易改动了 <a href="#fnref1" class="footnote-backref">↩</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>本地 Mac OS Version 10.13.2 (17C88) <a href="#fnref2" class="footnote-backref">↩</a></p>
-</li>
-<li id="fn3" class="footnote-item"><p>osascriptAPI   <a href="https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html</a><br>
-Apple developer - Notifications<br>
-<a href="https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/DisplayNotifications.html#//apple_ref/doc/uid/TP40016239-CH61-SW1" target="_blank" rel="noopener">https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/DisplayNotifications.html#//apple_ref/doc/uid/TP40016239-CH61-SW1</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
-</li>
-</ol>
-</section>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/mac/20180410pythonCooperateWithMac/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
