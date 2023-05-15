@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>代码符号乱码</title>
+      <link href="/2023/05/15/dai-ma-fu-hao-luan-ma/"/>
+      <url>/2023/05/15/dai-ma-fu-hao-luan-ma/</url>
+      
+        <content type="html"><![CDATA[<ul><li>代码符号乱码</li></ul><p>找到仓库目录</p><pre class=" language-cmd"><code class="language-cmd">\node_modules\hexo-prism-plugin\src\index.js</code></pre><p>在变量中添加大括号的映射，e.g.</p><pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token punctuation">{</span>  <span class="token string">'&amp;#39;'</span><span class="token punctuation">:</span> <span class="token string">'\''</span><span class="token punctuation">,</span>  <span class="token string">'&amp;amp;'</span><span class="token punctuation">:</span> <span class="token string">'&amp;'</span><span class="token punctuation">,</span>  <span class="token string">'&amp;gt;'</span><span class="token punctuation">:</span> <span class="token string">'>'</span><span class="token punctuation">,</span>  <span class="token string">'&amp;lt;'</span><span class="token punctuation">:</span> <span class="token string">'&lt;'</span><span class="token punctuation">,</span>  <span class="token string">'&amp;quot;'</span><span class="token punctuation">:</span> <span class="token string">'"'</span><span class="token punctuation">,</span>  <span class="token string">'&amp;#123;'</span><span class="token punctuation">:</span> <span class="token string">'{'</span><span class="token punctuation">,</span>  <span class="token string">'&amp;#125;'</span><span class="token punctuation">:</span> <span class="token string">'}'</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><ul><li>Typora和微软拼音冲突</li></ul><p>在标题栏下面，多换行几次，在进入正文书写</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>jackson的序列化和反序列化</title>
+      <link href="/2023/05/15/jackson-de-xu-lie-hua-he-fan-xu-lie-hua/"/>
+      <url>/2023/05/15/jackson-de-xu-lie-hua-he-fan-xu-lie-hua/</url>
+      
+        <content type="html"><![CDATA[<p>需要在属性上添加</p><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@JsonSerialize</span><span class="token punctuation">(</span>using <span class="token operator">=</span> Base64Serializer<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token annotation punctuation">@JsonDeserialize</span><span class="token punctuation">(</span>using <span class="token operator">=</span> Base64Deserializer<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token keyword">private</span> String documentId<span class="token punctuation">;</span></code></pre><p>序列化</p><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Base64Serializer</span> <span class="token keyword">extends</span> <span class="token class-name">JsonSerializer</span><span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span>    <span class="token annotation punctuation">@Override</span>    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">serialize</span><span class="token punctuation">(</span>String s<span class="token punctuation">,</span> JsonGenerator jsonGenerator<span class="token punctuation">,</span> SerializerProvider serializerProvider<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>            <span class="token comment" spellcheck="true">// 对返回的非空字符串进行base64编码</span>            s <span class="token operator">=</span> Base64<span class="token punctuation">.</span><span class="token function">getEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encodeToString</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        jsonGenerator<span class="token punctuation">.</span><span class="token function">writeObject</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre><p>反序列化</p><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Base64Deserializer</span> <span class="token keyword">extends</span> <span class="token class-name">JsonDeserializer</span><span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span>    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>Base64Deserializer<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token annotation punctuation">@Override</span>    <span class="token keyword">public</span> String <span class="token function">deserialize</span><span class="token punctuation">(</span>JsonParser jsonParser<span class="token punctuation">,</span> DeserializationContext deserializationContext<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> JsonProcessingException <span class="token punctuation">{</span>        String text <span class="token operator">=</span> jsonParser<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token keyword">return</span> <span class="token function">decodeBase64</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">/**     * 对非空的值，尝试base64解码，失败不改变原值     * @param text 待解码的字符串     * @return base64解码后的字符串     */</span>    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">decodeBase64</span><span class="token punctuation">(</span>String text<span class="token punctuation">)</span><span class="token punctuation">{</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>            <span class="token keyword">try</span> <span class="token punctuation">{</span>                <span class="token comment" spellcheck="true">// 对非空的值，尝试base64解码，失败不改变原值</span>                <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> txtBytes <span class="token operator">=</span> Base64<span class="token punctuation">.</span><span class="token function">getDecoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>text<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                text <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>txtBytes<span class="token punctuation">,</span> StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>                <span class="token comment" spellcheck="true">// 解码失败，text原数返回</span>                logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token punctuation">}</span>        <span class="token punctuation">}</span>        <span class="token keyword">return</span> text<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spring </tag>
+            
+            <tag> jackson </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2023/05/12/hello-world/"/>
       <url>/2023/05/12/hello-world/</url>
