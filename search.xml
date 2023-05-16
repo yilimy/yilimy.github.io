@@ -14,9 +14,9 @@
       
         <tags>
             
-            <tag> spring </tag>
-            
             <tag> java </tag>
+            
+            <tag> spring </tag>
             
         </tags>
       
@@ -85,11 +85,11 @@
       
         <tags>
             
+            <tag> java </tag>
+            
             <tag> spring </tag>
             
             <tag> jackson </tag>
-            
-            <tag> java </tag>
             
         </tags>
       
