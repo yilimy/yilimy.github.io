@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>hexo调试_其一</title>
+      <link href="/2023/05/17/hexo-diao-shi-qi-yi/"/>
+      <url>/2023/05/17/hexo-diao-shi-qi-yi/</url>
+      
+        <content type="html"><![CDATA[<h4 id="编译忽略文件或文件夹"><a href="#编译忽略文件或文件夹" class="headerlink" title="编译忽略文件或文件夹"></a>编译忽略文件或文件夹</h4><p>场景：将source添加到git仓库，hexo server报错</p><pre class=" language-cmd"><code class="language-cmd">INFO  Validating configINFO  Start processingINFO  Hexo is running at http://localhost:5555/ . Press Ctrl+C to stop.Unhandled rejection WarehouseError: ID `source/.git/logs/refs/heads/main` has been used    at new WarehouseError (D:\GitHub\hexo\pagesHexo2023\node_modules\warehouse\lib\error.js:14:11)    at _Model._insertOne (D:\GitHub\hexo\pagesHexo2023\node_modules\warehouse\lib\model.js:153:29)    at D:\GitHub\hexo\pagesHexo2023\node_modules\warehouse\lib\model.js:179:63    at tryCatcher (D:\GitHub\hexo\pagesHexo2023\node_modules\bluebird\js\release\util.js:16:23)    at D:\GitHub\hexo\pagesHexo2023\node_modules\bluebird\js\release\using.js:185:26    at tryCatcher (D:\GitHub\hexo\pagesHexo2023\node_modules\bluebird\js\release\util.js:16:23)</code></pre><p>将.git和README.md分别加入忽略列表</p><blockquote><p>打开配置文件 _config.yml</p><p>找到忽略配置 skip_render</p><p>添加： [source&#x2F;.git&#x2F;**, ‘source&#x2F;README.md’]</p></blockquote><p>结果举例：</p><pre class=" language-yml"><code class="language-yml"># Directorysource_dir: sourcepublic_dir: publictag_dir: tagsarchive_dir: archivescategory_dir: categoriescode_dir: downloads/codei18n_dir: :langskip_render: [source/.git/**, 'source/README.md']</code></pre><p>参考：<a href="https://blog.csdn.net/x851288986/article/details/102548839">https://blog.csdn.net/x851288986/article/details/102548839</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>postman显示二维码</title>
       <link href="/2023/05/17/postman-xian-shi-er-wei-ma/"/>
       <url>/2023/05/17/postman-xian-shi-er-wei-ma/</url>
