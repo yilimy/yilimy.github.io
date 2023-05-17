@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="toString太长的解决方案, Hexo">
+    <meta name="keywords" content="rest文件上传, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>toString太长的解决方案 | Hexo</title>
+    <title>rest文件上传 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">toString太长的解决方案</h1>
+                    <h1 class="description center-align post-title">rest文件上传</h1>
                 </div>
             </div>
         </div>
@@ -439,10 +439,23 @@
                                 <span class="chip bg-color">spring</span>
                             </a>
                         
+                            <a href="/tags/restTemplate/">
+                                <span class="chip bg-color">restTemplate</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/java/" class="post-category">
+                                java
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -451,7 +464,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-16
+                    2023-05-17
                 </div>
                 
 
@@ -472,112 +485,119 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>适用于文件等大字符串的打印</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>core<span class="token punctuation">.</span>util<span class="token punctuation">.</span>StrUtil<span class="token punctuation">;</span>
-<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang3<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>ToStringStyle<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ObjectUtils<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * toString 的格式化
- * 1. 不打印null
- * 2. 限定参数的打印长度
- *
- * 可能导致部分main方法中的bean对象toString方法不可用
- *
- * e.g.
- * &lt;code>
- *
- *     @Override
- *     public String toString() {
- *         return ToStringBuilder.reflectionToString(
- *                 this, new MyNoNullStyle().setLimit("file"));
- *     }
- *
- * &lt;/code>
- *
- */</span>
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyNoNullStyle</span> <span class="token keyword">extends</span> <span class="token class-name">ToStringStyle</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 2347542971151578670L<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 不打印的属性
-     */</span>
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> exclude<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 限制长度的属性
-     */</span>
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> limit<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 限制的长度值
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> limitLength <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要忽略打印的属性
-     * @param exclude 忽略列表
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setExclude</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> exclude<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>exclude <span class="token operator">=</span> exclude<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要限制打印的属性
-     * @param limit 限制的属性
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setLimit</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>limit <span class="token operator">=</span> limit<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要限制打印的长度
-     * @param limitLength 限制长度，默认100
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setLimitLength</span><span class="token punctuation">(</span><span class="token keyword">int</span> limitLength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>limitLength <span class="token operator">=</span> limitLength<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">append</span><span class="token punctuation">(</span>StringBuffer buffer<span class="token punctuation">,</span> String fieldName<span class="token punctuation">,</span> Object value<span class="token punctuation">,</span> Boolean fullDetail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>exclude<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">for</span> <span class="token punctuation">(</span>String es <span class="token operator">:</span> exclude<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">if</span> <span class="token punctuation">(</span>fieldName<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>es<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                        <span class="token keyword">return</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>limit<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">for</span> <span class="token punctuation">(</span>String ls <span class="token operator">:</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">(</span>fieldName<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>ls<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                            value <span class="token operator">=</span> StrUtil<span class="token punctuation">.</span><span class="token function">brief</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> limitLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-                <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> fieldName<span class="token punctuation">,</span> value<span class="token punctuation">,</span> fullDetail<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"NoNullStyle判断异常[{}]"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
+                <h4 id="上传多个文件"><a href="#上传多个文件" class="headerlink" title="上传多个文件"></a>上传多个文件</h4><p>上传时，在MultiValueMap对象中的同一个key中添加多个value，传递时会封装成数组</p>
+<blockquote>
+<p>key&#x3D;[value1, value2, value3]</p>
+</blockquote>
+<p>接收端</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/fileVerify/verifyFileBatch"</span><span class="token punctuation">,</span> consumes <span class="token operator">=</span> MediaType<span class="token punctuation">.</span>MULTIPART_FORM_DATA_VALUE<span class="token punctuation">)</span>
+<span class="token keyword">public</span> Result <span class="token function">verifyFileBatch</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestPart</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"files"</span><span class="token punctuation">)</span> MultipartFile<span class="token punctuation">[</span><span class="token punctuation">]</span> files<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"批量文件验证..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>使用：</p>
-<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> ToStringBuilder<span class="token punctuation">.</span><span class="token function">reflectionToString</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">MyNoNullStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setLimit</span><span class="token punctuation">(</span><span class="token string">"file"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<p>请求端</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+  * 测试：请求多文件验证
+  */</span>
+<span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">requestVerifyBatchTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    String url <span class="token operator">=</span> <span class="token string">"http://192.168.200.163:8080/fileVerify/verifyFileBatch"</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 组装header</span>
+    HttpHeaders headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span>MediaType<span class="token punctuation">.</span>MULTIPART_FORM_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Accept"</span><span class="token punctuation">,</span> MediaType<span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 组装文件</span>
+    MultiValueMap<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> form <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedMultiValueMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// file1, 加密后的文件1</span>
+    String filePath1 <span class="token operator">=</span> <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/1684290580318.file"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    File file1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>filePath1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    FileSystemResource resource1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileSystemResource</span><span class="token punctuation">(</span>file1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// file2, 加密后的文件2</span>
+    String filePath2 <span class="token operator">=</span> <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/1684290580318-2.file"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    File file2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>filePath2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    FileSystemResource resource2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileSystemResource</span><span class="token punctuation">(</span>file2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 添加到表单</span>
+    form<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"files"</span><span class="token punctuation">,</span> resource1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    form<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"files"</span><span class="token punctuation">,</span> resource2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 发送请求</span>
+    HttpEntity<span class="token operator">&lt;</span>MultiValueMap<span class="token operator">></span> requestEntity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token punctuation">(</span>form<span class="token punctuation">,</span> headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ResponseEntity<span class="token operator">&lt;</span>String<span class="token operator">></span> responseEntity <span class="token operator">=</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> requestEntity<span class="token punctuation">,</span> String<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 返回的是密文</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"responseEntity={}"</span><span class="token punctuation">,</span> responseEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
+<h4 id="通过byte-上传文件"><a href="#通过byte-上传文件" class="headerlink" title="通过byte[]上传文件"></a>通过byte[]上传文件</h4><p>有时，上传文件的数据源并不是来自于系统，不能使用FileSystemResource去调用文件上传接口</p>
+<p>字节源依旧可以作为上传源</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@HystrixCommand</span><span class="token punctuation">(</span>commandKey <span class="token operator">=</span> <span class="token string">"sysInfoUploadCommand"</span><span class="token punctuation">,</span> threadPoolKey <span class="token operator">=</span> <span class="token string">"sysInfoUploadThreadPool"</span><span class="token punctuation">,</span>
+            fallbackMethod <span class="token operator">=</span> <span class="token string">"sysInfoUploadFallBack"</span><span class="token punctuation">,</span> commandProperties <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@HystrixProperty</span><span class="token punctuation">(</span>name <span class="token operator">=</span> HystrixPropertiesManager<span class="token punctuation">.</span>EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS<span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"6000"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@HystrixProperty</span><span class="token punctuation">(</span>name <span class="token operator">=</span> HystrixPropertiesManager<span class="token punctuation">.</span>CIRCUIT_BREAKER_REQUEST_VOLUME_THRESHOLD<span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"30"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@HystrixProperty</span><span class="token punctuation">(</span>name <span class="token operator">=</span> HystrixPropertiesManager<span class="token punctuation">.</span>CIRCUIT_BREAKER_ERROR_THRESHOLD_PERCENTAGE<span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"60"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token annotation punctuation">@HystrixProperty</span><span class="token punctuation">(</span>name <span class="token operator">=</span> HystrixPropertiesManager<span class="token punctuation">.</span>CIRCUIT_BREAKER_SLEEP_WINDOW_IN_MILLISECONDS<span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token string">"10000"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> YzyUploadRsp <span class="token function">sysInfoUpload</span><span class="token punctuation">(</span>String fileName<span class="token punctuation">,</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> fileBytes<span class="token punctuation">,</span> String token<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    MultiValueMap<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">></span> form <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedMultiValueMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ByteArrayResource fileAsResource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ByteArrayResource</span><span class="token punctuation">(</span>fileBytes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> String <span class="token function">getFilename</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// return new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.US_ASCII);</span>
+            <span class="token keyword">return</span> fileName<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">long</span> <span class="token function">contentLength</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> fileBytes<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    form<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"type"</span><span class="token punctuation">,</span> <span class="token string">"file"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    form<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"file"</span><span class="token punctuation">,</span> fileAsResource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    form<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"fileName"</span><span class="token punctuation">,</span> fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    HttpHeaders headers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">setContentType</span><span class="token punctuation">(</span>MediaType<span class="token punctuation">.</span>MULTIPART_FORM_DATA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"Accept-Charset"</span><span class="token punctuation">,</span> StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Keep-Alive"</span><span class="token punctuation">,</span> <span class="token string">"timeout=60, max=1000"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Accept"</span><span class="token punctuation">,</span> MediaType<span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"authorization"</span><span class="token punctuation">,</span> token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"ref-secret-key"</span><span class="token punctuation">,</span> refSecretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    headers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Content-Disposition"</span><span class="token punctuation">,</span> <span class="token string">"attachment; filename="</span> <span class="token operator">+</span> fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    String url <span class="token operator">=</span> yjzServerDomain <span class="token operator">+</span> yzyUploadUri<span class="token punctuation">;</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"请求上传文件, url={}"</span><span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    HttpEntity<span class="token operator">&lt;</span>MultiValueMap<span class="token operator">></span> requestEntity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpEntity</span><span class="token punctuation">(</span>form<span class="token punctuation">,</span> headers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ResponseEntity<span class="token operator">&lt;</span>UploadRsp<span class="token operator">></span> responseEntity <span class="token operator">=</span>
+        uploadRestTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> requestEntity<span class="token punctuation">,</span> UploadRsp<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// restTemplate.postForEntity(url, requestEntity, UploadRsp.class);</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"上传文件结果: {}"</span><span class="token punctuation">,</span> responseEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> Optional<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>responseEntity<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>entity <span class="token operator">-</span><span class="token operator">></span> entity<span class="token punctuation">.</span><span class="token function">getStatusCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">is2xxSuccessful</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>entity <span class="token operator">-</span><span class="token operator">></span> entity<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">orElseThrow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">BussJsonException</span><span class="token punctuation">(</span><span class="token string">"上传文件失败"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="上传文件中文乱码"><a href="#上传文件中文乱码" class="headerlink" title="上传文件中文乱码"></a>上传文件中文乱码</h4><p>在低版本spring cloud（1.x）中上传文件时，对文件名使用了硬编码”US-ASCII”</p>
+<blockquote>
+<p>org.springframework.http.converter.FormHttpMessageConverter#getAsciiBytes(String name)</p>
+</blockquote>
+<p>解决方法为，复制该类，修改编码方式后，手动添加到restTemplate解析器中</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Bean</span><span class="token punctuation">(</span><span class="token string">"uploadRestTemplate"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> RestTemplate <span class="token function">uploadRest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// FormHttpMessageConverter在设置Part-Header编码时，使用了硬编码 US-ASCII，导致中文乱码</span>
+    <span class="token comment" spellcheck="true">// see: FormHttpMessageConverter#getAsciiBytes</span>
+    MyFormHttpMessageConverter fc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyFormHttpMessageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>HttpMessageConverter<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">>></span> partConverters <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    partConverters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringHttpMessageConverter</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    partConverters<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ResourceHttpMessageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// fc.setMultipartCharset(StandardCharsets.UTF_8);</span>
+    fc<span class="token punctuation">.</span><span class="token function">setPartConverters</span><span class="token punctuation">(</span>partConverters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    RestTemplate restTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RestTemplate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">HttpsClientRequestFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    restTemplate<span class="token punctuation">.</span><span class="token function">setMessageConverters</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>fc<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">MappingJackson2HttpMessageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> restTemplate<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>其中，MyFormHttpMessageConverter是从FormHttpMessageConverter复制过来的类</p>
 
                 
             </div>
@@ -604,7 +624,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/05/16/tostring-tai-chang-de-jie-jue-fang-an/">https://yilimy.github.io/2023/05/16/tostring-tai-chang-de-jie-jue-fang-an/</a>
+                    <a href="https://yilimy.github.io/2023/05/17/rest-wen-jian-shang-chuan/">https://yilimy.github.io/2023/05/17/rest-wen-jian-shang-chuan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -648,6 +668,10 @@
                             
                                 <a href="/tags/spring/">
                                     <span class="chip bg-color">spring</span>
+                                </a>
+                            
+                                <a href="/tags/restTemplate/">
+                                    <span class="chip bg-color">restTemplate</span>
                                 </a>
                             
                         </div>
@@ -817,9 +841,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/05/17/rest-wen-jian-shang-chuan/">
                     <div class="card-image">
@@ -837,9 +862,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -852,6 +877,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -878,13 +904,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/16/shell-jiao-ben-qi-yi/">
+                <a href="/2023/05/16/tostring-tai-chang-de-jie-jue-fang-an/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="shell脚本（其一）">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="toString太长的解决方案">
                         
-                        <span class="card-title">shell脚本（其一）</span>
+                        <span class="card-title">toString太长的解决方案</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -908,8 +934,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shell/">
-                        <span class="chip bg-color">shell</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/spring/">
+                        <span class="chip bg-color">spring</span>
                     </a>
                     
                 </div>
