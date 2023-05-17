@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>postman显示二维码</title>
+      <link href="/2023/05/17/postman-xian-shi-er-wei-ma/"/>
+      <url>/2023/05/17/postman-xian-shi-er-wei-ma/</url>
+      
+        <content type="html"><![CDATA[<p>发送请求后，在响应体中直接显示二维码</p><ol><li>发送请求前，配置“Tests”</li></ol><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 相应结果转成json对象result</span><span class="token keyword">var</span> data<span class="token operator">=</span><span class="token punctuation">{</span>    result<span class="token punctuation">:</span> pm<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token comment" spellcheck="true">// 将数据中的qrcode解码后作为图片添加到标签img</span><span class="token keyword">var</span> template <span class="token operator">=</span> <span class="token string">'&lt;html>&lt;img src="data:image/jpg;base64, {{result.data.qrcode}}" width="200" height="200">&lt;/html>'</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 设置img标签可视化</span>pm<span class="token punctuation">.</span>visualizer<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>template<span class="token punctuation">,</span> data<span class="token punctuation">)</span></code></pre><p>width和height按需设置，实测百分比失真</p><ol start="2"><li><p>查看二维码</p><p>在响应体 body - Visualize 可见</p></li><li><p>备注：响应的数据结构</p></li></ol><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>    <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>        <span class="token property">"businessCode"</span><span class="token operator">:</span> <span class="token string">"775328844184948736"</span><span class="token punctuation">,</span>        <span class="token property">"status"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>        <span class="token property">"deptCode"</span><span class="token operator">:</span> <span class="token string">"91320102724560399U"</span><span class="token punctuation">,</span>        <span class="token property">"qrcode"</span><span class="token operator">:</span> <span class="token string">"iVBORw0KG......base64str......JRU5ErkJggg=="</span><span class="token punctuation">,</span>        <span class="token property">"appkey"</span><span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>        <span class="token property">"signTheme"</span><span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>        <span class="token property">"applyTime"</span><span class="token operator">:</span> <span class="token string">"2022-11-10 12:00:01"</span><span class="token punctuation">,</span>        <span class="token property">"updateTime"</span><span class="token operator">:</span> <span class="token string">"2023-05-08 20:35:21"</span>    <span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token property">"code"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>    <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"操作成功"</span><span class="token punctuation">}</span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> postman </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>rest文件上传</title>
       <link href="/2023/05/17/rest-wen-jian-shang-chuan/"/>
       <url>/2023/05/17/rest-wen-jian-shang-chuan/</url>
