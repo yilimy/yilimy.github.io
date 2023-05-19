@@ -481,7 +481,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h5 id="场景描述："><a href="#场景描述：" class="headerlink" title="场景描述："></a>场景描述：</h5><blockquote>
+                <h4 id="场景描述"><a href="#场景描述" class="headerlink" title="场景描述"></a>场景描述</h4><blockquote>
 <ul>
 <li><p>根据注解 SealAuthId 去查找要标记位的属性，并修改其值</p>
 </li>
@@ -491,7 +491,7 @@
 </li>
 </ul>
 </blockquote>
-<h5 id="标记属性"><a href="#标记属性" class="headerlink" title="标记属性"></a>标记属性</h5><p>待处理对象</p>
+<h4 id="标记属性"><a href="#标记属性" class="headerlink" title="标记属性"></a>标记属性</h4><p>待处理对象</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YcDTO</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@SealAuthId</span><span class="token punctuation">(</span>type <span class="token operator">=</span> SealAuthId<span class="token punctuation">.</span>CONTAIN<span class="token punctuation">)</span>
@@ -508,7 +508,7 @@
     <span class="token keyword">private</span> String sealId<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h5 id="注解查找"><a href="#注解查找" class="headerlink" title="注解查找"></a>注解查找</h5><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<h4 id="注解查找"><a href="#注解查找" class="headerlink" title="注解查找"></a>注解查找</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
   * 找到dto对象中注解标记的 SealAuthId(AUTH_ID) 并执行方法 function
   * @param dto 待查找的对象
   * @param function 找到注解标记后执行的方法
@@ -594,7 +594,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h5 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">defaultBind</span><span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> params<span class="token punctuation">,</span> SealBind sealBind<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<h4 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">defaultBind</span><span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> params<span class="token punctuation">,</span> SealBind sealBind<span class="token punctuation">)</span><span class="token punctuation">{</span>
     Object param <span class="token operator">=</span> params<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     SealAuthUtils<span class="token punctuation">.</span><span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>param<span class="token punctuation">,</span> sealCode <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>sealCode<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> sealCode <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
