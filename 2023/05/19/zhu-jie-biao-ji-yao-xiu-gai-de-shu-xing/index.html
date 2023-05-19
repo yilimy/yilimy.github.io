@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="toString太长的解决方案, Hexo">
+    <meta name="keywords" content="注解标记要修改的属性, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>toString太长的解决方案 | Hexo</title>
+    <title>注解标记要修改的属性 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">toString太长的解决方案</h1>
+                    <h1 class="description center-align post-title">注解标记要修改的属性</h1>
                 </div>
             </div>
         </div>
@@ -431,18 +431,27 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
-                            </a>
-                        
                             <a href="/tags/spring/">
                                 <span class="chip bg-color">spring</span>
+                            </a>
+                        
+                            <a href="/tags/annotate/">
+                                <span class="chip bg-color">annotate</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/java/" class="post-category">
+                                java
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -451,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-16
+                    2023-05-19
                 </div>
                 
 
@@ -472,111 +481,129 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>适用于文件等大字符串的打印</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>core<span class="token punctuation">.</span>util<span class="token punctuation">.</span>StrUtil<span class="token punctuation">;</span>
-<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang3<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>ToStringStyle<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ObjectUtils<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
+                <h5 id="场景描述："><a href="#场景描述：" class="headerlink" title="场景描述："></a>场景描述：</h5><blockquote>
+<ul>
+<li><p>根据注解 SealAuthId 去查找要标记位的属性，并修改其值</p>
+</li>
+<li><p>如果直属属性中没有修改的属性，而是在其子孙属性中，则通过 SealAuthId (CONTAIN) 引导程序到子属性中去查找</p>
+</li>
+<li><p>直到找到标记 SealAuthId (AUTH_ID) 的属性，执行修改方法</p>
+</li>
+</ul>
+</blockquote>
+<h5 id="标记属性"><a href="#标记属性" class="headerlink" title="标记属性"></a>标记属性</h5><p>待处理对象</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YcDTO</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@SealAuthId</span><span class="token punctuation">(</span>type <span class="token operator">=</span> SealAuthId<span class="token punctuation">.</span>CONTAIN<span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Valid</span>
+    <span class="token annotation punctuation">@NotEmpty</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">"信息列表[dataList]不能为空"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>YcSignatories<span class="token operator">></span> dataList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>子对象</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YcSignatories</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@SealAuthId</span>
+    <span class="token annotation punctuation">@NotBlank</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">"编码[sealId]不能为空"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> String sealId<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h5 id="注解查找"><a href="#注解查找" class="headerlink" title="注解查找"></a>注解查找</h5><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+  * 找到dto对象中注解标记的 SealAuthId(AUTH_ID) 并执行方法 function
+  * @param dto 待查找的对象
+  * @param function 找到注解标记后执行的方法
+  */</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>Object dto<span class="token punctuation">,</span> Function function<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">isNull</span><span class="token punctuation">(</span>dto<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"dto is NULL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> parameterObjectClass <span class="token operator">=</span> dto<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Field<span class="token punctuation">[</span><span class="token punctuation">]</span> fields <span class="token operator">=</span> parameterObjectClass<span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Field field <span class="token operator">:</span> fields<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        SealAuthId sealAuthId <span class="token operator">=</span> AnnotationUtils<span class="token punctuation">.</span><span class="token function">findAnnotation</span><span class="token punctuation">(</span>field<span class="token punctuation">,</span> SealAuthId<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>sealAuthId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"查找到注解@SealAuthId[{}]"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>SealAuthId<span class="token punctuation">.</span>AUTH_ID<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>sealAuthId<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token function">annotateParameterDo</span><span class="token punctuation">(</span>dto<span class="token punctuation">,</span> field<span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>SealAuthId<span class="token punctuation">.</span>CONTAIN<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>sealAuthId<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token function">annotateContainSearch</span><span class="token punctuation">(</span>dto<span class="token punctuation">,</span> field<span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 <span class="token comment" spellcheck="true">/**
- * toString 的格式化
- * 1. 不打印null
- * 2. 限定参数的打印长度
- *
- * 可能导致部分main方法中的bean对象toString方法不可用
- *
- * e.g.
- * &lt;code>
- *
- *     @Override
- *     public String toString() {
- *         return ToStringBuilder.reflectionToString(
- *                 this, new MyNoNullStyle().setLimit("file"));
- *     }
- *
- * &lt;/code>
- *
- */</span>
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyNoNullStyle</span> <span class="token keyword">extends</span> <span class="token class-name">ToStringStyle</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 2347542971151578670L<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 不打印的属性
-     */</span>
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> exclude<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 限制长度的属性
-     */</span>
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> limit<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 限制的长度值
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> limitLength <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要忽略打印的属性
-     * @param exclude 忽略列表
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setExclude</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> exclude<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>exclude <span class="token operator">=</span> exclude<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要限制打印的属性
-     * @param limit 限制的属性
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setLimit</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>limit <span class="token operator">=</span> limit<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要限制打印的长度
-     * @param limitLength 限制长度，默认100
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setLimitLength</span><span class="token punctuation">(</span><span class="token keyword">int</span> limitLength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>limitLength <span class="token operator">=</span> limitLength<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">append</span><span class="token punctuation">(</span>StringBuffer buffer<span class="token punctuation">,</span> String fieldName<span class="token punctuation">,</span> Object value<span class="token punctuation">,</span> Boolean fullDetail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>exclude<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">for</span> <span class="token punctuation">(</span>String es <span class="token operator">:</span> exclude<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">if</span> <span class="token punctuation">(</span>fieldName<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>es<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                        <span class="token keyword">return</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>limit<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">for</span> <span class="token punctuation">(</span>String ls <span class="token operator">:</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">(</span>fieldName<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>ls<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                            value <span class="token operator">=</span> StrUtil<span class="token punctuation">.</span><span class="token function">brief</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> limitLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-                <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> fieldName<span class="token punctuation">,</span> value<span class="token punctuation">,</span> fullDetail<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"NoNullStyle判断异常[{}]"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  * 查找到包含注解的对象，准备进行下一步查找
+  * 在标记 CONTAIN 属性中继续查找，直到查找到标记 AUTH_ID
+  * @param dto 待查找的对象
+  * @param function 找到注解标记 AUTH_ID 后执行的方法
+  * @param field 注解标记为“CONTAIN”的属性
+  */</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">annotateContainSearch</span><span class="token punctuation">(</span>Object dto<span class="token punctuation">,</span> Field field<span class="token punctuation">,</span> Function function<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>field<span class="token punctuation">.</span><span class="token function">isAccessible</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
+        Object objContain <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>dto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">isNull</span><span class="token punctuation">(</span>objContain<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"{} is NULL, continue."</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 属性有值</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Collection<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"{} is collection"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Iterator iterator <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>Collection<span class="token punctuation">)</span> objContain<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 遍历查询集合中的对象中的注解</span>
+                <span class="token comment" spellcheck="true">// 因为是从请求参数中反序列化得来的，暂时不考虑循环引用问题</span>
+                <span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"{} is obj"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 因为是从请求参数中反序列化得来的，暂时不考虑循环引用问题</span>
+            <span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>objContain<span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
+<span class="token comment" spellcheck="true">/**
+  * 查找到注解标记 AUTH_ID 的属性，执行操作
+  * @param dto 待查找的对象
+  * @param function 找到注解标记 AUTH_ID 后执行的方法
+  * @param field 注解标记为 AUTH_ID 的属性
+  */</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">annotateParameterDo</span><span class="token punctuation">(</span>Object dto<span class="token punctuation">,</span> Field field<span class="token punctuation">,</span> Function function<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>field<span class="token punctuation">.</span><span class="token function">isAccessible</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 原值</span>
+        Object localValue <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>dto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>function<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 修改值的方法效用</span>
+            Object apply <span class="token operator">=</span> function<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>localValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 通过对象的setter方法重置属性的值</span>
+            field<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>dto<span class="token punctuation">,</span> apply<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"修改注解标记的{}: {} => {}"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> localValue<span class="token punctuation">,</span> apply<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>使用：</p>
-<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> ToStringBuilder<span class="token punctuation">.</span><span class="token function">reflectionToString</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">MyNoNullStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setLimit</span><span class="token punctuation">(</span><span class="token string">"file"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<h5 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">defaultBind</span><span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> params<span class="token punctuation">,</span> SealBind sealBind<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Object param <span class="token operator">=</span> params<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    SealAuthUtils<span class="token punctuation">.</span><span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>param<span class="token punctuation">,</span> sealCode <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>sealCode<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> sealCode <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">findSealCodeByAuthId</span><span class="token punctuation">(</span><span class="token punctuation">(</span>String<span class="token punctuation">)</span> sealCode<span class="token punctuation">,</span> sealBind<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 维持不变</span>
+        <span class="token keyword">return</span> sealCode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
                 
@@ -604,7 +631,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/05/16/tostring-tai-chang-de-jie-jue-fang-an/">https://yilimy.github.io/2023/05/16/tostring-tai-chang-de-jie-jue-fang-an/</a>
+                    <a href="https://yilimy.github.io/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/">https://yilimy.github.io/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -642,12 +669,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
-                                </a>
-                            
                                 <a href="/tags/spring/">
                                     <span class="chip bg-color">spring</span>
+                                </a>
+                            
+                                <a href="/tags/annotate/">
+                                    <span class="chip bg-color">annotate</span>
                                 </a>
                             
                         </div>
@@ -817,17 +844,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/05/17/rest-wen-jian-shang-chuan/">
+                <a href="/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="rest文件上传">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="注解标记要修改的属性">
                         
-                        <span class="card-title">rest文件上传</span>
+                        <span class="card-title">注解标记要修改的属性</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -837,9 +865,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -852,19 +880,16 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
-                    </a>
                     
                     <a href="/tags/spring/">
                         <span class="chip bg-color">spring</span>
                     </a>
                     
-                    <a href="/tags/restTemplate/">
-                        <span class="chip bg-color">restTemplate</span>
+                    <a href="/tags/annotate/">
+                        <span class="chip bg-color">annotate</span>
                     </a>
                     
                 </div>
@@ -878,13 +903,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/16/shell-jiao-ben-qi-yi/">
+                <a href="/2023/05/17/hexo-diao-shi-qi-yi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="shell脚本（其一）">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="hexo调试_其一">
                         
-                        <span class="card-title">shell脚本（其一）</span>
+                        <span class="card-title">hexo调试_其一</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -895,7 +920,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-17
                             </span>
                         <span class="publish-author">
                             
@@ -908,8 +933,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shell/">
-                        <span class="chip bg-color">shell</span>
+                    <a href="/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
