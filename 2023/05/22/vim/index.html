@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="注解标记要修改的属性, Hexo">
+    <meta name="keywords" content="vim, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>注解标记要修改的属性 | Hexo</title>
+    <title>vim | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">注解标记要修改的属性</h1>
+                    <h1 class="description center-align post-title">vim</h1>
                 </div>
             </div>
         </div>
@@ -431,27 +431,18 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/spring/">
-                                <span class="chip bg-color">spring</span>
+                            <a href="/tags/shell/">
+                                <span class="chip bg-color">shell</span>
                             </a>
                         
-                            <a href="/tags/annotate/">
-                                <span class="chip bg-color">annotate</span>
+                            <a href="/tags/vim/">
+                                <span class="chip bg-color">vim</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/java/" class="post-category">
-                                java
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -460,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-19
+                    2023-05-22
                 </div>
                 
 
@@ -481,130 +472,46 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="场景描述"><a href="#场景描述" class="headerlink" title="场景描述"></a>场景描述</h4><blockquote>
-<ul>
-<li><p>根据注解 SealAuthId 去查找要标记位的属性，并修改其值</p>
-</li>
-<li><p>如果直属属性中没有修改的属性，而是在其子孙属性中，则通过 SealAuthId (CONTAIN) 引导程序到子属性中去查找</p>
-</li>
-<li><p>直到找到标记 SealAuthId (AUTH_ID) 的属性，执行修改方法</p>
-</li>
-</ul>
-</blockquote>
-<h4 id="标记属性"><a href="#标记属性" class="headerlink" title="标记属性"></a>标记属性</h4><p>待处理对象</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YcDTO</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@SealAuthId</span><span class="token punctuation">(</span>type <span class="token operator">=</span> SealAuthId<span class="token punctuation">.</span>CONTAIN<span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Valid</span>
-    <span class="token annotation punctuation">@NotEmpty</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">"信息列表[dataList]不能为空"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>YcSignatories<span class="token operator">></span> dataList<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+                <p>来自于《计算机教育中缺失的一课》03 Editors（vim）</p>
+<h4 id="普通指令"><a href="#普通指令" class="headerlink" title="普通指令"></a>普通指令</h4><p>分窗<code>:sp</code> 使用<code>ctrl+w</code>在两个窗口之间进行切换（并非同行），使用<code>:qa</code>关闭所有窗口</p>
+<p>普通模式下，使用j（jump）跳到下一行，使用k返回上一行，光标移动键：hjkl</p>
+<p>光标按单词移动：wbe，w下一个单词，b上一个单词，e（下一个）单词尾</p>
+<p>移动到行首：0，其他数字没效果</p>
+<p>移动到行首：^</p>
+<p>移动到行尾：$</p>
+<p>上下滚动：ctrl+U,ctrl+D：upper和down</p>
+<p>顶底切换：shift + g移动到文档底部，gg移动到文档顶部</p>
+<p>在当前视图页移动：L（视图底 lower），M（视图中央行首 middle），H（视图顶 Header）<br>当前行中查找： f+要查找的字母或数字，查找范围：(光标位置，行尾]，查找目标区分大小写，不支持next</p>
+<p>当前行中反向查找： F+要查找的字母或数字</p>
+<p>删除：x删除单个字符，dw删除单词，de删除至单词尾</p>
+<p>撤销：u（undo）</p>
+<p>复制粘贴：yp，y复制，yy复制行，yw复制单词，p粘贴</p>
+<p>配合视图模式（v）和光标操作（hjkl）来复制指定的文本</p>
+<p>shift + v（V）进入行视图模式</p>
+<p>ctrl + v 进入视图块模式</p>
+<h4 id="组合指令"><a href="#组合指令" class="headerlink" title="组合指令"></a>组合指令</h4><p>跳到上一个单词，进入视图模式，选中下三个单词</p>
+<pre class=" language-vim"><code class="language-vim">bveee
 </code></pre>
-<p>子对象</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">YcSignatories</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@SealAuthId</span>
-    <span class="token annotation punctuation">@NotBlank</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">"编码[sealId]不能为空"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> String sealId<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<p>向下跳4行</p>
+<pre class=" language-vim"><code class="language-vim">4j
 </code></pre>
-<h4 id="注解查找"><a href="#注解查找" class="headerlink" title="注解查找"></a>注解查找</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
-  * 找到dto对象中注解标记的 SealAuthId(AUTH_ID) 并执行方法 function
-  * @param dto 待查找的对象
-  * @param function 找到注解标记后执行的方法
-  */</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>Object dto<span class="token punctuation">,</span> Function function<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">isNull</span><span class="token punctuation">(</span>dto<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"dto is NULL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> parameterObjectClass <span class="token operator">=</span> dto<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Field<span class="token punctuation">[</span><span class="token punctuation">]</span> fields <span class="token operator">=</span> parameterObjectClass<span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>Field field <span class="token operator">:</span> fields<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        SealAuthId sealAuthId <span class="token operator">=</span> AnnotationUtils<span class="token punctuation">.</span><span class="token function">findAnnotation</span><span class="token punctuation">(</span>field<span class="token punctuation">,</span> SealAuthId<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>sealAuthId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"查找到注解@SealAuthId[{}]"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>SealAuthId<span class="token punctuation">.</span>AUTH_ID<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>sealAuthId<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">annotateParameterDo</span><span class="token punctuation">(</span>dto<span class="token punctuation">,</span> field<span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>SealAuthId<span class="token punctuation">.</span>CONTAIN<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>sealAuthId<span class="token punctuation">.</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">annotateContainSearch</span><span class="token punctuation">(</span>dto<span class="token punctuation">,</span> field<span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">/**
-  * 查找到包含注解的对象，准备进行下一步查找
-  * 在标记 CONTAIN 属性中继续查找，直到查找到标记 AUTH_ID
-  * @param dto 待查找的对象
-  * @param function 找到注解标记 AUTH_ID 后执行的方法
-  * @param field 注解标记为“CONTAIN”的属性
-  */</span>
-<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">annotateContainSearch</span><span class="token punctuation">(</span>Object dto<span class="token punctuation">,</span> Field field<span class="token punctuation">,</span> Function function<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">try</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>field<span class="token punctuation">.</span><span class="token function">isAccessible</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        Object objContain <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>dto<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">isNull</span><span class="token punctuation">(</span>objContain<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"{} is NULL, continue."</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 属性有值</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>Collection<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"{} is collection"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Iterator iterator <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>Collection<span class="token punctuation">)</span> objContain<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token comment" spellcheck="true">// 遍历查询集合中的对象中的注解</span>
-                <span class="token comment" spellcheck="true">// 因为是从请求参数中反序列化得来的，暂时不考虑循环引用问题</span>
-                <span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"{} is obj"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">// 因为是从请求参数中反序列化得来的，暂时不考虑循环引用问题</span>
-            <span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>objContain<span class="token punctuation">,</span> function<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">/**
-  * 查找到注解标记 AUTH_ID 的属性，执行操作
-  * @param dto 待查找的对象
-  * @param function 找到注解标记 AUTH_ID 后执行的方法
-  * @param field 注解标记为 AUTH_ID 的属性
-  */</span>
-<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">annotateParameterDo</span><span class="token punctuation">(</span>Object dto<span class="token punctuation">,</span> Field field<span class="token punctuation">,</span> Function function<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>field<span class="token punctuation">.</span><span class="token function">isAccessible</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">try</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 原值</span>
-        Object localValue <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>dto<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>function<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 修改值的方法效用</span>
-            Object apply <span class="token operator">=</span> function<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>localValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">// 通过对象的setter方法重置属性的值</span>
-            field<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>dto<span class="token punctuation">,</span> apply<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"修改注解标记的{}: {} => {}"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> localValue<span class="token punctuation">,</span> apply<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<p>向上跳4行</p>
+<pre class=" language-vim"><code class="language-vim">4k
 </code></pre>
-<h4 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">defaultBind</span><span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> params<span class="token punctuation">,</span> SealBind sealBind<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    Object param <span class="token operator">=</span> params<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    SealAuthUtils<span class="token punctuation">.</span><span class="token function">findAnnotationAndDo</span><span class="token punctuation">(</span>param<span class="token punctuation">,</span> sealCode <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>sealCode<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> sealCode <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token function">findSealCodeByAuthId</span><span class="token punctuation">(</span><span class="token punctuation">(</span>String<span class="token punctuation">)</span> sealCode<span class="token punctuation">,</span> sealBind<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">// 维持不变</span>
-        <span class="token keyword">return</span> sealCode<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<p>删除7个单词</p>
+<pre class=" language-vim"><code class="language-vim">7dw
 </code></pre>
+<p>删除中括号中的数据，并开始插入（比如md文件）</p>
+<pre class=" language-vim"><code class="language-vim"><span class="token builtin">ci</span><span class="token punctuation">[</span>
+</code></pre>
+<p>同理小括号</p>
+<pre class=" language-vim"><code class="language-vim"><span class="token function">ci</span><span class="token punctuation">(</span>
+</code></pre>
+<p>在括号上可以使用百分号（%）在两端左右横跳</p>
+<p>删除括号及其内容</p>
+<pre class=" language-vim"><code class="language-vim"><span class="token function">da</span><span class="token punctuation">(</span>
+</code></pre>
+<p>重复上一次的编辑命令：逗号</p>
 
                 
             </div>
@@ -631,7 +538,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/">https://yilimy.github.io/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/</a>
+                    <a href="https://yilimy.github.io/2023/05/22/vim/">https://yilimy.github.io/2023/05/22/vim/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -669,12 +576,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/spring/">
-                                    <span class="chip bg-color">spring</span>
+                                <a href="/tags/shell/">
+                                    <span class="chip bg-color">shell</span>
                                 </a>
                             
-                                <a href="/tags/annotate/">
-                                    <span class="chip bg-color">annotate</span>
+                                <a href="/tags/vim/">
+                                    <span class="chip bg-color">vim</span>
                                 </a>
                             
                         </div>
@@ -844,9 +751,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/05/22/vim/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="vim">
+                        
+                        <span class="card-title">vim</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            噢买了买了嘎
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/shell/">
+                        <span class="chip bg-color">shell</span>
+                    </a>
+                    
+                    <a href="/tags/vim/">
+                        <span class="chip bg-color">vim</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2023/05/22/shell-jiao-ben-qi-er/">
                     <div class="card-image">
@@ -864,9 +822,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -880,51 +838,6 @@
                     
                     <a href="/tags/shell/">
                         <span class="chip bg-color">shell</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/05/17/hexo-diao-shi-qi-yi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="hexo调试_其一">
-                        
-                        <span class="card-title">hexo调试_其一</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-17
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            噢买了买了嘎
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>

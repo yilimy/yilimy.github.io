@@ -4,6 +4,46 @@
   
     
     <entry>
+      <title>vim</title>
+      <link href="/2023/05/22/vim/"/>
+      <url>/2023/05/22/vim/</url>
+      
+        <content type="html"><![CDATA[<p>来自于《计算机教育中缺失的一课》03 Editors（vim）</p><h4 id="普通指令"><a href="#普通指令" class="headerlink" title="普通指令"></a>普通指令</h4><p>分窗<code>:sp</code> 使用<code>ctrl+w</code>在两个窗口之间进行切换（并非同行），使用<code>:qa</code>关闭所有窗口</p><p>普通模式下，使用j（jump）跳到下一行，使用k返回上一行，光标移动键：hjkl</p><p>光标按单词移动：wbe，w下一个单词，b上一个单词，e（下一个）单词尾</p><p>移动到行首：0，其他数字没效果</p><p>移动到行首：^</p><p>移动到行尾：$</p><p>上下滚动：ctrl+U,ctrl+D：upper和down</p><p>顶底切换：shift + g移动到文档底部，gg移动到文档顶部</p><p>在当前视图页移动：L（视图底 lower），M（视图中央行首 middle），H（视图顶 Header）<br>当前行中查找： f+要查找的字母或数字，查找范围：(光标位置，行尾]，查找目标区分大小写，不支持next</p><p>当前行中反向查找： F+要查找的字母或数字</p><p>删除：x删除单个字符，dw删除单词，de删除至单词尾</p><p>撤销：u（undo）</p><p>复制粘贴：yp，y复制，yy复制行，yw复制单词，p粘贴</p><p>配合视图模式（v）和光标操作（hjkl）来复制指定的文本</p><p>shift + v（V）进入行视图模式</p><p>ctrl + v 进入视图块模式</p><h4 id="组合指令"><a href="#组合指令" class="headerlink" title="组合指令"></a>组合指令</h4><p>跳到上一个单词，进入视图模式，选中下三个单词</p><pre class=" language-vim"><code class="language-vim">bveee</code></pre><p>向下跳4行</p><pre class=" language-vim"><code class="language-vim">4j</code></pre><p>向上跳4行</p><pre class=" language-vim"><code class="language-vim">4k</code></pre><p>删除7个单词</p><pre class=" language-vim"><code class="language-vim">7dw</code></pre><p>删除中括号中的数据，并开始插入（比如md文件）</p><pre class=" language-vim"><code class="language-vim"><span class="token builtin">ci</span><span class="token punctuation">[</span></code></pre><p>同理小括号</p><pre class=" language-vim"><code class="language-vim"><span class="token function">ci</span><span class="token punctuation">(</span></code></pre><p>在括号上可以使用百分号（%）在两端左右横跳</p><p>删除括号及其内容</p><pre class=" language-vim"><code class="language-vim"><span class="token function">da</span><span class="token punctuation">(</span></code></pre><p>重复上一次的编辑命令：逗号</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> shell </tag>
+            
+            <tag> vim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>shell脚本其二</title>
+      <link href="/2023/05/22/shell-jiao-ben-qi-er/"/>
+      <url>/2023/05/22/shell-jiao-ben-qi-er/</url>
+      
+        <content type="html"><![CDATA[<p>来自于《计算机教育中缺失的一课》02</p><h4 id="shell脚本其二"><a href="#shell脚本其二" class="headerlink" title="shell脚本其二"></a>shell脚本其二</h4><p>查询符合要求的文件，并执行删除</p><pre class=" language-sh"><code class="language-sh"># 查询文件:文件夹名称以node开头，类型为文件夹，修改时间为1天find . -name "node*" -type d -mtime -l# 查找缓存文件find . -name "*.tmp" # 查找并删除find . -name "*.tmp" -exec rm {} \;# 查看上一次执行命令的结果echo $?</code></pre><p>查看文件树</p><pre class=" language-sh"><code class="language-sh">tree</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>注解标记要修改的属性</title>
       <link href="/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/"/>
       <url>/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/</url>
