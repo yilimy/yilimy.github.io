@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>数据工具</title>
+      <link href="/2023/05/24/shu-ju-gong-ju/"/>
+      <url>/2023/05/24/shu-ju-gong-ju/</url>
+      
+        <content type="html"><![CDATA[<p>来自于《计算机教育中缺失的一课》04</p><h4 id="简单正则"><a href="#简单正则" class="headerlink" title="简单正则"></a>简单正则</h4><p>将字符中a或者b抹除（替换为空字符），并输出</p><pre class=" language-sh"><code class="language-sh">echo 'abcaba' | sed -E 's/[ab]//'</code></pre><p>输出结果：bcaba</p><p>以上，正则只匹配一次，要多次匹配，在后面加g</p><pre class=" language-sh"><code class="language-sh">echo 'abcaba' | sed -E 's/[ab]//g'</code></pre><p>输出结果：c</p><p>有些指令并并不会生效，比如</p><pre class=" language-sh"><code class="language-sh">echo 'abcaba' | sed 's/(ab)*//g'</code></pre><p>输出结果：abcaba</p><p>我们需要添加参数E，使其支持更新的语法</p><pre class=" language-sh"><code class="language-sh">echo 'abcaba' | sed -E 's/(ab)*//g'</code></pre><p>输出结果：ca</p><p>或者通过转义符，告诉程序括号为括号</p><pre class=" language-sh"><code class="language-sh">echo 'abcaba' | sed 's/\(ab\)*//g'</code></pre><p>输出结果：ca</p><p>匹配后是即时删除的，比如</p><pre class=" language-sh"><code class="language-sh">echo 'abcababc' | sed -E 's/(ab|bc)*//g'</code></pre><p>输出结果：cc</p><p>[在线正则网站]<a href="https://regex101.com/">https://regex101.com/</a></p><h4 id="综合正则"><a href="#综合正则" class="headerlink" title="综合正则"></a>综合正则</h4><blockquote><p>vim 进入api-controller.log后，使用  “:%s  + 正则” 的方式可能查找不出来，或许跟行匹配有关</p><p>暂时没有找到原因</p></blockquote><p>读取日志</p><pre class=" language-sh"><code class="language-sh">cat api-controller.log</code></pre><p>过滤关键字，此时管道中的数据是按行输出，为之后的正则匹配提供了条件</p><pre class=" language-sh"><code class="language-sh">grep '源文件路径'</code></pre><p>对过滤出的每一行日志按正则过滤，并按组输出（起始组：1）</p><pre class=" language-sh"><code class="language-sh">sed -E 's/^.*\[([0-9a-z]{32})\]: .*:(esus.*pdf)$/\2/'</code></pre><p>其中 “\2” 表示第二组，正则中的小括号表示结果分组</p><p>打印组数据</p><pre class=" language-sh"><code class="language-sh">awk '{print $0}'</code></pre><p>以数据源为例：</p><p>2023-05-24 16:49:03.565 INFO  [http-nio-9001-exec-6] [c.b.c.s.w.c.DeleteSourceAspect_after:123] - [a9f3e9082bef43519c5d1917092d61ba]: 源文件路.:esus/web/2023/5/24/f8f79256991e27cbad615e406d9fd499439fbd044adf02cc4b183c9e0f39b23fgdfileflag82b-4433-837d-d14d5451.pdf</p><blockquote><p>查询链路ID：</p></blockquote><pre class=" language-sh"><code class="language-sh">cat api-controller.log | grep '源文件路径' | sed -E 's/^.*\[([0-9a-z]{32})\]: .*:(esus.*pdf)$/\1/' | awk '{print $1}'</code></pre><p>输出为：a9f3e9082bef43519c5d1917092d61ba</p><blockquote><p>查询文件路径：</p></blockquote><pre class=" language-sh"><code class="language-sh">cat api-controller.log | grep '源文件路径' | sed -E 's/^.*\[([0-9a-z]{32})\]: .*:(esus.*pdf)$/\2/' | awk '{print $1}'</code></pre><p>输出为：esus&#x2F;web&#x2F;2023&#x2F;5&#x2F;24&#x2F;f8f79256991e27cbad615e406d9fd499439fbd044adf02cc4b183c9e0f39b23fgdfileflag82b-4433-837d-d14d5451.pdf</p><p>更多参考：[数据整理] <a href="https://missing-semester-cn.github.io/2020/data-wrangling/">https://missing-semester-cn.github.io/2020/data-wrangling/</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> shell </tag>
+            
+            <tag> data </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>拦截和转发</title>
       <link href="/2023/05/23/lan-jie-he-zhuan-fa/"/>
       <url>/2023/05/23/lan-jie-he-zhuan-fa/</url>
