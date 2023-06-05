@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="toString太长的解决方案, Hexo">
+    <meta name="keywords" content="数据工具，其二, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>toString太长的解决方案 | Hexo</title>
+    <title>数据工具，其二 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">toString太长的解决方案</h1>
+                    <h1 class="description center-align post-title">数据工具，其二</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
-                            </a>
-                        
-                            <a href="/tags/spring/">
-                                <span class="chip bg-color">spring</span>
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
+                                <span class="chip bg-color">计算机教育中缺失的一课</span>
                             </a>
                         
                     </div>
@@ -451,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-16
+                    2023-06-05
                 </div>
                 
 
@@ -472,111 +468,59 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>适用于文件等大字符串的打印</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>core<span class="token punctuation">.</span>util<span class="token punctuation">.</span>StrUtil<span class="token punctuation">;</span>
-<span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang3<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>ToStringStyle<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ObjectUtils<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * toString 的格式化
- * 1. 不打印null
- * 2. 限定参数的打印长度
- *
- * 可能导致部分main方法中的bean对象toString方法不可用
- *
- * e.g.
- * &lt;code>
- *
- *     @Override
- *     public String toString() {
- *         return ToStringBuilder.reflectionToString(
- *                 this, new MyNoNullStyle().setLimit("file"));
- *     }
- *
- * &lt;/code>
- *
- */</span>
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyNoNullStyle</span> <span class="token keyword">extends</span> <span class="token class-name">ToStringStyle</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 2347542971151578670L<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 不打印的属性
-     */</span>
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> exclude<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 限制长度的属性
-     */</span>
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> limit<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/**
-     * 限制的长度值
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> limitLength <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要忽略打印的属性
-     * @param exclude 忽略列表
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setExclude</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> exclude<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>exclude <span class="token operator">=</span> exclude<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要限制打印的属性
-     * @param limit 限制的属性
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setLimit</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>limit <span class="token operator">=</span> limit<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 设置需要限制打印的长度
-     * @param limitLength 限制长度，默认100
-     * @return this
-     */</span>
-    <span class="token keyword">public</span> MyNoNullStyle <span class="token function">setLimitLength</span><span class="token punctuation">(</span><span class="token keyword">int</span> limitLength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>limitLength <span class="token operator">=</span> limitLength<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">append</span><span class="token punctuation">(</span>StringBuffer buffer<span class="token punctuation">,</span> String fieldName<span class="token punctuation">,</span> Object value<span class="token punctuation">,</span> Boolean fullDetail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>exclude<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">for</span> <span class="token punctuation">(</span>String es <span class="token operator">:</span> exclude<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">if</span> <span class="token punctuation">(</span>fieldName<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>es<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                        <span class="token keyword">return</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>limit<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">for</span> <span class="token punctuation">(</span>String ls <span class="token operator">:</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">(</span>fieldName<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>ls<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                            value <span class="token operator">=</span> StrUtil<span class="token punctuation">.</span><span class="token function">brief</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> limitLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-                <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> fieldName<span class="token punctuation">,</span> value<span class="token punctuation">,</span> fullDetail<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"NoNullStyle判断异常[{}]"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+                <p>统计行数</p>
+<pre class=" language-sh"><code class="language-sh">wc -l
 </code></pre>
-<p>使用：</p>
-<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> ToStringBuilder<span class="token punctuation">.</span><span class="token function">reflectionToString</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">MyNoNullStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setLimit</span><span class="token punctuation">(</span><span class="token string">"file"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<p>查看docker服务日志</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | grep template | awk '{print $1}' | xargs  docker logs -f --tail=100
+</code></pre>
+<p>awk 表述行取值</p>
+<p>xargs 表示参数传入</p>
+<h4 id="awk列过滤的其他案例"><a href="#awk列过滤的其他案例" class="headerlink" title="awk列过滤的其他案例"></a>awk列过滤的其他案例</h4><p>第一列为d2d6812cb25a，第二列以gomain开头，format结尾，然后打印整条数据</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | awk '$1 == "d2d6812cb25a" && $2 ~ /^g.*t$/  {print $0}'
+</code></pre>
+<p>其中$1如果比较的是数字，不加引号，字符串需要加引号</p>
+<p>单个*不能表示字符省略，需要配合点号</p>
+<p>awk本身是一种编程语言</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | awk 'BEGIN {line = 0}  {line += 1} END {print line} '
+</code></pre>
+<p>共计有40条记录</p>
+<p>过滤出g开头的</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | awk 'BEGIN {line = 0} $2 ~ /^g.*/ {line += 1} END {print line} '
+</code></pre>
+<p>共计33条记录</p>
+<p>备注 BEGIN 和 END 必须大写</p>
+<h4 id="bc工具"><a href="#bc工具" class="headerlink" title="bc工具"></a>bc工具</h4><p>paste命令可用于合并文件的列</p>
+<p>打印下序列 0~40</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | awk 'BEGIN {i = 0} {print i++} END {print i}'
+</code></pre>
+<p>使用paste拼接</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | awk 'BEGIN {i = 0} {print i++} END {print i}' | paste -sd+
+</code></pre>
+<p>效果为:</p>
+<blockquote>
+<p>0+1+2+3+4+5+6+7+8+9+10+11+12+13+14+15+16+17+18+19+20+21+22+23+24+25+26+27+28+29+30+31+32+33+34+35+36+37+38+39+40</p>
+</blockquote>
+<p>s是串行 –serial</p>
+<p>d是用指定的间隔字符取代跳格字符，上例中使用的是加号</p>
+<p>上述命令有以下几个变种</p>
+<pre class=" language-sh"><code class="language-sh"># 1
+docker ps | awk 'BEGIN {i = 0} {print i++} END {print i}' | paste -sd +
+# 2
+docker ps | awk 'BEGIN {i = 0} {print i++} END {print i}' | paste -s -d +
+# 3
+docker ps | awk 'BEGIN {i = 0} {print i++} END {print i}' | paste -d + -s
+</code></pre>
+<p>结果一致</p>
+<p>使用bc计算以上的值</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | awk 'BEGIN {i = 0} {print i++} END {print i}' | paste -sd+ | bc -l
+</code></pre>
+<p>l表示使用标准的数学库</p>
+<blockquote>
+<p>-l, –mathlib<br>              Define the standard math library.</p>
+</blockquote>
+<p>其实不加 l 也能计算</p>
+<pre class=" language-sh"><code class="language-sh">docker ps | awk 'BEGIN {i = 0} {print i++} END {print i}' | paste -sd+ | bc
 </code></pre>
 
                 
@@ -604,7 +548,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/05/16/tostring-tai-chang-de-jie-jue-fang-an/">https://yilimy.github.io/2023/05/16/tostring-tai-chang-de-jie-jue-fang-an/</a>
+                    <a href="https://yilimy.github.io/2023/06/05/shu-ju-gong-ju-qi-er/">https://yilimy.github.io/2023/06/05/shu-ju-gong-ju-qi-er/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -642,12 +586,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
-                                </a>
-                            
-                                <a href="/tags/spring/">
-                                    <span class="chip bg-color">spring</span>
+                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
+                                    <span class="chip bg-color">计算机教育中缺失的一课</span>
                                 </a>
                             
                         </div>
@@ -817,17 +757,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/05/17/rest-wen-jian-shang-chuan/">
+                <a href="/2023/06/05/shu-ju-gong-ju-qi-er/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="rest文件上传">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="数据工具，其二">
                         
-                        <span class="card-title">rest文件上传</span>
+                        <span class="card-title">数据工具，其二</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -837,34 +778,23 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-05
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/java/" class="post-category">
-                                    java
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            噢买了买了嘎
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
-                    </a>
-                    
-                    <a href="/tags/spring/">
-                        <span class="chip bg-color">spring</span>
-                    </a>
-                    
-                    <a href="/tags/restTemplate/">
-                        <span class="chip bg-color">restTemplate</span>
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
+                        <span class="chip bg-color">计算机教育中缺失的一课</span>
                     </a>
                     
                 </div>
@@ -878,13 +808,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/16/shell-jiao-ben-qi-yi/">
+                <a href="/2023/06/01/chong-xin-da-jian-hexo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="shell脚本（其一）">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="重新搭建hexo">
                         
-                        <span class="card-title">shell脚本（其一）</span>
+                        <span class="card-title">重新搭建hexo</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -895,7 +825,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-01
                             </span>
                         <span class="publish-author">
                             
@@ -908,12 +838,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shell/">
-                        <span class="chip bg-color">shell</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
-                        <span class="chip bg-color">计算机教育中缺失的一课</span>
+                    <a href="/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
