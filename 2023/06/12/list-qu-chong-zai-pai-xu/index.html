@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="shell脚本其二, Hexo">
+    <meta name="keywords" content="list去重再排序, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>shell脚本其二 | Hexo</title>
+    <title>list去重再排序 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">shell脚本其二</h1>
+                    <h1 class="description center-align post-title">list去重再排序</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/shell/">
-                                <span class="chip bg-color">shell</span>
+                            <a href="/tags/java/">
+                                <span class="chip bg-color">java</span>
                             </a>
                         
-                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
-                                <span class="chip bg-color">计算机教育中缺失的一课</span>
+                            <a href="/tags/stream/">
+                                <span class="chip bg-color">stream</span>
                             </a>
                         
                     </div>
@@ -451,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-22
+                    2023-06-12
                 </div>
                 
 
@@ -472,19 +472,21 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>来自于《计算机教育中缺失的一课》02</p>
-<h4 id="shell脚本其二"><a href="#shell脚本其二" class="headerlink" title="shell脚本其二"></a>shell脚本其二</h4><p>查询符合要求的文件，并执行删除</p>
-<pre class=" language-sh"><code class="language-sh"># 查询文件:文件夹名称以node开头，类型为文件夹，修改时间为1天
-find . -name "node*" -type d -mtime -l
-# 查找缓存文件
-find . -name "*.tmp" 
-# 查找并删除
-find . -name "*.tmp" -exec rm {} \;
-# 查看上一次执行命令的结果
-echo $?
-</code></pre>
-<p>查看文件树</p>
-<pre class=" language-sh"><code class="language-sh">tree
+                <p>基本思路：将stream按照key转成map去重，然后读取map的值，组成集合，集合按照某个属性排序成list</p>
+<p>直接上代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>Optional<span class="token punctuation">.</span><span class="token function">ofNullable</span><span class="token punctuation">(</span>psSealList<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 执行过滤条件</span>
+    <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>sp <span class="token operator">-</span><span class="token operator">></span> validateNoType<span class="token punctuation">.</span><span class="token function">or</span><span class="token punctuation">(</span>validateEffective<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>sp<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 去重</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>PsSeal<span class="token operator">:</span><span class="token operator">:</span>getEsId<span class="token punctuation">,</span> Function<span class="token punctuation">.</span><span class="token function">identity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>oldValue<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> oldValue<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 可能导致排序变动</span>
+    <span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 根据ID重新排序</span>
+    <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>PsSeal<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
                 
@@ -512,7 +514,7 @@ echo $?
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/05/22/shell-jiao-ben-qi-er/">https://yilimy.github.io/2023/05/22/shell-jiao-ben-qi-er/</a>
+                    <a href="https://yilimy.github.io/2023/06/12/list-qu-chong-zai-pai-xu/">https://yilimy.github.io/2023/06/12/list-qu-chong-zai-pai-xu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -550,12 +552,12 @@ echo $?
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/shell/">
-                                    <span class="chip bg-color">shell</span>
+                                <a href="/tags/java/">
+                                    <span class="chip bg-color">java</span>
                                 </a>
                             
-                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
-                                    <span class="chip bg-color">计算机教育中缺失的一课</span>
+                                <a href="/tags/stream/">
+                                    <span class="chip bg-color">stream</span>
                                 </a>
                             
                         </div>
@@ -725,17 +727,18 @@ echo $?
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/05/22/vim/">
+                <a href="/2023/06/12/list-qu-chong-zai-pai-xu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="vim">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="list去重再排序">
                         
-                        <span class="card-title">vim</span>
+                        <span class="card-title">list去重再排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -745,9 +748,9 @@ echo $?
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -756,19 +759,16 @@ echo $?
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shell/">
-                        <span class="chip bg-color">shell</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/vim/">
-                        <span class="chip bg-color">vim</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
-                        <span class="chip bg-color">计算机教育中缺失的一课</span>
+                    <a href="/tags/stream/">
+                        <span class="chip bg-color">stream</span>
                     </a>
                     
                 </div>
@@ -782,13 +782,13 @@ echo $?
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/">
+                <a href="/2023/06/08/iphone-he-win-gong-xiang-wen-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="注解标记要修改的属性">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="iphone和win共享文件">
                         
-                        <span class="card-title">注解标记要修改的属性</span>
+                        <span class="card-title">iphone和win共享文件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -799,16 +799,12 @@ echo $?
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-08
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/java/" class="post-category">
-                                    java
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            噢买了买了嘎
                             
                         </span>
                     </div>
@@ -816,12 +812,12 @@ echo $?
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/spring/">
-                        <span class="chip bg-color">spring</span>
+                    <a href="/tags/win/">
+                        <span class="chip bg-color">win</span>
                     </a>
                     
-                    <a href="/tags/annotate/">
-                        <span class="chip bg-color">annotate</span>
+                    <a href="/tags/iphone/">
+                        <span class="chip bg-color">iphone</span>
                     </a>
                     
                 </div>

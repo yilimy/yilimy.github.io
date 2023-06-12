@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="shell脚本其二, Hexo">
+    <meta name="keywords" content="iphone和win共享文件, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>shell脚本其二 | Hexo</title>
+    <title>iphone和win共享文件 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">shell脚本其二</h1>
+                    <h1 class="description center-align post-title">iphone和win共享文件</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/shell/">
-                                <span class="chip bg-color">shell</span>
+                            <a href="/tags/win/">
+                                <span class="chip bg-color">win</span>
                             </a>
                         
-                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
-                                <span class="chip bg-color">计算机教育中缺失的一课</span>
+                            <a href="/tags/iphone/">
+                                <span class="chip bg-color">iphone</span>
                             </a>
                         
                     </div>
@@ -451,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-22
+                    2023-06-08
                 </div>
                 
 
@@ -472,20 +472,39 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>来自于《计算机教育中缺失的一课》02</p>
-<h4 id="shell脚本其二"><a href="#shell脚本其二" class="headerlink" title="shell脚本其二"></a>shell脚本其二</h4><p>查询符合要求的文件，并执行删除</p>
-<pre class=" language-sh"><code class="language-sh"># 查询文件:文件夹名称以node开头，类型为文件夹，修改时间为1天
-find . -name "node*" -type d -mtime -l
-# 查找缓存文件
-find . -name "*.tmp" 
-# 查找并删除
-find . -name "*.tmp" -exec rm {} \;
-# 查看上一次执行命令的结果
-echo $?
+                <h4 id="创建windows共享文件夹"><a href="#创建windows共享文件夹" class="headerlink" title="创建windows共享文件夹"></a>创建windows共享文件夹</h4><p>创建共享文件夹</p>
+<ol>
+<li>创建一个空文件夹</li>
+<li>右键 - 属性 - 共享</li>
+</ol>
+<p>为共享文件夹创建可访问用户</p>
+<ol start="3">
+<li>高级共享 - 共享此文件夹</li>
+<li>权限 - Everyone - 完全控制</li>
+</ol>
+<p>将可访问用户添加进权限组</p>
+<ol start="5">
+<li>（右键 - 属性 - 共享）- 共享 - 添加（Everyone）</li>
+<li>Everyone - 读取&#x2F;写入</li>
+</ol>
+<h4 id="win准备好共享"><a href="#win准备好共享" class="headerlink" title="win准备好共享"></a>win准备好共享</h4><p>cmd查询ip</p>
+<pre class=" language-cmd"><code class="language-cmd">ipconfig
 </code></pre>
-<p>查看文件树</p>
-<pre class=" language-sh"><code class="language-sh">tree
-</code></pre>
+<p>待连接的格式为：smb:&#x2F;&#x2F;ipv4地址</p>
+<p>用户名和密码：windows登录&#x2F;锁屏时显示的用户名，和登录时使用的pin码</p>
+<blockquote>
+<p>非微软账户，使用PC的账户登录机器，使用微软账户登录系统。</p>
+<p>现在的目标是通过iphone连接机器，使用的是PC的登录账户，跟微软账户没关系。</p>
+</blockquote>
+<h4 id="iphone查找共享文件夹"><a href="#iphone查找共享文件夹" class="headerlink" title="iphone查找共享文件夹"></a>iphone查找共享文件夹</h4><p>打开文件app，选中间的共享标签，右上角下拉列表中选中连接服务器</p>
+<p>输入 <code>smb://192.168.15.215</code></p>
+<p>连接身份选“注册用户”，输入名称和密码</p>
+<p>检查状态：</p>
+<p>连接成功后，再次选择“连接服务器”，最近使用的服务器列表中，会显示刚才连接成功的ip</p>
+<h4 id="共享文件"><a href="#共享文件" class="headerlink" title="共享文件"></a>共享文件</h4><p>打开照片，选择发送，下拉列表中选择【存储到”文件”】，在弹出的对话框中左上角【浏览】【共享】</p>
+<hr>
+<p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/259554390">Windows 和 iPhone 如何快速传输文件 - 知乎 (zhihu.com)</a></p>
+<p>备注：从照片app到文件app有压缩，失望，聊胜于无</p>
 
                 
             </div>
@@ -512,7 +531,7 @@ echo $?
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/05/22/shell-jiao-ben-qi-er/">https://yilimy.github.io/2023/05/22/shell-jiao-ben-qi-er/</a>
+                    <a href="https://yilimy.github.io/2023/06/08/iphone-he-win-gong-xiang-wen-jian/">https://yilimy.github.io/2023/06/08/iphone-he-win-gong-xiang-wen-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -550,12 +569,12 @@ echo $?
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/shell/">
-                                    <span class="chip bg-color">shell</span>
+                                <a href="/tags/win/">
+                                    <span class="chip bg-color">win</span>
                                 </a>
                             
-                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
-                                    <span class="chip bg-color">计算机教育中缺失的一课</span>
+                                <a href="/tags/iphone/">
+                                    <span class="chip bg-color">iphone</span>
                                 </a>
                             
                         </div>
@@ -729,13 +748,13 @@ echo $?
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/05/22/vim/">
+                <a href="/2023/06/12/list-qu-chong-zai-pai-xu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="vim">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="list去重再排序">
                         
-                        <span class="card-title">vim</span>
+                        <span class="card-title">list去重再排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -746,7 +765,7 @@ echo $?
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-12
                         </span>
                         <span class="publish-author">
                             
@@ -759,16 +778,12 @@ echo $?
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shell/">
-                        <span class="chip bg-color">shell</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/vim/">
-                        <span class="chip bg-color">vim</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/">
-                        <span class="chip bg-color">计算机教育中缺失的一课</span>
+                    <a href="/tags/stream/">
+                        <span class="chip bg-color">stream</span>
                     </a>
                     
                 </div>
@@ -782,13 +797,13 @@ echo $?
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/19/zhu-jie-biao-ji-yao-xiu-gai-de-shu-xing/">
+                <a href="/2023/06/06/cha-kan-yuan-ma/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="注解标记要修改的属性">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="查看源码">
                         
-                        <span class="card-title">注解标记要修改的属性</span>
+                        <span class="card-title">查看源码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -799,16 +814,12 @@ echo $?
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/java/" class="post-category">
-                                    java
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            噢买了买了嘎
                             
                         </span>
                     </div>
@@ -816,12 +827,12 @@ echo $?
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/spring/">
-                        <span class="chip bg-color">spring</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/annotate/">
-                        <span class="chip bg-color">annotate</span>
+                    <a href="/tags/maven/">
+                        <span class="chip bg-color">maven</span>
                     </a>
                     
                 </div>

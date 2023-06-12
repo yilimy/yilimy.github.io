@@ -4,6 +4,48 @@
   
     
     <entry>
+      <title>list去重再排序</title>
+      <link href="/2023/06/12/list-qu-chong-zai-pai-xu/"/>
+      <url>/2023/06/12/list-qu-chong-zai-pai-xu/</url>
+      
+        <content type="html"><![CDATA[<p>基本思路：将stream按照key转成map去重，然后读取map的值，组成集合，集合按照某个属性排序成list</p><p>直接上代码：</p><pre class=" language-java"><code class="language-java"><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>Optional<span class="token punctuation">.</span><span class="token function">ofNullable</span><span class="token punctuation">(</span>psSealList<span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">// 执行过滤条件</span>    <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>sp <span class="token operator">-</span><span class="token operator">></span> validateNoType<span class="token punctuation">.</span><span class="token function">or</span><span class="token punctuation">(</span>validateEffective<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>sp<span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">// 去重</span>    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>PsSeal<span class="token operator">:</span><span class="token operator">:</span>getEsId<span class="token punctuation">,</span> Function<span class="token punctuation">.</span><span class="token function">identity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>oldValue<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> oldValue<span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">// 可能导致排序变动</span>    <span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">// 根据ID重新排序</span>    <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>PsSeal<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> stream </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>iphone和win共享文件</title>
+      <link href="/2023/06/08/iphone-he-win-gong-xiang-wen-jian/"/>
+      <url>/2023/06/08/iphone-he-win-gong-xiang-wen-jian/</url>
+      
+        <content type="html"><![CDATA[<h4 id="创建windows共享文件夹"><a href="#创建windows共享文件夹" class="headerlink" title="创建windows共享文件夹"></a>创建windows共享文件夹</h4><p>创建共享文件夹</p><ol><li>创建一个空文件夹</li><li>右键 - 属性 - 共享</li></ol><p>为共享文件夹创建可访问用户</p><ol start="3"><li>高级共享 - 共享此文件夹</li><li>权限 - Everyone - 完全控制</li></ol><p>将可访问用户添加进权限组</p><ol start="5"><li>（右键 - 属性 - 共享）- 共享 - 添加（Everyone）</li><li>Everyone - 读取&#x2F;写入</li></ol><h4 id="win准备好共享"><a href="#win准备好共享" class="headerlink" title="win准备好共享"></a>win准备好共享</h4><p>cmd查询ip</p><pre class=" language-cmd"><code class="language-cmd">ipconfig</code></pre><p>待连接的格式为：smb:&#x2F;&#x2F;ipv4地址</p><p>用户名和密码：windows登录&#x2F;锁屏时显示的用户名，和登录时使用的pin码</p><blockquote><p>非微软账户，使用PC的账户登录机器，使用微软账户登录系统。</p><p>现在的目标是通过iphone连接机器，使用的是PC的登录账户，跟微软账户没关系。</p></blockquote><h4 id="iphone查找共享文件夹"><a href="#iphone查找共享文件夹" class="headerlink" title="iphone查找共享文件夹"></a>iphone查找共享文件夹</h4><p>打开文件app，选中间的共享标签，右上角下拉列表中选中连接服务器</p><p>输入 <code>smb://192.168.15.215</code></p><p>连接身份选“注册用户”，输入名称和密码</p><p>检查状态：</p><p>连接成功后，再次选择“连接服务器”，最近使用的服务器列表中，会显示刚才连接成功的ip</p><h4 id="共享文件"><a href="#共享文件" class="headerlink" title="共享文件"></a>共享文件</h4><p>打开照片，选择发送，下拉列表中选择【存储到”文件”】，在弹出的对话框中左上角【浏览】【共享】</p><hr><p>参考：<a href="https://zhuanlan.zhihu.com/p/259554390">Windows 和 iPhone 如何快速传输文件 - 知乎 (zhihu.com)</a></p><p>备注：从照片app到文件app有压缩，失望，聊胜于无</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> win </tag>
+            
+            <tag> iphone </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>查看源码</title>
       <link href="/2023/06/06/cha-kan-yuan-ma/"/>
       <url>/2023/06/06/cha-kan-yuan-ma/</url>
