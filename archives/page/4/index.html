@@ -454,7 +454,7 @@
             
             
             <div class="cd-timeline-img month" data-aos="zoom-in-up">
-                <a href="/archives/2023/06">06</a>
+                <a href="/archives/2023/05">05</a>
             </div>
             
 
@@ -465,29 +465,32 @@
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/06/16/ya-ce-ri-zhi/">
+                        <a href="/2023/05/16/shell-jiao-ben-qi-yi/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="压测日志">
+                                <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="shell脚本（其一）">
                                 
-                                <span class="card-title">压测日志</span>
+                                <span class="card-title">shell脚本（其一）</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    JMeter下载地址
-其中Binaries是编译好的版本，Source是源码包
-tgz是Linux版本，zip是windows版本
+                                    来自于《计算机教育中缺失的一课》02
+案例脚本一创建一个目录，并切换到创建的目录
+# mcd.sh
+mcd(){
+    mkdir -p "$1"
+    cd "$1"
+}
 
-变更JMeter语言
-找到JMeter配置文件 D:\tools\apache-jmeter-5.5\bi
+可将mcd.sh 加载到当前对话框source mcd.sh
                                 
                             </div>
                             <div class="publish-info">
                                 <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2023-06-16
+                                    <i class="far fa-clock fa-fw icon-date"></i>2023-05-16
                                 </span>
                                 <span class="publish-author">
                                     
@@ -501,13 +504,9 @@ tgz是Linux版本，zip是windows版本
                         
                         <div class="card-action article-tags">
                             
-                            <a href="/tags/java/"><span class="chip bg-color">java</span></a>
-                            
                             <a href="/tags/shell/"><span class="chip bg-color">shell</span></a>
                             
-                            <a href="/tags/data/"><span class="chip bg-color">data</span></a>
-                            
-                            <a href="/tags/log/"><span class="chip bg-color">log</span></a>
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%95%99%E8%82%B2%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E4%B8%80%E8%AF%BE/"><span class="chip bg-color">计算机教育中缺失的一课</span></a>
                             
                         </div>
                         
@@ -526,43 +525,47 @@ tgz是Linux版本，zip是windows版本
 
             
             <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>16</span>
+                <span>15</span>
             </div>
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/06/16/zhan-nei-tiao-zhuan/">
+                        <a href="/2023/05/15/dai-ma-fu-hao-luan-ma/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="站内跳转">
+                                <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="代码符号乱码">
                                 
-                                <span class="card-title">站内跳转</span>
+                                <span class="card-title">代码符号乱码</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    Hexo 站内跳转
-{% post_path filename %}
+                                    
+代码符号乱码
 
-官方文档
-文档中说的filename是指创建文件时的文件名，
-e.g.
+找到仓库目录
+\node_modules\hexo-prism-plugin\src\index.js
 
-hexo new “站内跳转”
-
-创建文件后，会因为插件等，文件在_posts文件夹中有不同的
+在变量中添加大括号的映射，e.g.
+const map = {
+  '&amp;#39;': '\'',
+  '&a
                                 
                             </div>
                             <div class="publish-info">
                                 <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2023-06-16
+                                    <i class="far fa-clock fa-fw icon-date"></i>2023-05-15
                                 </span>
                                 <span class="publish-author">
                                     
-                                    <i class="fas fa-user fa-fw"></i>
-                                    噢买了买了嘎
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                    
+                                    <a href="/categories/hexo/" class="post-category">
+                                    hexo
+                                    </a>
+                                    
                                     
                                 </span>
                             </div>
@@ -590,39 +593,41 @@ hexo new “站内跳转”
 
             
             <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>16</span>
+                <span>15</span>
             </div>
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2023/06/16/lan-jie-he-fen-fa/">
+                        <a href="/2023/05/15/jackson-de-xu-lie-hua-he-fan-xu-lie-hua/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="拦截和分发">
+                                <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="jackson的序列化和反序列化">
                                 
-                                <span class="card-title">拦截和分发</span>
+                                <span class="card-title">jackson的序列化和反序列化</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    相关文章：
-拦截和转发
-
-分发请求的分发是通过doFilter实现的，可以在同一个拦截器内同时实现转发和分发
-@Override
-public void doFilter(ServletRequest servletRequest, Ser
+                                    需要在属性上添加
+@JsonSerialize(using = Base64Serializer.class)
+@JsonDeserialize(using = Base64Deserializer.class)
+private Strin
                                 
                             </div>
                             <div class="publish-info">
                                 <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2023-06-16
+                                    <i class="far fa-clock fa-fw icon-date"></i>2023-05-15
                                 </span>
                                 <span class="publish-author">
                                     
-                                    <i class="fas fa-user fa-fw"></i>
-                                    噢买了买了嘎
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                    
+                                    <a href="/categories/java/" class="post-category">
+                                    java
+                                    </a>
+                                    
                                     
                                 </span>
                             </div>
@@ -630,200 +635,12 @@ public void doFilter(ServletRequest servletRequest, Ser
 
                         
                         <div class="card-action article-tags">
+                            
+                            <a href="/tags/java/"><span class="chip bg-color">java</span></a>
                             
                             <a href="/tags/spring/"><span class="chip bg-color">spring</span></a>
                             
-                            <a href="/tags/filter/"><span class="chip bg-color">filter</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>12</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2023/06/12/list-qu-chong-zai-pai-xu/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="list去重再排序">
-                                
-                                <span class="card-title">list去重再排序</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    基本思路：将stream按照key转成map去重，然后读取map的值，组成集合，集合按照某个属性排序成list
-直接上代码：
-new ArrayList&lt;>(Optional.ofNullable(psSealList)
-    .o
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2023-06-12
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    噢买了买了嘎
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/java/"><span class="chip bg-color">java</span></a>
-                            
-                            <a href="/tags/stream/"><span class="chip bg-color">stream</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>08</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2023/06/08/iphone-he-win-gong-xiang-wen-jian/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="iphone和win共享文件">
-                                
-                                <span class="card-title">iphone和win共享文件</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    创建windows共享文件夹创建共享文件夹
-
-创建一个空文件夹
-右键 - 属性 - 共享
-
-为共享文件夹创建可访问用户
-
-高级共享 - 共享此文件夹
-权限 - Everyone - 完全控制
-
-将可访问用户添加进权限组
-
-（右键 - 属性 
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2023-06-08
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    噢买了买了嘎
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/win/"><span class="chip bg-color">win</span></a>
-                            
-                            <a href="/tags/iphone/"><span class="chip bg-color">iphone</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>06</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
-                        <a href="/2023/06/06/cha-kan-yuan-ma/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="查看源码">
-                                
-                                <span class="card-title">查看源码</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    如果引入的依赖库没有源码，Ideal会使用反编译插件对.class文件反编译
-要手动查找类，比如：反编译后的文件可以看接口，不能看实现
-如果选择Choose Sources时选中了jar包，可能会提示
-
-IDEA cannot determ
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2023-06-06
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-user fa-fw"></i>
-                                    噢买了买了嘎
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/java/"><span class="chip bg-color">java</span></a>
-                            
-                            <a href="/tags/maven/"><span class="chip bg-color">maven</span></a>
+                            <a href="/tags/jackson/"><span class="chip bg-color">jackson</span></a>
                             
                         </div>
                         
@@ -841,18 +658,18 @@ IDEA cannot determ
     <div class="row">
         <div class="col s6 m4 l4">
             
-            <a class="left btn-floating btn-large disabled">
+            <a href="/archives/page/3/"
+               class="left btn-floating btn-large waves-effect waves-light bg-color">
                 <i class="fas fa-angle-left"></i>
             </a>
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 4</div>
+            <div class="center-align b-text-gray">4 / 4</div>
         </div>
         <div class="col s6 m4 l4">
             
-            <a href="/archives/page/2/"
-               class="right btn-floating btn-large waves-effect waves-light bg-color">
+            <a class="right btn-floating btn-large disabled">
                 <i class="fas fa-angle-right"></i>
             </a>
             

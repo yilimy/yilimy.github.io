@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="list去重再排序, Hexo">
+    <meta name="keywords" content="拦截和分发, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>list去重再排序 | Hexo</title>
+    <title>拦截和分发 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">list去重再排序</h1>
+                    <h1 class="description center-align post-title">拦截和分发</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
+                            <a href="/tags/spring/">
+                                <span class="chip bg-color">spring</span>
                             </a>
                         
-                            <a href="/tags/stream/">
-                                <span class="chip bg-color">stream</span>
+                            <a href="/tags/filter/">
+                                <span class="chip bg-color">filter</span>
                             </a>
                         
                     </div>
@@ -451,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-06-12
+                    2023-06-16
                 </div>
                 
 
@@ -472,22 +472,144 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>基本思路：将stream按照key转成map去重，然后读取map的值，组成集合，集合按照某个属性排序成list</p>
-<p>直接上代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>Optional<span class="token punctuation">.</span><span class="token function">ofNullable</span><span class="token punctuation">(</span>psSealList<span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">emptyList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 执行过滤条件</span>
-    <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>sp <span class="token operator">-</span><span class="token operator">></span> validateNoType<span class="token punctuation">.</span><span class="token function">or</span><span class="token punctuation">(</span>validateEffective<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>sp<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 去重</span>
-    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>PsSeal<span class="token operator">:</span><span class="token operator">:</span>getEsId<span class="token punctuation">,</span> Function<span class="token punctuation">.</span><span class="token function">identity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>oldValue<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> oldValue<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 可能导致排序变动</span>
-    <span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// 根据ID重新排序</span>
-    <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>PsSeal<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <p>相关文章：</p>
+<a href="/2023/05/23/lan-jie-he-zhuan-fa/" title="拦截和转发">拦截和转发</a>
+
+<h3 id="分发"><a href="#分发" class="headerlink" title="分发"></a>分发</h3><p>请求的分发是通过doFilter实现的，可以在同一个拦截器内同时实现转发和分发</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest servletRequest<span class="token punctuation">,</span> ServletResponse servletResponse<span class="token punctuation">,</span> FilterChain filterChain<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token punctuation">{</span>
+    HttpServletRequest request <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletRequest<span class="token punctuation">)</span> servletRequest<span class="token punctuation">;</span>
+    HttpServletResponse response <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletResponse<span class="token punctuation">)</span> servletResponse<span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 获取请求路径</span>
+        String uri <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"/core/web/ycApi/documentVerifySign"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>uri<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 前端发起的验证请求也需要转发, 去掉web标记</span>
+            uri <span class="token operator">=</span> <span class="token string">"/core/ycApi/documentVerifySign"</span><span class="token punctuation">;</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"/core/web/ycApi/documentVerifySign ==> /core/ycApi/documentVerifySign"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>uri<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"/core/web/ycApi"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 页面请求，不做转发</span>
+            filterChain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 转发</span>
+        <span class="token function">forwardFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> uri<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"转发服务异常"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 交给Spring的异常解析器去处理</span>
+<span class="token comment" spellcheck="true">//            exceptionResolver.resolveException(request, response, null, e);</span>
+        <span class="token comment" spellcheck="true">// 必须得传 HandlerMethod 否则会走GlobalExceptionHandler，而不是指定的YanCaoApiAdvice</span>
+        <span class="token comment" spellcheck="true">// 没有通过servlet进行分发，因此没有获取到方法对象</span>
+        <span class="token comment" spellcheck="true">// 如有必要再添加对方法的匹配，这里默认去找Controller的第一个方法</span>
+        HandlerMethod handlerMethod <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HandlerMethod</span><span class="token punctuation">(</span>ycController<span class="token punctuation">,</span> ycController<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        exceptionResolver<span class="token punctuation">.</span><span class="token function">resolveException</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> handlerMethod<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
+<h3 id="分发的异常处理"><a href="#分发的异常处理" class="headerlink" title="分发的异常处理"></a>分发的异常处理</h3><ul>
+<li><p>一般而言，异常会由HandlerExceptionResolverComposite处理，它包含了Advice注解的异常处理方案。</p>
+</li>
+<li><p>但是有些情况下，请求没有执行到<em>DispatcherServlet</em>的分析，获得到handler不能指向我们需要的Advice，比如文件上传接口，超出了tomcat的最大限制导致的<em>checkMultipart</em>解析失败。</p>
+</li>
+<li><p>因为<em>DispatcherServlet#checkMultipart</em>解析是在<em>DispatcherServlet#getHandler</em>之前，导致异常处理程序因为没有接收到handler而没法交给特定的Advice处理，从而转给全局Advice处理。</p>
+</li>
+</ul>
+<p>目前有两种解决方案</p>
+<ol>
+<li>异常处理前拦截</li>
+<li>异常处理后救场</li>
+</ol>
+<h4 id="方案一：拦截"><a href="#方案一：拦截" class="headerlink" title="方案一：拦截"></a>方案一：拦截</h4><p>异常处理前是指<em>DispatcherServlet#processHandlerException</em>方法内遍历handlerExceptionResolvers时，会先执行<em>DefaultErrorAttributes#resolveException</em>方法，在请求头中设置异常状态</p>
+<pre class=" language-java"><code class="language-java">request<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>ERROR_ATTRIBUTE<span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>但是在这个过程中如果返回了视图对象<em>ModelAndView</em>，则不会往下执行异常的处理</p>
+<p>因此，我们可以继承<em>DefaultErrorAttributes</em>对象，并注入我们自己的规则，拦截某些请求的异常流程，将请求分发中的异常交由指定的Advice处理。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyDefaultErrorAttributes</span> <span class="token keyword">extends</span> <span class="token class-name">DefaultErrorAttributes</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> YanCaoApiController ycController<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"handlerExceptionResolver"</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> HandlerExceptionResolver exceptionResolver<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 文件上传分发出错导致链路没有解析出mappedHandler
+     * @see org.springframework.web.servlet.DispatcherServlet#doDispatch(HttpServletRequest, HttpServletResponse)
+     * @see org.springframework.web.servlet.DispatcherServlet#checkMultipart(HttpServletRequest)
+     * 单独针对指定路径的文件上传请求做异常处理的指定
+     * 因为没法指定handler，异常处理会走向全局处理
+     * @see com.gomain.exception.GlobalExceptionHandler
+     * 但是可以在异常处理（HandlerExceptionResolver）前，先通过DefaultErrorAttributes返回ModelAndView来提前将拦截掉异常处理
+     * @see org.springframework.web.servlet.DispatcherServlet#processHandlerException(HttpServletRequest, HttpServletResponse, Object, Exception)
+     * processHandlerException方法中的handlerExceptionResolvers是优先处理DefaultErrorAttributes，不返回null就可以实现对异常的拦截
+     * 再次将异常处理交给了ycController对应的Advice，这里随意指定了ycController中的一个方法
+     * 可以进一步细化到对应的类方法，即实现DispatcherServlet的部分功能
+     * @param request current HTTP request
+     * @param response current HTTP response
+     * @param handler the executed handler, or {@code null} if none chosen at the
+     * time of the exception (for example, if multipart resolution failed)
+     * @param ex the exception that got thrown during handler execution
+     * @return ModelAndView
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> ModelAndView <span class="token function">resolveException</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">,</span> Object handler<span class="token punctuation">,</span> Exception ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        String uri <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getRequestURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"/core/web/ycApi/fileUploadStream"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>uri<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"文件上传分发失败, uri=/core/web/ycApi/fileUploadStream, error:{}"</span><span class="token punctuation">,</span> ex<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Method method<span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                method <span class="token operator">=</span> ycController<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token string">"fileUploadStream"</span><span class="token punctuation">,</span> MultipartFile<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> HttpServletRequest<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> HttpServletResponse<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"没有找到方法:fileUploadStream"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                method <span class="token operator">=</span> ycController<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// 指定Advice处理异常</span>
+            HandlerMethod handlerMethod <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HandlerMethod</span><span class="token punctuation">(</span>ycController<span class="token punctuation">,</span> method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> exceptionResolver<span class="token punctuation">.</span><span class="token function">resolveException</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> handlerMethod<span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">resolveException</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> handler<span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="方案二：救场"><a href="#方案二：救场" class="headerlink" title="方案二：救场"></a>方案二：救场</h4><p>异常处理后救场是指默认<em>filterChain.doFilter</em>中发生异常，并由我们不认可的异常处理程序处理</p>
+<p>分发链路处理中，并不会抛出异常，我们可以在分发链路执行完成后，检查请求头中是否有异常标记</p>
+<p>通过修改响应体来达成目的</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest servletRequest<span class="token punctuation">,</span> ServletResponse servletResponse<span class="token punctuation">,</span> FilterChain filterChain<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException <span class="token punctuation">{</span>
+    HttpServletRequest request <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletRequest<span class="token punctuation">)</span> servletRequest<span class="token punctuation">;</span>
+    HttpServletResponse response <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletResponse<span class="token punctuation">)</span> servletResponse<span class="token punctuation">;</span> 
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+    
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+        <span class="token comment" spellcheck="true">// 页面请求，不做转发</span>
+        filterChain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// multipartResolver 检查请求时出错，会导致dispatcher解析不出handler，从而被全局异常捕获</span>
+            Object dispatcherException <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span>DispatcherServlet<span class="token punctuation">.</span>EXCEPTION_ATTRIBUTE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>Objects<span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>dispatcherException<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"分发过程中发生异常"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//TODO 已提交的响应不能重置的解决方案</span>
+                <span class="token comment" spellcheck="true">// 分发发生异常时交由指定的Advice处理</span>
+                <span class="token keyword">throw</span> <span class="token punctuation">(</span>Exception<span class="token punctuation">)</span> dispatcherException<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 分发过程中没有发生异常，将进入Controller处理</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+        
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"分发异常"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        HandlerMethod handlerMethod <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HandlerMethod</span><span class="token punctuation">(</span>ycController<span class="token punctuation">,</span> ycController<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        exceptionResolver<span class="token punctuation">.</span><span class="token function">resolveException</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> handlerMethod<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>但是这里有个问题，通过doFilter处理过异常后，response的缓冲区是已提交状态，只能追加数据，不能重置数据</p>
+<p>可以自定义ResponseWrap来达成对缓冲区的修改</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5746b5876a46">https://www.jianshu.com/p/5746b5876a46</a></p>
+<p>解决方案有点偏，不尝试了。</p>
 
                 
             </div>
@@ -514,7 +636,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/06/12/list-qu-chong-zai-pai-xu/">https://yilimy.github.io/2023/06/12/list-qu-chong-zai-pai-xu/</a>
+                    <a href="https://yilimy.github.io/2023/06/16/lan-jie-he-fen-fa/">https://yilimy.github.io/2023/06/16/lan-jie-he-fen-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -552,12 +674,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
+                                <a href="/tags/spring/">
+                                    <span class="chip bg-color">spring</span>
                                 </a>
                             
-                                <a href="/tags/stream/">
-                                    <span class="chip bg-color">stream</span>
+                                <a href="/tags/filter/">
+                                    <span class="chip bg-color">filter</span>
                                 </a>
                             
                         </div>
@@ -731,13 +853,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/06/16/lan-jie-he-fen-fa/">
+                <a href="/2023/06/16/zhan-nei-tiao-zhuan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="拦截和分发">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="站内跳转">
                         
-                        <span class="card-title">拦截和分发</span>
+                        <span class="card-title">站内跳转</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -761,12 +883,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/spring/">
-                        <span class="chip bg-color">spring</span>
-                    </a>
-                    
-                    <a href="/tags/filter/">
-                        <span class="chip bg-color">filter</span>
+                    <a href="/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
@@ -780,13 +898,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/06/08/iphone-he-win-gong-xiang-wen-jian/">
+                <a href="/2023/06/12/list-qu-chong-zai-pai-xu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="iphone和win共享文件">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="list去重再排序">
                         
-                        <span class="card-title">iphone和win共享文件</span>
+                        <span class="card-title">list去重再排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -797,7 +915,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-12
                             </span>
                         <span class="publish-author">
                             
@@ -810,12 +928,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/win/">
-                        <span class="chip bg-color">win</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/iphone/">
-                        <span class="chip bg-color">iphone</span>
+                    <a href="/tags/stream/">
+                        <span class="chip bg-color">stream</span>
                     </a>
                     
                 </div>
