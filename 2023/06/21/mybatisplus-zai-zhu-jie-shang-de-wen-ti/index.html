@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="压测日志, Hexo">
+    <meta name="keywords" content="mybatisPlus在注解上的问题, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>压测日志 | Hexo</title>
+    <title>mybatisPlus在注解上的问题 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">压测日志</h1>
+                    <h1 class="description center-align post-title">mybatisPlus在注解上的问题</h1>
                 </div>
             </div>
         </div>
@@ -431,20 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
+                            <a href="/tags/spring/">
+                                <span class="chip bg-color">spring</span>
                             </a>
                         
-                            <a href="/tags/shell/">
-                                <span class="chip bg-color">shell</span>
-                            </a>
-                        
-                            <a href="/tags/data/">
-                                <span class="chip bg-color">data</span>
-                            </a>
-                        
-                            <a href="/tags/log/">
-                                <span class="chip bg-color">log</span>
+                            <a href="/tags/mybatis/">
+                                <span class="chip bg-color">mybatis</span>
                             </a>
                         
                     </div>
@@ -459,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-06-16
+                    2023-06-21
                 </div>
                 
 
@@ -480,186 +472,142 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="JMeter"><a href="#JMeter" class="headerlink" title="JMeter"></a>JMeter</h4><p><a target="_blank" rel="noopener" href="https://jmeter.apache.org/download_jmeter.cgi#source">下载地址</a></p>
-<p>其中Binaries是编译好的版本，Source是源码包</p>
-<p>tgz是Linux版本，zip是windows版本</p>
-<ul>
-<li><p>变更JMeter语言</p>
-<p>找到JMeter配置文件 D:\tools\apache-jmeter-5.5\bin\jmeter.properties</p>
-<p>修改语言（默认英文）：</p>
-<blockquote>
-<p>language&#x3D;zh_CN</p>
+                <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>维护一个老项目，并在其中添加迭代一个新功能</p>
+<p>发现依赖库中有mybatisPlus，于是就用了</p>
+<h3 id="依赖不全"><a href="#依赖不全" class="headerlink" title="依赖不全"></a>依赖不全</h3><blockquote>
+<p>Invalid bound statement (not found)</p>
 </blockquote>
-</li>
+<p>检查发现是直接依赖的mybatis-plus-2.1.0gamma的版本</p>
+<p>改为适配spring的版本，添加dependency</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatisplus-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.0.4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="Mapper校验失败"><a href="#Mapper校验失败" class="headerlink" title="Mapper校验失败"></a>Mapper校验失败</h3><p>引入starter后，原本正常的Mapper校验不通过了</p>
+<blockquote>
+<p>Dots are not allowed in element names，please remove it from</p>
+</blockquote>
+<p>有issue说是interface和mapper.xml加载顺序的原因，查到的解决方案是mybatisPlus升级到3.1.x</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/codeblf2/article/details/102687864">建议升级到3.1.x</a></p>
+<p><a target="_blank" rel="noopener" href="https://gitee.com/baomidou/mybatis-plus/issues/IYQI9">维护者的讨论</a></p>
+<h3 id="MybatisPlus升级到3-1-0"><a href="#MybatisPlus升级到3-1-0" class="headerlink" title="MybatisPlus升级到3.1.0"></a>MybatisPlus升级到3.1.0</h3><p>2.1升级到3.1，涉及到很多类的包路径变动，比如注解，Page等，改动量很大</p>
+<p>但是start要升级到spring cloud 2.0，这对老项目来说不现实</p>
+<p>放弃升级mybatis-plus</p>
+<h3 id="查源码"><a href="#查源码" class="headerlink" title="查源码"></a>查源码</h3><p>在Mapper.java中出现自定义的resultMapId时，必现</p>
+<ul>
+<li>自定义resultMapId</li>
 </ul>
-<h4 id="添加日志切面"><a href="#添加日志切面" class="headerlink" title="添加日志切面"></a>添加日志切面</h4><p>需要开启配置：test.function.cost&#x3D;false</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>ProceedingJoinPoint<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Around<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Aspect<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>MethodSignature<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>condition<span class="token punctuation">.</span>ConditionalOnExpression<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * 打印方法调用耗时和方法入参
- * @author caimeng
- * @date 2023/06/13 10:58
- */</span>
-<span class="token annotation punctuation">@Slf4j</span>
-<span class="token annotation punctuation">@Aspect</span>
-<span class="token annotation punctuation">@Configuration</span>
-<span class="token annotation punctuation">@ConditionalOnExpression</span><span class="token punctuation">(</span><span class="token string">"${test.function.cost:false}"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServiceDigestAop</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">ServiceDigestAop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 切面：方法调用时间和方法入参
-     * @param joinPoint 切点
-     * @return 方法调用返回数据
-     * @throws Throwable 调用失败返回的异常
-     */</span>
-    <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"execution (* com.gomain..*.service.impl.*.*(..))"</span> <span class="token operator">+</span>
-            <span class="token string">"||execution(* com.gomain.api.sign.controller.ShZhStandardController.*(..))"</span> <span class="token operator">+</span>
-            <span class="token string">"||execution(* com.gomain.sign.feign.SignFeign.*(..))"</span> <span class="token operator">+</span>
-            <span class="token string">"||execution(* com.gomain.seal.feign.SealQueryFeign.*(..))"</span> <span class="token operator">+</span>
-            <span class="token string">"||execution(* com.gomain.api.mq.producer.Producer.*(..))"</span> <span class="token operator">+</span>
-            <span class="token string">"||execution(* com.gomain.calculate.feign.CalculateServiceFeign.*(..))"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> Object <span class="token function">timeAround</span><span class="token punctuation">(</span>ProceedingJoinPoint joinPoint<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable<span class="token punctuation">{</span>
-        Object obj <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args <span class="token operator">=</span> joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">long</span> startTime <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        MethodSignature signature <span class="token operator">=</span> <span class="token punctuation">(</span>MethodSignature<span class="token punctuation">)</span>joinPoint<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        String methodName <span class="token operator">=</span> signature<span class="token punctuation">.</span><span class="token function">getDeclaringTypeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_"</span> <span class="token operator">+</span> signature<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">printBeginLog</span><span class="token punctuation">(</span>methodName<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            obj <span class="token operator">=</span> joinPoint<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> var10<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">printErrorLog</span><span class="token punctuation">(</span>methodName<span class="token punctuation">,</span> args<span class="token punctuation">,</span> var10<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">throw</span> var10<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">long</span> endTime <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">printExecTime</span><span class="token punctuation">(</span>methodName<span class="token punctuation">,</span> args<span class="token punctuation">,</span> startTime<span class="token punctuation">,</span> endTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 是否基本数据类型，或字符串类型
-     * @param clazz 待检测类
-     * @return 是否基本类型或字符串类型
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">isPrimitive</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> clazz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> clazz<span class="token punctuation">.</span><span class="token function">isPrimitive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> clazz <span class="token operator">==</span> String<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 是否短字符串
-     * @param str 待检测字符串
-     * @return 是否短字符串
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">isShortString</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> str<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 打印方法开始执行时间点
-     * @param methodName 方法名
-     * @param args 方法参数
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">printBeginLog</span><span class="token punctuation">(</span>String methodName<span class="token punctuation">,</span> Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        String param <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">generateParamDigest</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"[{}] begin param [{}]"</span><span class="token punctuation">,</span> methodName<span class="token punctuation">,</span> param<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 打印方法成功执行后时间点
-     * @param methodName 方法名
-     * @param args 方法参数
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">printExecTime</span><span class="token punctuation">(</span>String methodName<span class="token punctuation">,</span> Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">,</span> <span class="token keyword">long</span> startTime<span class="token punctuation">,</span> <span class="token keyword">long</span> endTime<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        String param <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">generateParamDigest</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"[{}] success param [{}] cost {} ms"</span><span class="token punctuation">,</span> methodName<span class="token punctuation">,</span> param<span class="token punctuation">,</span> endTime <span class="token operator">-</span> startTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 方法执行失败，打印参数和错误消息
-     * @param methodName 方法名
-     * @param args 方法参数
-     */</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">printErrorLog</span><span class="token punctuation">(</span>String methodName<span class="token punctuation">,</span> Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">,</span> Throwable e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        String param <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">generateParamDigest</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        String errormsg <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span><span class="token string">"\\s*"</span><span class="token punctuation">,</span> <span class="token string">"_"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"[{}] error param [{}] errmsg [{}]"</span><span class="token punctuation">,</span> methodName<span class="token punctuation">,</span> param<span class="token punctuation">,</span> errormsg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/**
-     * 简单方法参数
-     * @param args 方法参数
-     * @return 方法参数的简易拼接
-     */</span>
-    <span class="token keyword">private</span> String <span class="token function">generateParamDigest</span><span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>args <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token string">"args is null !"</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            StringBuffer argString <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            Object<span class="token punctuation">[</span><span class="token punctuation">]</span> var3 <span class="token operator">=</span> args<span class="token punctuation">;</span>
-            <span class="token keyword">int</span> var4 <span class="token operator">=</span> args<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
-
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> var5 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> var5 <span class="token operator">&lt;</span> var4<span class="token punctuation">;</span> <span class="token operator">++</span>var5<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                Object arg <span class="token operator">=</span> var3<span class="token punctuation">[</span>var5<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>arg <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isPrimitive</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isShortString</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                            argString<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                            argString<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                        argString<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-
-            <span class="token keyword">return</span> argString<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"&lt;script> ... &lt;/script> "</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Results</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string">"appMap"</span><span class="token punctuation">,</span>
+            value <span class="token operator">=</span> <span class="token punctuation">{</span>
+                    <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>property <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> column <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>property <span class="token operator">=</span> <span class="token string">"systemName"</span><span class="token punctuation">,</span> column <span class="token operator">=</span> <span class="token string">"system_name"</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+List<span class="token operator">&lt;</span>PO<span class="token operator">></span> <span class="token function">findSystemCallApproval</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"dto"</span><span class="token punctuation">)</span> DTO dto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>使用resultMapId</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"&lt;script> SELECT * FROM table where id =#{id} &lt;/script> "</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@ResultMap</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"appMap"</span><span class="token punctuation">)</span>
+PO <span class="token function">findSystemCallApprovalById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span>String id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>在方法 <code>findSystemCallApprovalById</code> 处报错：</p>
+<blockquote>
+<p>Dots are not allowed in element names，please remove it from</p>
+</blockquote>
+<p>报错点为 org.apache.ibatis.builder.MapperBuilderAssistant 中的方法</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> String <span class="token function">applyCurrentNamespace</span><span class="token punctuation">(</span>String base<span class="token punctuation">,</span> <span class="token keyword">boolean</span> isReference<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>base <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isReference<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// is it qualified with any namespace yet?</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>base<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> base<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// is it qualified with this namespace yet?</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>base<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span>currentNamespace <span class="token operator">+</span> <span class="token string">"."</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> base<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>base<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BuilderException</span><span class="token punctuation">(</span><span class="token string">"Dots are not allowed in element names, please remove it from "</span> <span class="token operator">+</span> base<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">return</span> currentNamespace <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> base<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="配置日志打印文件"><a href="#配置日志打印文件" class="headerlink" title="配置日志打印文件"></a>配置日志打印文件</h4><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>appender</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>digestLog<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ch.qos.logback.core.rolling.RollingFileAppender<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token comment" spellcheck="true">&lt;!--encoder 默认配置为PatternLayoutEncoder--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoder</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pattern</span><span class="token punctuation">></span></span>${LOG_PATTERN}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pattern</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoder</span><span class="token punctuation">></span></span>
-    <span class="token comment" spellcheck="true">&lt;!--滚动策略--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rollingPolicy</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ch.qos.logback.core.rolling.TimeBasedRollingPolicy<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token comment" spellcheck="true">&lt;!--路径--></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fileNamePattern</span><span class="token punctuation">></span></span>${LOG_PATH}/digest-%d{yyyy-MM-dd}.%i.log<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fileNamePattern</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>timeBasedFileNamingAndTriggeringPolicy</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maxFileSize</span><span class="token punctuation">></span></span>500MB<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maxFileSize</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>timeBasedFileNamingAndTriggeringPolicy</span><span class="token punctuation">></span></span>
-        <span class="token comment" spellcheck="true">&lt;!--MaxHistory指的是文件数量，超过MaxHistory数量才会删除日志文件 --></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maxHistory</span><span class="token punctuation">></span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maxHistory</span><span class="token punctuation">></span></span>
-        <span class="token comment" spellcheck="true">&lt;!--TimeBasedRollingPolicy下logback 启动项目时候 默认不删除多余的文件--></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cleanHistoryOnStart</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cleanHistoryOnStart</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>rollingPolicy</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>appender</span><span class="token punctuation">></span></span>
-...
+<p>该方法在执行时 currentNamespace&#x3D;null，说明是没有找到命名空间</p>
+<p>尝试给该Mapper.java配置Mapper.xml，显示声明命名空间，未果</p>
+<p>尝试调整xml，interface的加载顺序，未果</p>
+<p>继续从源码入手</p>
+<p>使用mybatisPlus后，将Mapper.java注解解释成Mapper对象的是 </p>
+<p><code>com.baomidou.mybatisplus.MybatisMapperAnnotationBuilder</code></p>
+<p>该类是通过继承</p>
+<p><code>org.apache.ibatis.builder.annotation.MapperAnnotationBuilder</code></p>
+<p>修改其中的<code>parse</code>方法来完成的</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    String resource <span class="token operator">=</span> type<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>configuration<span class="token punctuation">.</span><span class="token function">isResourceLoaded</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">loadXmlResource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        configuration<span class="token punctuation">.</span><span class="token function">addLoadedResource</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        assistant<span class="token punctuation">.</span><span class="token function">setCurrentNamespace</span><span class="token punctuation">(</span>type<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">parseCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">parseCacheRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Method<span class="token punctuation">[</span><span class="token punctuation">]</span> methods <span class="token operator">=</span> type<span class="token punctuation">.</span><span class="token function">getMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO 注入 CURD 动态 SQL (应该在注解之前注入)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>BaseMapper<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            GlobalConfigUtils<span class="token punctuation">.</span><span class="token function">getSqlInjector</span><span class="token punctuation">(</span>configuration<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">inspectInject</span><span class="token punctuation">(</span>assistant<span class="token punctuation">,</span> type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Method method <span class="token operator">:</span> methods<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// issue #237</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>method<span class="token punctuation">.</span><span class="token function">isBridge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">parseStatement</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IncompleteElementException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                configuration<span class="token punctuation">.</span><span class="token function">addIncompleteMethod</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MethodResolver</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> method<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">parsePendingMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>但是在加载方法时，并非是按照java类中的顺序加载的</p>
+<blockquote>
+<p>Method[] methods &#x3D; type.getMethods();</p>
+</blockquote>
+<p>这部分没有继续查下去，因为部分依赖的jar，也使用了resultMapId的方式，意味着不能从Mapper.java的方向去调整</p>
+<p>在执行 <code>parseStatement(method)</code> 方法时，Mapper.java中的方法 <code>findSystemCallApprovalById</code> 有时会比 <code>findSystemCallApproval</code> 优先，从而导致resultMapId&#x3D;appMap不识别</p>
+<p>然后，交给</p>
+<blockquote>
+<p>configuration.addIncompleteMethod(new MethodResolver(this, method));</p>
+</blockquote>
+<p>做延迟处理，但是 <code>MethodResolver</code> 类在做 <code>resolve()</code> 时，使用的方法 <code>parseStatement</code> 是有包访问权限限制的</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MethodResolver</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> <span class="token keyword">final</span> MapperAnnotationBuilder annotationBuilder<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">final</span> Method method<span class="token punctuation">;</span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>logger</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.gomain.api.configuration.ServiceDigestAop<span class="token punctuation">"</span></span> <span class="token attr-name">level</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>info<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>appender-ref</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>digestLog<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>logger</span><span class="token punctuation">></span></span>
+  <span class="token keyword">public</span> <span class="token function">MethodResolver</span><span class="token punctuation">(</span>MapperAnnotationBuilder annotationBuilder<span class="token punctuation">,</span> Method method<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>annotationBuilder <span class="token operator">=</span> annotationBuilder<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>method <span class="token operator">=</span> method<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    annotationBuilder<span class="token punctuation">.</span><span class="token function">parseStatement</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
 </code></pre>
-<h4 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h4><pre class=" language-sh"><code class="language-sh">cat digest-2023-06-13.0.log | grep 'StampServiceImpl_stampApi' | sed -E 's/^.*StampServiceImpl_stampApi.*(cost * ms)$/\1/' | awk '{print $14}'
+<p>MapperAnnotationBuilder中的parseStatement方法</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">parseStatement</span><span class="token punctuation">(</span>Method method<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
 </code></pre>
-<p>第8位是traceId，第14位是耗时</p>
-<p>取平均值</p>
-<pre class=" language-sh"><code class="language-sh">cat data | awk 'BEGIN {sum = 0;line = 0}  {sum += $1;line+=1} END {printf "NR=%d,Average=%3.3fms\n",line,sum*2/line}'
-</code></pre>
-<p><strong>以上不合适，以下面的为准</strong></p>
-<p>接口调用耗时</p>
-<pre class=" language-sh"><code class="language-sh">cat digest.log | grep 'ShZhStandardController_genCentralizedSignatureSTD' | awk '{if($14!=""){print $14}}'| awk 'BEGIN {sum = 0;line = 0}  {sum += $1;line+=1} END {printf "line=%d,Average=%3.3fms\n",line,sum/line}'
-</code></pre>
+<p>MybatisMapperAnnotationBuilder虽然继承了MapperAnnotationBuilder，但是父类引用子类实例调用的是父类的受限方法<code>parseStatement</code>，子类重写此方法不算多态，导致resultMapId&#x3D;appMap不识别，问题一步步跳转到MapperBuilderAssistant中去处理了</p>
+<p>然而，受限制的方法找不到好的解决方案</p>
+<p>最后，放弃了使用MybatisPlus的特性，老老实实写xml …</p>
+<h3 id="新版本"><a href="#新版本" class="headerlink" title="新版本"></a>新版本</h3><p>在mybatisPlus-3.4.0中，<code> configuration.addIncompleteMethod</code> 方法将延迟处理的数据交给自定义的 <code>MybatisMethodResolver</code> 而不是 <code>MethodResolver</code></p>
+<p>没有太多的借鉴价值。</p>
 
                 
             </div>
@@ -686,7 +634,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yilimy.github.io/2023/06/16/ya-ce-ri-zhi/">https://yilimy.github.io/2023/06/16/ya-ce-ri-zhi/</a>
+                    <a href="https://yilimy.github.io/2023/06/21/mybatisplus-zai-zhu-jie-shang-de-wen-ti/">https://yilimy.github.io/2023/06/21/mybatisplus-zai-zhu-jie-shang-de-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -724,20 +672,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
+                                <a href="/tags/spring/">
+                                    <span class="chip bg-color">spring</span>
                                 </a>
                             
-                                <a href="/tags/shell/">
-                                    <span class="chip bg-color">shell</span>
-                                </a>
-                            
-                                <a href="/tags/data/">
-                                    <span class="chip bg-color">data</span>
-                                </a>
-                            
-                                <a href="/tags/log/">
-                                    <span class="chip bg-color">log</span>
+                                <a href="/tags/mybatis/">
+                                    <span class="chip bg-color">mybatis</span>
                                 </a>
                             
                         </div>
@@ -907,9 +847,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/06/21/mybatisplus-zai-zhu-jie-shang-de-wen-ti/">
                     <div class="card-image">
@@ -927,9 +868,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -938,6 +879,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -960,13 +902,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/06/16/zhan-nei-tiao-zhuan/">
+                <a href="/2023/06/16/ya-ce-ri-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="站内跳转">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="压测日志">
                         
-                        <span class="card-title">站内跳转</span>
+                        <span class="card-title">压测日志</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -990,8 +932,20 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/shell/">
+                        <span class="chip bg-color">shell</span>
+                    </a>
+                    
+                    <a href="/tags/data/">
+                        <span class="chip bg-color">data</span>
+                    </a>
+                    
+                    <a href="/tags/log/">
+                        <span class="chip bg-color">log</span>
                     </a>
                     
                 </div>
