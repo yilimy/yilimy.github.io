@@ -633,25 +633,30 @@
 
     <span class="token comment" spellcheck="true">/**
      * 根据表头排序 bean 对象属性
+     * 按Excel表头对齐对象属性列表
      * @param row Excel行对象
      * @param fields java对象属性
      * @return 排序后的属性列表
      */</span>
     <span class="token keyword">private</span> Field<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">sortFieldByHeader</span><span class="token punctuation">(</span>Row row<span class="token punctuation">,</span> Field<span class="token punctuation">[</span><span class="token punctuation">]</span> fields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">short</span> cellLength <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">getLastCellNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 创建和excel表头等长的field列表</span>
         Field<span class="token punctuation">[</span><span class="token punctuation">]</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Field</span><span class="token punctuation">[</span>Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>cellLength<span class="token punctuation">,</span> fields<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
         Cell cell<span class="token punctuation">;</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> cellLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
             String value <span class="token operator">=</span> <span class="token function">getCellValue</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>ObjectUtil<span class="token punctuation">.</span><span class="token function">isNullOrEmpty</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 不设置表头，不进入匹配循环</span>
                 <span class="token keyword">continue</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// 循环对象的属性</span>
             <span class="token keyword">for</span> <span class="token punctuation">(</span>Field field <span class="token operator">:</span> fields<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token keyword">boolean</span> hasAnnotation <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">isAnnotationPresent</span><span class="token punctuation">(</span>ExcelColumn<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>hasAnnotation<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     ExcelColumn column <span class="token operator">=</span> field<span class="token punctuation">.</span><span class="token function">getDeclaredAnnotation</span><span class="token punctuation">(</span>ExcelColumn<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                     <span class="token keyword">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>column<span class="token punctuation">.</span><span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token comment" spellcheck="true">// 对象注解与表头一致，有序放置在结果集中</span>
                         result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> field<span class="token punctuation">;</span>
                     <span class="token punctuation">}</span>
                 <span class="token punctuation">}</span>
@@ -713,6 +718,7 @@
             <span class="token keyword">return</span> null<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token keyword">int</span> cCount <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>row<span class="token punctuation">.</span><span class="token function">getLastCellNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fields<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 按Excel表头的顺序，给对象属性赋值</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> cCount<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
             String value <span class="token operator">=</span> <span class="token function">getCellValue</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -720,6 +726,7 @@
                 <span class="token keyword">continue</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtil<span class="token punctuation">.</span><span class="token function">isNullOrEmpty</span><span class="token punctuation">(</span>fields<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 对象属性赋值，位置为j</span>
                 <span class="token function">objSetMethod</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> fields<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> methods<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
                 ignoreEmptyData <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
